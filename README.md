@@ -1,6 +1,6 @@
 # \<Path of Pain\>
  
- > Authors: \<[Josiah Kou](https://github.com/JosiahKou)\>, \<[Glen Bautista](https://github.com/TrainGamer851)\>, \<[Red Su](https://github.com/reddddddsu)\>, \<[Sky Huang](https://github.com/kshuang04)\>
+ > Authors: \<[Josiah Kou](https://github.com/JosiahKou)\>, \<[Glen Bautista](https://github.com/TrainGamer851)\>, \<[Red Su](https://github.com/redddddsu)\>, \<[Sky Huang](https://github.com/kshuang04)\>
 
 ## Project Description
  > This project is interesting to us because an RPG rouge like is a type of game our members like to play. We want to take insperation from games like Path of Exiles and Slay the Spire. We think an RPG game is a good idea because it allows us to be creative, implementing many different ideas into our game.
