@@ -18,7 +18,7 @@
  "1. Attack"\
  "2. Items"\
  There will also be special dialouge for events like shopkeepers. They may say:\
- "What do you want to buy?"
+ "What do you want to buy?"\
  "1. helmet"\
  "2. health potion"\
  "3. antidote"\
