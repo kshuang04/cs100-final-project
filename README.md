@@ -49,6 +49,27 @@
 ### Screen Layouts
  Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs and expected output, or any graphical user interface components if applicable (e.g. buttons, text boxes, etc). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
 
+The general layout for our screens will consist of details about the current state of the game followed by a user prompt and the choices available for the user to make. The user will then input their choice as numerical input through the terminal.
+For example, these are the screens that the user will see at the start and end of the game:
+![alt text](startScreen.png) ![alt text](loseScreen.png) ![alt text](winScreen.png)
+Here, the user is given two choices: start the game (or restart the game) or to exit the game. The user will enter a numerical input to make their choice.
+
+Our battle layout will look like this:
+![alt text](battleScreen.png)
+Here, the user is shown information about the enemies' current health as well as their player's current health. The user is also prompted to choose between two actions: attack or use an item they possess. The attack option will decrease the enemies health and start the enemies turn. If the user chooses to use an item, they will be shown the inventory screen which is described in the next section. 
+
+If the user were to want to use an item in battle, they will be greeted with the following screen:
+![alt text](inventoryScreen.png) 
+This screen shows how our program would look if a player were to input their choices. The user is first shown how many of each item they have possess, and then prompted to choose an item to use. This image shows that the user chose to use an item they currently have none of, so the program notifies the user that they have no items to use of that type, and then reprompts the user to choose an item. After the user choosed a valid action, the program will show validation of their input. In this case, text output to the terminal showing that the user used a health potion. The user also has the option to return to battle after using the items they desire. This action will return the user to the battle screen and initiate the enemies' turn.
+The enemies' turn screen will look like this:
+![alt text](enemyTurnScreen.png)
+This screen gives information to the user about the enemies' action. In this case, Enemy 1 attacked Player and Player lost 20 health. After the enemies' turn, if the player survives the attack, the battle screen will be shown again with the new updated health and the choices the user is able to make. 
+
+Finally, another one of our main screens will be the shopkeeper's screen:
+![alt text](shopkepperScreen.png)
+This screen follows our general layout. If the user chooses to visit the shopkeeper after completing a level, they will be greeted with this screen that shows how much currency they currently have and the items avaiable to purchase from the shopkeeper. Again, the user is prompted to choose an option and input their choice as a numerical input. If they choose to buy an item, that item will be added to their inventory and the cost of that item will be deducted from their total currency. The user is also given the choice to sell items that they currently have in exchange for currency. Finally, the user is given the choice to leave the shopkeeper and continue their journey through Path of Pain.
+
+
 ## Class Diagram
   Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
  
