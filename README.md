@@ -71,7 +71,7 @@ This screen follows our general layout. If the user chooses to visit the shopkee
 
 ## Class Diagram
   Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
-  ![UML Diagram](images/UMLDiagram.png)/
+  ![UML Diagram](images/UMLDiagram.png)
 
   The core of the game is centered around the RogueGame class, an abstract base class that serves as the main entry point and game logic.
 
