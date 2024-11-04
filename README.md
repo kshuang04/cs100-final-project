@@ -73,14 +73,6 @@ This screen follows our general layout. If the user chooses to visit the shopkee
   Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
   ![UML Diagram](images/UMLDiagram.png)
 
-  The core of the game is centered around the RogueGame class, an abstract base class that serves as the main entry point and game logic.
-
-  The primary components driving the gameplay are the Player class, representing the user-controlled character, and the Level class, where the core gameplay unfolds.
-  
- 
-  ## Phase III
-  You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
-
   The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
 
   The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
@@ -92,6 +84,10 @@ This screen follows our general layout. If the user chooses to visit the shopkee
   Levels may also include rewards, which often consist of items that the player can collect. These items derive from the Item class, linking gameplay rewards with the player’s inventory.
 
   The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level. 
+  
+ 
+  ## Phase III
+  You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
 
  
   BEFORE the meeting you should do the following:
