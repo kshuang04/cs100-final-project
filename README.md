@@ -41,7 +41,6 @@
       * The tasks you are planning for the first sprint
       * How work will be divided between the team members
 ## User Interface Specification
-  Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from the User Interface Design Document Template of CMSC 345 at the University of Maryland Global Campus)
 
 ### Navigation Diagram
  ![User Navigation Diagram](images/userNavigationDiagram.png)
@@ -70,7 +69,6 @@ This screen follows our general layout. If the user chooses to visit the shopkee
 
 
 ## Class Diagram
-  Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
   ![UML Diagram](images/UMLDiagram.png)
 
   The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
