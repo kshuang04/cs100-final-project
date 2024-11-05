@@ -28,20 +28,9 @@
  
 
  Our project will include the basic features of an RPG. There will be a gold system will be used in shops. There will be a variety of monsters across a few regions that will scale with stage level. There will be a class system that have different base stats. There will be a battle system that allows the use of items and attacking. As for special features, we will have random encounters that will trigger special events and a path system that allows the user to pick what they want to do at every stage. After beating every stage, the player can pick up a random amount of loot.
+ 
   ## Phase II
-  In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
-  * Create an "Epic" (note) for each feature. Place these epics in the `Product Backlog` column
-  * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
-    * Break down the "Epics" into smaller actionable user stories (i.e. smaller development tasks). Convert them into issues and assign them to team members. Place these in the `TODO` column (aka Sprint Backlog).
-    * These cards should represent roughly 7 days worth of development time for your team. Then, once the sprint is over you should be repeating these steps to plan a new sprint, taking you until your second scrum meeting with the reader in phase III.
-  * Each team member needs to submit the Individual Contributions Form on Canvas for this phase. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase  II, and a description of their contributions. Remember that each team member should submit the form individually.
-  * Schedule two check-ins using Calendly. Both time slots should be during your lab on week 6. Your entire team must be present for both check-ins.
-    * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
-    * The second check-in should be scheduled with a reader. During that meeting you will discuss:
-      * The tasks you are planning for the first sprint
-      * How work will be divided between the team members
-## User Interface Specification
-
+  
 ### Navigation Diagram
  ![User Navigation Diagram](images/userNavigationDiagram.png)
  The User Navigation Diagram represents the flow of the game iself of how the roguelike game is played and what steps are taken to go from one part to an another. This includes any player inputs or game mechanics to show what things are output in a certain scenario like purchasing items from a shop, fight monsters in a battle, or changing equipment before proceeding to the next level. It also shows the parts to be within one of 6 main screens used here. The "Start Screen" is used to for starting the program or game. The "Player Equipment Screen" is used for the players to change items or use items before proceeding tothe next level. The "Shop Screen" is used for players to purchase and/or sell items from the Shop. The "Battle Screen" is used to show the actions from the players and monsters in a fight to see the outcomes. The "Game Over Screen" is used when the game ends from either the player lost or the last level is completed.
