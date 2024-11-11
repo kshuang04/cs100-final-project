@@ -21,8 +21,7 @@ class Player {
         int attackStat;
         int defenseStat;
         int gold;
-        //const int maxItemCount = 15;
-        //vector<Item> itemIven;
+        //Item itemIven[15];
         //playerClass playerClass;
     public:
         Player();

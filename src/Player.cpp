@@ -7,7 +7,11 @@ Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attack
 Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), gold(gold) {}
 
 Player::~Player() {
-    //delete[] itemIven;
+    // for (int i = 0; i < 15, i++) {
+    //     delete this->itemIven[i];
+    //     this->itemIven[i] = nullptr;
+    // }
+    // delete[] this->itemIven;
 }
 
 int Player::attack() {
