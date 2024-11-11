@@ -51,6 +51,114 @@ TEST(ChangeEXPTests, IncreaseNegativeEXP) {
     EXPECT_ANY_THROW(myPlayer.changeEXP(-50););
 }
 
+TEST(PrintStatsTests, normalPlayerStats) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_NO_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, negativeLevel) {
+    Player myPlayer;
+    myPlayer.setLevel(-5);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, pastMAXLevel) {
+    Player myPlayer;
+    myPlayer.setLevel(30);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, negativeEXP) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(-30);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, tooMuchEXPAndNotLeveledUp) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(2000);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, negativeHP) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(-5);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, extraHP) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(30);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, negativeAttackStat) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(-100);
+    myPlayer.setDefenseStat(20);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintStatsTests, negativeDefenseStat) {
+    Player myPlayer;
+    myPlayer.setLevel(2);
+    myPlayer.setMaxLevel(20);
+    myPlayer.setEXP(50);
+    myPlayer.setHP(15);
+    myPlayer.setMaxHP(20);
+    myPlayer.setAttackStat(25);
+    myPlayer.setDefenseStat(-50);
+    EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

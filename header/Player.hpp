@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <typeinfo>
 
 using namespace std;
 
@@ -31,9 +32,11 @@ class Player {
         int attack();
         //Attack getAttack();
         void printStats();
+        void printInven();
         void useItem();
         void changeGold(int goldChange);
         void changeEXP(int expChange);
+        int expToNextLevel();
         //Accessors
         int getHP() {return this->currHP;}
         int getMaxHP() {return this->maxHP;}
