@@ -1,0 +1,32 @@
+Basic:
+	Goblin
+	Zombie
+	Imp
+	Rat
+	Slime
+	Skeleton
+	Bats
+
+	Bandit
+	Mud Golem
+	Flesh-Eating Plant
+	Floating Skull
+
+	Werewolf
+	Fire Elemental
+	Dragonlings
+	
+Elite:
+	Troll
+	Giant Rat
+	Stone Golem
+	Witch
+	Bandit Leader
+	Mimic
+	
+
+Boss:
+	Dragon
+	Phoenix
+	Lich
+	

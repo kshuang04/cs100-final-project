@@ -1,0 +1,9 @@
+test/googletest/
+Makefile
+cmake_install.cmake
+bin/
+CMakeFiles/
+lib/
+CMakeCache.txt
+runPlayerTests
+h.autoSetupRemote
