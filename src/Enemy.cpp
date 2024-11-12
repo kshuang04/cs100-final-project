@@ -1,4 +1,4 @@
-#include "../header/Enemy/Enemy.hpp"
+#include "../header/Enemy.hpp"
 
 Enemy::Enemy(int maxHealth, int attackPower, int defense, int exp, int gold) :
     maxHealth(maxHealth), attackPower(attackPower), defense(defense), expAmount(exp),
