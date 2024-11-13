@@ -12,3 +12,8 @@ TEST (EnemyClass, healthWhenAttacked) {
     test.gotAttack(10);
     EXPECT_EQ(test.getHealth(), 5);
 }
+
+TEST (EnemyClass, getName) {
+    Enemy test(0, 0, 0, 0, 0, "test");
+    EXPECT_EQ(test.getName(), "test");
+}
