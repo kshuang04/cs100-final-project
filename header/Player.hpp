@@ -11,6 +11,8 @@
 
 #include "../header/Item.hpp"
 
+class Item;
+
 using namespace std;
 
 class Player {
@@ -23,11 +25,8 @@ class Player {
         int attackStat;
         int defenseStat;
         int gold;
-        //vector<Item> usedItems;
-        //Item itemIven[15];
         vector<Item*> itemIven;
         int itemCount;
-        //playerClass playerClass;
     public:
         const int maxItem = 16;
     public:
@@ -38,9 +37,10 @@ class Player {
         int attack();
         //Attack getAttack();
         void addItem(Item* newItem);
+        void consumeItem(int itemIndex);
+        void removeItem(int itemIndex);
         void printStats();
         void printInven();
-        void useItem();
         void changeGold(int goldChange);
         void changeEXP(int expChange);
         int expToNextLevel();

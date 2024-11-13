@@ -13,6 +13,7 @@ public:
     string getItemName() override;
     string getDescription() override;
     void printStat() override;
+    void useItem(Player* player) override;
 };
 
 #endif

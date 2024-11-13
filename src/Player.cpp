@@ -24,6 +24,20 @@ int Player::attack() {
 void Player::addItem(Item* newItem) {
     if ((this->getItemCount() + 1) > this->maxItem) {throw logic_error("You have reached the maximum amount of items.");}
     this->getItemIven().push_back(newItem);
+    this->setItemCount(this->getItemCount() + 1);
+}
+
+void Player::consumeItem(int itemIndex) {
+    if (((itemIndex - 1) < 0) || ((itemIndex - 1) > this->getItemCount()) || (this->getItemCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
+    this->getItemIven().at((itemIndex - 1))->useItem(this);
+    this->removeItem(itemIndex);
+}
+
+void Player::removeItem(int itemIndex) {
+    if (((itemIndex - 1) < 0) || ((itemIndex - 1) > this->getItemCount()) || (this->getItemCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
+    delete this->getItemIven().at((itemIndex - 1));
+    this->getItemIven().erase(this->getItemIven().begin() + (itemIndex - 1));
+    this->setItemCount(this->getItemCount() - 1);
 }
 
 void Player::printStats() {
@@ -51,10 +65,6 @@ void Player::printInven() {
         cout << endl;
     }
     cout << "------------------------\n";
-}
-
-void Player::useItem() {
-
 }
 
 void Player::changeGold(int goldChange) {

@@ -3,16 +3,20 @@
 
 #include "../header/Item.hpp"
 
+class Player;
+
 class AttackItemStub : public Item {
     int attackPower;
 public:
-    AttackItemStub();  // Default constructor
-    ~AttackItemStub();  // Destructor
+    Player* player;
+    AttackItemStub();
+    ~AttackItemStub();
     AttackItemStub(string newItemName, int newAttackPower, string newDescription);
-    int getAttackPower();  // Getter function for attack power
-    string getItemName() override;  // Override for item name
-    string getDescription() override;  // Override for description
-    void printStat() override;  // Override for printStat
+    int getAttackPower();
+    string getItemName() override;
+    string getDescription() override;
+    void printStat() override;
+    void useItem(Player* player) override;
 };
 
-#endif // ATTACK_ITEM_STUB_HPP
+#endif

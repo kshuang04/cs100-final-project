@@ -3,6 +3,8 @@
 
 #include "../header/Item.hpp"
 
+class Player;
+
 class DefenseItemStub : public Item {
     int defensePower;
 public:
@@ -13,6 +15,7 @@ public:
     string getItemName() override;
     string getDescription() override;
     void printStat() override;
+    void useItem(Player* player) override;
 };
 
 #endif
