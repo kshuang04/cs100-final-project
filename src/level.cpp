@@ -6,6 +6,14 @@ level::level() {
 
 //Check Enemy.txt
 void level::insertEnemies() {
+    /*
+    I figure out an easier and cleaner way to do this
+    just use this for testing for now
+
+    - Red
+
+    */
+
 
     //Basic (0 - 13)
     Enemy Goblin(3, 0, 2, 15, 20, "Goblin");
