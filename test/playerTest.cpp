@@ -11,6 +11,7 @@ TEST(ChangeEXPTests, IncreaseEXPForButNoLevelIncrease) {
     myPlayer->changeEXP(50);
     EXPECT_EQ(myPlayer->getLevel(), 1);
     EXPECT_EQ(myPlayer->getEXP(), 50);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPForOneLevel) {
@@ -18,6 +19,7 @@ TEST(ChangeEXPTests, IncreaseEXPForOneLevel) {
     myPlayer->changeEXP(150);
     EXPECT_EQ(myPlayer->getLevel(), 2);
     EXPECT_EQ(myPlayer->getEXP(), 50);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPForTwoLevels) {
@@ -25,6 +27,7 @@ TEST(ChangeEXPTests, IncreaseEXPForTwoLevels) {
     myPlayer->changeEXP(250);
     EXPECT_EQ(myPlayer->getLevel(), 3);
     EXPECT_EQ(myPlayer->getEXP(), 25);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPStartingDifferentLevel) {
@@ -33,6 +36,7 @@ TEST(ChangeEXPTests, IncreaseEXPStartingDifferentLevel) {
     myPlayer->changeEXP(2500);
     EXPECT_EQ(myPlayer->getLevel(), 10);
     EXPECT_EQ(myPlayer->getEXP(), 550);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPAtMaxLevel) {
@@ -41,6 +45,7 @@ TEST(ChangeEXPTests, IncreaseEXPAtMaxLevel) {
     myPlayer->changeEXP(10000);
     EXPECT_EQ(myPlayer->getLevel(), 20);
     EXPECT_EQ(myPlayer->getEXP(), 0);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPBeyondMaxLevel) {
@@ -49,11 +54,13 @@ TEST(ChangeEXPTests, IncreaseEXPBeyondMaxLevel) {
     myPlayer->changeEXP(7500);
     EXPECT_EQ(myPlayer->getLevel(), 20);
     EXPECT_EQ(myPlayer->getEXP(), 0);
+    delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseNegativeEXP) {
     Player* myPlayer = new Player();
     EXPECT_ANY_THROW(myPlayer->changeEXP(-50););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, normalPlayerStats) {
@@ -66,6 +73,7 @@ TEST(PrintStatsTests, normalPlayerStats) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_NO_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, negativeLevel) {
@@ -78,6 +86,7 @@ TEST(PrintStatsTests, negativeLevel) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, pastMAXLevel) {
@@ -90,6 +99,7 @@ TEST(PrintStatsTests, pastMAXLevel) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, negativeEXP) {
@@ -102,6 +112,7 @@ TEST(PrintStatsTests, negativeEXP) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, tooMuchEXPAndNotLeveledUp) {
@@ -114,6 +125,7 @@ TEST(PrintStatsTests, tooMuchEXPAndNotLeveledUp) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, negativeHP) {
@@ -126,6 +138,7 @@ TEST(PrintStatsTests, negativeHP) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, extraHP) {
@@ -138,6 +151,7 @@ TEST(PrintStatsTests, extraHP) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, negativeAttackStat) {
@@ -150,6 +164,7 @@ TEST(PrintStatsTests, negativeAttackStat) {
     myPlayer->setAttackStat(-100);
     myPlayer->setDefenseStat(20);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintStatsTests, negativeDefenseStat) {
@@ -162,6 +177,7 @@ TEST(PrintStatsTests, negativeDefenseStat) {
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(-50);
     EXPECT_ANY_THROW(myPlayer->printStats(););
+    delete myPlayer;
 }
 
 TEST(PrintItemIvenTests, PrintAttackItem) {
@@ -170,6 +186,7 @@ TEST(PrintItemIvenTests, PrintAttackItem) {
     myPlayer->addItem(newAttackItem);
     EXPECT_EQ(newAttackItem->getAttackPower(), 25);
     EXPECT_NO_THROW(myPlayer->printInven(););
+    delete myPlayer;
 }
 
 TEST(PrintItemIvenTests, PrintDefenseItem) {
@@ -178,6 +195,7 @@ TEST(PrintItemIvenTests, PrintDefenseItem) {
     myPlayer->addItem(newDefenseItem);
     EXPECT_EQ(newDefenseItem->getDefensePower(), 20);
     EXPECT_NO_THROW(myPlayer->printInven(););
+    delete myPlayer;
 }
 
 TEST(PrintItemIvenTests, PrintHealingPotItem) {
@@ -186,6 +204,7 @@ TEST(PrintItemIvenTests, PrintHealingPotItem) {
     myPlayer->addItem(newHealingPotItem);
     EXPECT_EQ(newHealingPotItem->getHPPower(), 18);
     EXPECT_NO_THROW(myPlayer->printInven(););
+    delete myPlayer;
 }
 
 TEST(PrintItemIvenTests, PrintMaxHPPotItem) {
@@ -194,6 +213,7 @@ TEST(PrintItemIvenTests, PrintMaxHPPotItem) {
     myPlayer->addItem(newMaxHPPotItem);
     EXPECT_EQ(newMaxHPPotItem->getMaxHPPower(), 12);
     EXPECT_NO_THROW(myPlayer->printInven(););
+    delete myPlayer;
 }
 
 TEST(PrintItemIvenTests, PrintMultipleItems) {
@@ -211,6 +231,7 @@ TEST(PrintItemIvenTests, PrintMultipleItems) {
     EXPECT_EQ(newHealingPotItem->getHPPower(), 18);
     EXPECT_EQ(newMaxHPPotItem->getMaxHPPower(), 12);
     EXPECT_NO_THROW(myPlayer->printInven(););
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UseAttackItem) {
@@ -226,6 +247,7 @@ TEST(UseItemTests, UseAttackItem) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 15);
     EXPECT_EQ(myPlayer->getHP(), 30);
     EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UseDefenseItem) {
@@ -241,6 +263,7 @@ TEST(UseItemTests, UseDefenseItem) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 35);
     EXPECT_EQ(myPlayer->getHP(), 30);
     EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UseHealingPotItemButHPExceedsMaxHP) {
@@ -256,6 +279,7 @@ TEST(UseItemTests, UseHealingPotItemButHPExceedsMaxHP) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 15);
     EXPECT_EQ(myPlayer->getHP(), 45);
     EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UseHealingPotItemButHPDoesNotExceedsMaxHP) {
@@ -271,6 +295,7 @@ TEST(UseItemTests, UseHealingPotItemButHPDoesNotExceedsMaxHP) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 15);
     EXPECT_EQ(myPlayer->getHP(), 42);
     EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMaxHPPotItem) {
@@ -286,6 +311,7 @@ TEST(UseItemTests, UsingMaxHPPotItem) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 15);
     EXPECT_EQ(myPlayer->getHP(), 30);
     EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase1) {
@@ -310,6 +336,7 @@ TEST(UseItemTests, UsingMultipleItemsCase1) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 35);
     EXPECT_EQ(myPlayer->getHP(), 45);
     EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase2) {
@@ -334,6 +361,7 @@ TEST(UseItemTests, UsingMultipleItemsCase2) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 35);
     EXPECT_EQ(myPlayer->getHP(), 48);
     EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase3) {
@@ -358,6 +386,7 @@ TEST(UseItemTests, UsingMultipleItemsCase3) {
     EXPECT_EQ(myPlayer->getDefenseStat(), 35);
     EXPECT_EQ(myPlayer->getHP(), 42);
     EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    delete myPlayer;
 }
 
 int main(int argc, char **argv) {
