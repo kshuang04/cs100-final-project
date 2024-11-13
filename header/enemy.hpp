@@ -15,16 +15,24 @@ class Enemy {
         int expAmount;
         int goldAmount;
         bool alive;
+        string name;
     public:
-        Enemy(int maxHealth, int attackPower, int defense, int exp, int gold);
+        //DONT USE THIS CONSTRUCTOR
+        //this is only for enemy insertion in level class
+        Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName);
+        
         Enemy();
-        ~Enemy(); //?
+
+        // ~Enemy(); //?
         int attack();
-        void gotAttack(int damage);
+        void gotAttack(int playerDamage);
         void heal(int healthIncrease); //?
         void releaseDrops();
         bool isAlive();
         void setDescription(string);
+        string getName();
+        int getHealth();
+        
 };
 
 #endif

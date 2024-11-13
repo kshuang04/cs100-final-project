@@ -6,4 +6,4 @@ lib/
 CMakeCache.txt
 runPlayerTests
 h.autoSetupRemote
-stubs/
+playGame
