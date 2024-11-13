@@ -1,5 +1,10 @@
 #include "gtest/gtest.h"
 #include "../header/Player.hpp"
+#include "../stubs/AttackItemStub.hpp"
+#include "../stubs/DefenseItemStub.hpp"
+#include "../stubs/HealthItemStub.hpp"
+#include "../stubs/HealingPotStub.hpp"
+#include "../stubs/MaxHPPotStub.hpp"
 
 TEST(ChangeEXPTests, IncreaseEXPForButNoLevelIncrease) {
     Player myPlayer;
@@ -157,6 +162,55 @@ TEST(PrintStatsTests, negativeDefenseStat) {
     myPlayer.setAttackStat(25);
     myPlayer.setDefenseStat(-50);
     EXPECT_ANY_THROW(myPlayer.printStats(););
+}
+
+TEST(PrintItemIvenTests, PrintAttackItem) {
+    Player myPlayer;
+    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer.addItem(newAttackItem);
+    EXPECT_EQ(newAttackItem->getAttackPower(), 25);
+    EXPECT_NO_THROW(myPlayer.printInven(););
+}
+
+TEST(PrintItemIvenTests, PrintDefenseItem) {
+    Player myPlayer;
+    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    myPlayer.addItem(newDefenseItem);
+    EXPECT_EQ(newDefenseItem->getDefensePower(), 20);
+    EXPECT_NO_THROW(myPlayer.printInven(););
+}
+
+TEST(PrintItemIvenTests, PrintHealingPotItem) {
+    Player myPlayer;
+    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 18, "Looks like green hot chocolate.");
+    myPlayer.addItem(newHealingPotItem);
+    EXPECT_EQ(newHealingPotItem->getHPPower(), 18);
+    EXPECT_NO_THROW(myPlayer.printInven(););
+}
+
+TEST(PrintItemIvenTests, PrintMaxHPPotItem) {
+    Player myPlayer;
+    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    myPlayer.addItem(newMaxHPPotItem);
+    EXPECT_EQ(newMaxHPPotItem->getMaxHPPower(), 12);
+    EXPECT_NO_THROW(myPlayer.printInven(););
+}
+
+TEST(PrintItemIvenTests, PrintMultipleItems) {
+    Player myPlayer;
+    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer.addItem(newAttackItem);
+    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    myPlayer.addItem(newDefenseItem);
+    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 18, "Looks like green hot chocolate.");
+    myPlayer.addItem(newHealingPotItem);
+    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    myPlayer.addItem(newMaxHPPotItem);
+    EXPECT_EQ(newAttackItem->getAttackPower(), 25);
+    EXPECT_EQ(newDefenseItem->getDefensePower(), 20);
+    EXPECT_EQ(newHealingPotItem->getHPPower(), 18);
+    EXPECT_EQ(newMaxHPPotItem->getMaxHPPower(), 12);
+    EXPECT_NO_THROW(myPlayer.printInven(););
 }
 
 int main(int argc, char **argv) {

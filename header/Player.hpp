@@ -9,6 +9,8 @@
 #include <vector>
 #include <typeinfo>
 
+#include "../header/Item.hpp"
+
 using namespace std;
 
 class Player {
@@ -21,8 +23,13 @@ class Player {
         int attackStat;
         int defenseStat;
         int gold;
+        //vector<Item> usedItems;
         //Item itemIven[15];
+        vector<Item*> itemIven;
+        int itemCount;
         //playerClass playerClass;
+    public:
+        const int maxItem = 16;
     public:
         Player();
         Player(int maxHP, int maxLevel, int attack, int defense, int gold);
@@ -30,6 +37,7 @@ class Player {
         //Functions
         int attack();
         //Attack getAttack();
+        void addItem(Item* newItem);
         void printStats();
         void printInven();
         void useItem();
@@ -45,6 +53,8 @@ class Player {
         int getAttackStat() {return this->attackStat;}
         int getDefenseStat() {return this->defenseStat;}
         int getGold() {return this->gold;}
+        int getItemCount() {return this->itemCount;}
+        vector<Item*>& getItemIven() {return this->itemIven;}
         //Mutators
         void setHP(int newHP) {this->currHP = newHP;}
         void setMaxHP(int newMaxHP) {this->maxHP = newMaxHP;}
@@ -54,6 +64,7 @@ class Player {
         void setAttackStat(int newAttackStat) {this->attackStat = newAttackStat;}
         void setDefenseStat(int newDefenseStat) {this->defenseStat = newDefenseStat;}
         void setGold(int newGoldAmount) {this->gold = newGoldAmount;}
+        void setItemCount(int newCount) {this->itemCount = newCount;}
 };
 
 #endif
