@@ -30,6 +30,14 @@ void Player::addItem(Item* newItem) {
     this->setItemCount(this->getItemCount() + 1);
 }
 
+void Player::consumeItem(Item* currentItem) {
+    //Checks to see if the item is real and availabe
+    if (currentItem == nullptr) {throw logic_error("Using an item that does not exist.");}
+    //Consumes the item and then remove it
+    currentItem->useItem(this);
+    delete currentItem;
+}
+
 void Player::consumeItem(int itemIndex) {
     //Check to see if the item index is within the range and throws an error if not.
     if (((itemIndex - 1) < 0) || ((itemIndex - 1) > this->getItemCount()) || (this->getItemCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}

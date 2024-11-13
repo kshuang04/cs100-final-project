@@ -389,6 +389,21 @@ TEST(UseItemTests, UsingMultipleItemsCase3) {
     delete myPlayer;
 }
 
+TEST(UseItemTests, UseItemDirectly) {
+    Player* myPlayer = new Player();
+    myPlayer->setAttackStat(15);
+    myPlayer->setDefenseStat(15);
+    myPlayer->setHP(30);
+    myPlayer->setMaxHP(45);
+    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->consumeItem(newAttackItem);
+    EXPECT_EQ(myPlayer->getAttackStat(), 40);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 15);
+    EXPECT_EQ(myPlayer->getHP(), 30);
+    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    delete myPlayer;
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
