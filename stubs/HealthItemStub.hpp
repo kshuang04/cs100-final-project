@@ -3,6 +3,8 @@
 
 #include "../header/Item.hpp"
 
+class Player;
+
 class HealthItemStub : public Item {
     int healthPower;
 public:
@@ -13,6 +15,7 @@ public:
     virtual string getItemName() = 0;
     virtual string getDescription() = 0;
     virtual void printStat() = 0;
+    virtual void useItem(Player* player) = 0;
 };
 
 #endif

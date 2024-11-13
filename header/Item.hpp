@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 
+#include "../header/Player.hpp"
+class Player;
+
 using namespace std;
 
 class Item {
@@ -12,12 +15,14 @@ protected:
     string description;
 
 public:
-    Item();  // Default constructor
-    virtual ~Item();  // Virtual destructor for polymorphism if needed
-    Item(string newItemName, string newDescription);  // Constructor with parameters
-    virtual string getItemName();  // Virtual function
-    virtual string getDescription();  // Virtual function
-    virtual void printStat();  // Virtual function for subclass overrides
+    friend class Player;
+    Item();
+    virtual ~Item();
+    Item(string newItemName, string newDescription);
+    virtual string getItemName();
+    virtual string getDescription();
+    virtual void printStat();
+    virtual void useItem(Player* player);
 };
 
-#endif // ITEM_HPP
+#endif

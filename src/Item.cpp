@@ -18,3 +18,5 @@ string Item::getDescription() {
 void Item::printStat() {
     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
 }
+
+void Item::useItem(Player* player) {}
