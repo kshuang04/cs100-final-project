@@ -37,6 +37,7 @@ class Player {
         int attack();
         //Attack getAttack();
         void addItem(Item* newItem);
+        void consumeItem(Item* currentItem);
         void consumeItem(int itemIndex);
         void removeItem(int itemIndex);
         void printStats();
