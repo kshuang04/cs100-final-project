@@ -1,10 +1,10 @@
 #include "../header/Player.hpp"
 
 //Default Player Constructor
-Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), gold(0), itemCount(0) {}
+Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), gold(0), itemCount(0), isAlive(true) {}
 
 //Specific Player Constructor
-Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), gold(gold), itemCount(0) {}
+Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), gold(gold), itemCount(0), isAlive(true) {}
 
 Player::~Player() {
     //Deletes every item in the item Inventory
@@ -15,7 +15,10 @@ Player::~Player() {
 }
 
 int Player::attack() {
-    return 1;
+    //Sets a random seed everytime the function is called.
+    srand(time(0));
+    //Returns attack damage value from a specific formula.
+    return ((int)((this->getLevel() * ((rand() % 11) + (2 * this->getLevel()))) + this->getAttackStat()));
 }
 
 // Attack Player::getAttack() {

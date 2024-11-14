@@ -27,6 +27,7 @@ class Player {
         int gold;
         vector<Item*> itemIven;
         int itemCount;
+        bool isAlive;
     public:
         const int maxItem = 16;
     public:

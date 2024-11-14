@@ -404,6 +404,72 @@ TEST(UseItemTests, UseItemDirectly) {
     delete myPlayer;
 }
 
+TEST(AttackValueTest, LevelOneAttack) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    myPlayer->setAttackStat(0);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 2);
+    EXPECT_LE(damage, 12);
+    delete myPlayer;
+}
+
+TEST(AttackValueTest, LevelTenAttack) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(10);
+    myPlayer->setAttackStat(0);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 200);
+    EXPECT_LE(damage, 300);
+    delete myPlayer;
+}
+
+TEST(AttackValueTest, LevelTwentyAttack) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(20);
+    myPlayer->setAttackStat(0);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 800);
+    EXPECT_LE(damage, 1000);
+    delete myPlayer;
+}
+
+TEST(AttackValueTest, LevelOneAttackWithAttackStat) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    myPlayer->setAttackStat(5);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 7);
+    EXPECT_LE(damage, 17);
+    delete myPlayer;
+}
+
+TEST(AttackValueTest, LevelTenAttackWithAttackStat) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(10);
+    myPlayer->setAttackStat(100);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 300);
+    EXPECT_LE(damage, 400);
+    delete myPlayer;
+}
+
+TEST(AttackValueTest, LevelTwentyAttackWithAttackStat) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(20);
+    myPlayer->setAttackStat(250);
+    int damage = myPlayer->attack();
+    cout << damage << endl;
+    EXPECT_GE(damage, 1050);
+    EXPECT_LE(damage, 1250);
+    delete myPlayer;
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
