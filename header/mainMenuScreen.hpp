@@ -5,9 +5,6 @@
 
 class MainMenuScreen : public Screen
 {
-    private:
-        void displayTextSlowly(const std::string& text, int delayMilliseconds, int endDelayMilliseconds);
-
     public:
         void printScreen() override;
 };
