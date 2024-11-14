@@ -6,4 +6,5 @@ add_executable(playGame
     src/Item.cpp
     src/screen.cpp
     src/mainMenuScreen.cpp
+    src/loseScreen.cpp
 )
