@@ -24,7 +24,7 @@ class Player {
         int exp;
         int attackStat;
         int defenseStat;
-        int gold;
+        unsigned int gold;
         vector<Item*> itemIven;
         int itemCount;
         bool isAlive;
@@ -54,7 +54,7 @@ class Player {
         int getEXP() {return this->exp;}
         int getAttackStat() {return this->attackStat;}
         int getDefenseStat() {return this->defenseStat;}
-        int getGold() {return this->gold;}
+        unsigned int getGold() {return this->gold;}
         int getItemCount() {return this->itemCount;}
         vector<Item*>& getItemIven() {return this->itemIven;}
         //Mutators
@@ -65,7 +65,7 @@ class Player {
         void setEXP(int newEXP) {this->exp = newEXP;}
         void setAttackStat(int newAttackStat) {this->attackStat = newAttackStat;}
         void setDefenseStat(int newDefenseStat) {this->defenseStat = newDefenseStat;}
-        void setGold(int newGoldAmount) {this->gold = newGoldAmount;}
+        void setGold(unsigned int newGoldAmount) {this->gold = newGoldAmount;}
         void setItemCount(int newCount) {this->itemCount = newCount;}
 };
 

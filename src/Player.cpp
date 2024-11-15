@@ -93,7 +93,16 @@ void Player::printInven() {
 }
 
 void Player::changeGold(int goldChange) {
-
+    if (goldChange < 0) { //Checks to see if there is a need to decease the amount of gold.
+        if ((int)(this->getGold() - abs(goldChange)) < 0) { //Checks to see if lowering the amount of gold will result in a negative value.
+            //Resulted in a negative value so gold is set to 0.
+            this->setGold(0);
+        } else {//There is a need to decrease the amount of gold so the change is subtracted from it.
+           this->setGold((this->getGold() - abs(goldChange))); 
+        }
+    } else { //There is a need to increase the amount of gold so the change is added in.
+        this->setGold((this->getGold() + abs(goldChange))); 
+    }
 }
 
 void Player::changeEXP(int expChange) {
