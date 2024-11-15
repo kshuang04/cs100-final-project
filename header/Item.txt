@@ -1,0 +1,52 @@
+Given how the code is looking...
+    I will just be making item base on what level it will be
+
+Rarity will just be just the percentage the item will drop 
+
+This game is looking more and more less roguelike....
+    OH WELL
+
+Early
+    50
+        Stick 2
+        Dagger 2
+        Sword 4
+        Bow 3
+        Fireball 5
+    40
+        Lesser health potion 5
+    10
+        +2 attack
+        +4 defense
+        +4 health
+    
+Mid
+    55
+        Greatsword 15
+        Longsword 10
+        Magic Missle 10 (Aoe?)
+        Axe 20 (Lose a turn?)
+        Twin dagger 8 (Attack twice?)
+
+    40
+        health potion 10
+
+    5
+        +4 attack
+        +7 defense
+        +7 health
+
+End
+    5
+        Excalibur 30
+    5
+        Gungnir 15 (Multi attack?)
+    5
+        Meteor 20 (Aoe?)
+
+    50
+        +7 attack
+        +13 defense
+        +13 health
+    35
+        Greater health potion 30
