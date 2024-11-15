@@ -404,7 +404,7 @@ TEST(UseItemTests, UseItemDirectly) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelOneAttack) {
+TEST(AttackValueTests, LevelOneAttack) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(0);
@@ -415,7 +415,7 @@ TEST(AttackValueTest, LevelOneAttack) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelTenAttack) {
+TEST(AttackValueTests, LevelTenAttack) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(10);
     myPlayer->setAttackStat(0);
@@ -426,7 +426,7 @@ TEST(AttackValueTest, LevelTenAttack) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelTwentyAttack) {
+TEST(AttackValueTests, LevelTwentyAttack) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(20);
     myPlayer->setAttackStat(0);
@@ -437,7 +437,7 @@ TEST(AttackValueTest, LevelTwentyAttack) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelOneAttackWithAttackStat) {
+TEST(AttackValueTests, LevelOneAttackWithAttackStat) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(5);
@@ -448,7 +448,7 @@ TEST(AttackValueTest, LevelOneAttackWithAttackStat) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelTenAttackWithAttackStat) {
+TEST(AttackValueTests, LevelTenAttackWithAttackStat) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(10);
     myPlayer->setAttackStat(100);
@@ -459,7 +459,7 @@ TEST(AttackValueTest, LevelTenAttackWithAttackStat) {
     delete myPlayer;
 }
 
-TEST(AttackValueTest, LevelTwentyAttackWithAttackStat) {
+TEST(AttackValueTests, LevelTwentyAttackWithAttackStat) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(20);
     myPlayer->setAttackStat(250);
@@ -467,6 +467,38 @@ TEST(AttackValueTest, LevelTwentyAttackWithAttackStat) {
     cout << damage << endl;
     EXPECT_GE(damage, 1050);
     EXPECT_LE(damage, 1250);
+    delete myPlayer;
+}
+
+TEST(ChangeGoldTests, AddMoreGOld) {
+    Player* myPlayer = new Player();
+    myPlayer->setGold(20);
+    myPlayer->changeGold(30);
+    EXPECT_EQ(myPlayer->getGold(), 50);
+    delete myPlayer;
+}
+
+TEST(ChangeGoldTests, AddOrSubtractZeroGold) {
+    Player* myPlayer = new Player();
+    myPlayer->setGold(20);
+    myPlayer->changeGold(0);
+    EXPECT_EQ(myPlayer->getGold(), 20);
+    delete myPlayer;
+}
+
+TEST(ChangeGoldTests, SubtractGoldButResultsPositive) {
+    Player* myPlayer = new Player();
+    myPlayer->setGold(20);
+    myPlayer->changeGold(-10);
+    EXPECT_EQ(myPlayer->getGold(), 10);
+    delete myPlayer;
+}
+
+TEST(ChangeGoldTests, SubtractGoldButResultsNegative) {
+    Player* myPlayer = new Player();
+    myPlayer->setGold(20);
+    myPlayer->changeGold(-30);
+    EXPECT_EQ(myPlayer->getGold(), 0);
     delete myPlayer;
 }
 
