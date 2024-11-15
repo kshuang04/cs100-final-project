@@ -502,6 +502,36 @@ TEST(ChangeGoldTests, SubtractGoldButResultsNegative) {
     delete myPlayer;
 }
 
+TEST(TakeDamageTests, DamageButStillAlive) {
+    Player* myPlayer = new Player();
+    myPlayer->setMaxHP(20);
+    myPlayer->setHP(20);
+    myPlayer->takeDamage(10);
+    EXPECT_EQ(myPlayer->getHP(), 10);
+    EXPECT_EQ(myPlayer->getIsAlive(), true);
+    delete myPlayer;
+}
+
+TEST(TakeDamageTests, DamageToZeroHP) {
+    Player* myPlayer = new Player();
+    myPlayer->setMaxHP(20);
+    myPlayer->setHP(20);
+    myPlayer->takeDamage(20);
+    EXPECT_EQ(myPlayer->getHP(), 0);
+    EXPECT_EQ(myPlayer->getIsAlive(), false);
+    delete myPlayer;
+}
+
+TEST(TakeDamageTests, DamageToNegativeHP) {
+    Player* myPlayer = new Player();
+    myPlayer->setMaxHP(20);
+    myPlayer->setHP(20);
+    myPlayer->takeDamage(30);
+    EXPECT_EQ(myPlayer->getHP(), 0);
+    EXPECT_EQ(myPlayer->getIsAlive(), false);
+    delete myPlayer;
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

@@ -15,7 +15,6 @@ protected:
     string description;
 
 public:
-    friend class Player;
     Item();
     virtual ~Item();
     Item(string newItemName, string newDescription);
