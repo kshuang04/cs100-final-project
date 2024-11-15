@@ -7,4 +7,5 @@ add_executable(playGame
     src/screen.cpp
     src/mainMenuScreen.cpp
     src/loseScreen.cpp
+    src/winScreen.cpp
 )
