@@ -9,6 +9,8 @@ class level {
         Check Enemy.txt
         There is currently 23
         can just hardcode the array size lol
+        
+        - Red
         */
         void insertEnemies();
         Enemy listOfEnemies[23];
@@ -21,7 +23,7 @@ class level {
         Ex. 1-10 level should only have "early enemy"
             While 11-20 have "mid" enemy
 
-        
+        -Red
         */
     public:
         level();
