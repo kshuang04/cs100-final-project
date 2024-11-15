@@ -1,8 +1,6 @@
 Given how the code is looking...
     I will just be making item base on what level it will be
 
-
-
 Early
         Lesser health potion 5
         +2 attack
@@ -11,15 +9,12 @@ Early
     
 Mid
         health potion 10
-
         +4 attack
         +7 defense
         +7 health
 
 End
-
+        Greater health potion 30
         +7 attack
         +13 defense
         +13 health
-
-        Greater health potion 30
