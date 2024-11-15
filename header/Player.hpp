@@ -36,7 +36,7 @@ class Player {
         ~Player();
         //Functions
         int attack();
-        //Attack getAttack();
+        void takeDamage(int damage);
         void addItem(Item* newItem);
         void consumeItem(Item* currentItem);
         void consumeItem(int itemIndex);
@@ -57,6 +57,7 @@ class Player {
         unsigned int getGold() {return this->gold;}
         int getItemCount() {return this->itemCount;}
         vector<Item*>& getItemIven() {return this->itemIven;}
+        bool getIsAlive() {return this->isAlive;}
         //Mutators
         void setHP(int newHP) {this->currHP = newHP;}
         void setMaxHP(int newMaxHP) {this->maxHP = newMaxHP;}
@@ -67,6 +68,7 @@ class Player {
         void setDefenseStat(int newDefenseStat) {this->defenseStat = newDefenseStat;}
         void setGold(unsigned int newGoldAmount) {this->gold = newGoldAmount;}
         void setItemCount(int newCount) {this->itemCount = newCount;}
+        void setIsAlive(bool newAliveStatus) {this->isAlive = newAliveStatus;}
 };
 
 #endif

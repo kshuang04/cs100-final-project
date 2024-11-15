@@ -21,9 +21,17 @@ int Player::attack() {
     return ((int)((this->getLevel() * ((rand() % 11) + (2 * this->getLevel()))) + this->getAttackStat()));
 }
 
-// Attack Player::getAttack() {
-
-// }
+void Player::takeDamage(int damage) {
+    if ((this->getHP() - damage) <= 0) { //Checks to see if the damage resilts in negative HP.
+        //If it does result in negative HP, HP is set to 0 and the player is no longer alive.
+        this->setHP(0);
+        this->setIsAlive(false);
+    } else {
+        //If not, decrease the HP by the amount of damage taken and the player is still alive.
+        this->setHP((this->getHP() - damage));
+        this->setIsAlive(true);
+    }
+}
 
 void Player::addItem(Item* newItem) {
     //Checks to see if the item iventory is full and throws an errors if it is full
