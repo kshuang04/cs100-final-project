@@ -3,25 +3,62 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "../header/Player.hpp"
-class Player;
 
 using namespace std;
+
+class Player;
 
 class Item {
 protected:
     string itemName;
     string description;
+    int levelType;
 
 public:
     Item();
-    virtual ~Item();
+    ~Item();
     Item(string newItemName, string newDescription);
     virtual string getItemName();
     virtual string getDescription();
     virtual void printStat();
-    virtual void useItem(Player* player);
+    virtual void useItem(Player* player);   
 };
+
+class AttackItem : public Item {
+    private:
+        int attackPower;
+    public:
+        AttackItem(int attackPower, int levelType, string name);
+        int getAttackPower();
+
+};
+
+class DefenseItem : public Item {
+    private:
+        int defensePower;
+    public:
+        DefenseItem(int defensePower, int levelType, string name);
+        int getDefensePower();
+};
+
+class MaxHPPot : public Item {
+    private: 
+        int healthIncrease;
+    public:
+        MaxHPPot(int healthIncrease, int levelType, string name);
+        int getHealthIncrease();
+};
+
+struct GenerateItems {        
+        vector<Item*> generateItem();
+        
+        vector<Item*> deletor = generateItem();
+        ~GenerateItems();
+
+};
+
 
 #endif
