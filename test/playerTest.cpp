@@ -1,10 +1,10 @@
 #include "gtest/gtest.h"
 #include "../header/Player.hpp"
-#include "../stubs/AttackItemStub.hpp"
-#include "../stubs/DefenseItemStub.hpp"
-#include "../stubs/HealthItemStub.hpp"
-#include "../stubs/HealingPotStub.hpp"
-#include "../stubs/MaxHPPotStub.hpp"
+#include "../test/stubs/AttackItemStub.hpp"
+#include "../test/stubs/DefenseItemStub.hpp"
+#include "../test/stubs/HealthItemStub.hpp"
+#include "../test/stubs/HealingPotStub.hpp"
+#include "../test/stubs/MaxHPPotStub.hpp"
 
 TEST(ChangeEXPTests, IncreaseEXPForButNoLevelIncrease) {
     Player* myPlayer = new Player();
@@ -431,7 +431,6 @@ TEST(AttackValueTests, LevelTwentyAttack) {
     myPlayer->setLevel(20);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 800);
     EXPECT_LE(damage, 1000);
     delete myPlayer;
@@ -442,7 +441,6 @@ TEST(AttackValueTests, LevelOneAttackWithAttackStat) {
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(5);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 7);
     EXPECT_LE(damage, 17);
     delete myPlayer;
@@ -453,7 +451,6 @@ TEST(AttackValueTests, LevelTenAttackWithAttackStat) {
     myPlayer->setLevel(10);
     myPlayer->setAttackStat(100);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 300);
     EXPECT_LE(damage, 400);
     delete myPlayer;
@@ -464,7 +461,6 @@ TEST(AttackValueTests, LevelTwentyAttackWithAttackStat) {
     myPlayer->setLevel(20);
     myPlayer->setAttackStat(250);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 1050);
     EXPECT_LE(damage, 1250);
     delete myPlayer;

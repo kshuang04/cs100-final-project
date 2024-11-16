@@ -6,11 +6,11 @@ add_executable(runPlayerTests
     test/playerTest.cpp
     src/Player.cpp
     src/Item.cpp
-    stubs/AttackItemStub.cpp
-    stubs/DefenseItemStub.cpp
-    stubs/HealthItemStub.cpp
-    stubs/HealingPotStub.cpp
-    stubs/MaxHPPotStub.cpp
+    test/stubs/AttackItemStub.cpp
+    test/stubs/DefenseItemStub.cpp
+    test/stubs/HealthItemStub.cpp
+    test/stubs/HealingPotStub.cpp
+    test/stubs/MaxHPPotStub.cpp
     src/enemy.cpp
     test/enemyTest.cpp
 )
