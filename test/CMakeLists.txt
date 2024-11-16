@@ -16,5 +16,18 @@ add_executable(runPlayerTests
     enemyTest.cpp
 )
 
+add_executable(runScreenTests
+    screenTest.cpp
+    ../src/screen.cpp
+    ../src/mainMenuScreen.cpp
+    ../src/loseScreen.cpp
+    ../src/winScreen.cpp
+    ../src/shopScreen.cpp
+    ../src/Player.cpp
+)
+
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
 TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(runScreenTests gtest gtest_main)
+TARGET_COMPILE_DEFINITIONS(runScreenTests PRIVATE gtest_disable_pthreads=ON)
