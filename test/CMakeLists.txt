@@ -20,6 +20,7 @@ add_executable(runScreenTests
     screenTest.cpp
     ../src/screen.cpp
     ../src/Player.cpp
+    ../src/Item.cpp
 )
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)

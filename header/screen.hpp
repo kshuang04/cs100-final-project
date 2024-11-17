@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "../header/Player.hpp"
+#include "../header/enemy.hpp"
 
 class Screen
 {
@@ -33,7 +34,7 @@ class LoseScreen : public Screen
 class WinScreen : public Screen
 {
     public:
-        void printScreen();
+        void printScreen() override;
 };
 
 class ShopScreen : public Screen
@@ -43,6 +44,34 @@ class ShopScreen : public Screen
         Player* player;
     public:
         ShopScreen(Player* player);
+        void printScreen() override;
+};
+
+class PlayerInventoryScreen : public Screen
+{
+    private:
+        Player* player;
+    public:
+        PlayerInventoryScreen(Player* player);
+        void printScreen() override;
+};
+
+class PlayerStatsScreen : public Screen
+{
+    private:
+        Player* player;
+    public:
+        PlayerStatsScreen(Player* player);  
+        void printScreen() override;
+};
+
+class BattleScreen : public Screen
+{
+    private:
+        std::vector<Enemy*> listOfEnemy;
+        Player* player;
+    public:
+        BattleScreen(Player* player, std::vector<Enemy*> listOfEnemy);
         void printScreen() override;
 };
 

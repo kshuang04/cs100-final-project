@@ -85,3 +85,62 @@ void ShopScreen::printScreen()
 		<< "(4) Leave" << endl
 		<< "------------------------------------------------------------------------------" << endl;
 }
+
+PlayerInventoryScreen::PlayerInventoryScreen(Player* player)
+{
+    this->player = player;
+}
+
+void PlayerInventoryScreen::printScreen()
+{
+    //Prints every item and its contents from the player's item inventory
+    string message;
+    cout << "------------------------------------------------------------\n";
+    message = "Player's Item Inventory:\n";
+    displayTextSlowly(message, 50, 200);
+    for (int i = 0; i < player->getItemIven().size(); i++) {
+        cout << (i + 1) << ". ";
+        player->getItemIven().at(i)->printStat();
+        cout << endl;
+    }
+    cout << "------------------------------------------------------------\n";
+}
+
+PlayerStatsScreen::PlayerStatsScreen(Player* player)
+{
+    this->player = player;
+}
+
+void PlayerStatsScreen::printScreen()
+{
+    cout << endl << "------------------------" << endl;
+    //Checks to see if the level number is valid and prints it if valid or throws an error if not valid.
+    if ((player->getLevel() < 1) || (player->getLevel() > player->getMaxLevel())) {throw logic_error("The current level is not within the specified range.");}
+    cout << "Level: " << player->getLevel() << endl;
+    //Checks to see if the HP value is valid and prints it if valid or throws an error if not valid.
+    if ((player->getHP() < 0) || (player->getHP() > player->getMaxHP())) {throw logic_error("The current HP is not within the specified range.");}
+    cout << "Health Power: " << player->getHP() << " / " << player->getMaxHP() << endl;
+    //Checks to see if the attack stat value is valid and prints it if valid or throws an error if not valid.
+    if (player->getAttackStat() < 0) {throw logic_error("The current Attack Power is negative and invalid.");}
+    cout << "Attack Power: " << player->getAttackStat() << endl;
+    //Checks to see if the defense stat  value is valid and prints it if valid or throws an error if not valid.
+    if (player->getDefenseStat() < 0) {throw logic_error("The current Defense Power is negative and invalid.");}
+    cout << "Defense Power: " << player->getDefenseStat() << endl;
+    //Checks to see if the EXP value is valid and prints it if valid or throws an error if not valid.
+    if ((player->getEXP() < 0) || (player->getEXP() >= player->expToNextLevel())) {throw logic_error("The current EXP is not within the specified range.");}
+    cout << "Current EXP: " << player->getEXP() << endl;
+    //Checks to see if the remaining EXP value is valid and prints it if valid or throws an error if not valid.
+    if (((player->expToNextLevel() - player->getEXP()) < 0) || ((player->expToNextLevel() - player->getEXP()) > player->expToNextLevel())) {throw logic_error("The current EXP to Next Level is not within the specified range.");}
+    cout << "EXP To Next Level: " << (player->expToNextLevel() - player->getEXP()) << endl;
+    cout << "------------------------" << endl;
+}
+
+BattleScreen::BattleScreen(Player* player, std::vector<Enemy*> listOfEnemy)
+{
+
+}
+
+void BattleScreen::printScreen()
+{
+
+}
