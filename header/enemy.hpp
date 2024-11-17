@@ -26,7 +26,7 @@ private:
 public:
     // DONT USE THIS CONSTRUCTOR
     // this is only for enemy insertion in level class
-    Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName);
+    Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum);
 
     Enemy();
 

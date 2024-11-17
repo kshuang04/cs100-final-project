@@ -1,7 +1,7 @@
 #include "../header/enemy.hpp"
 
-Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
-                                                                                                 goldAmount(gold), name(enemyName), alive(true)
+Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
+                                                                                                                              goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)
 {
     health = maxHealth;
 }
