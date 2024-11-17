@@ -1,10 +1,10 @@
 #include "../header/Player.hpp"
 
 //Default Player Constructor
-Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), gold(0), itemCount(0) {}
+Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), gold(0), itemCount(0), isAlive(true) {}
 
 //Specific Player Constructor
-Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), gold(gold), itemCount(0) {}
+Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), gold(gold), itemCount(0), isAlive(true) {}
 
 Player::~Player() {
     //Deletes every item in the item Inventory
@@ -15,12 +15,23 @@ Player::~Player() {
 }
 
 int Player::attack() {
-    return 1;
+    //Sets a random seed everytime the function is called.
+    srand(time(0));
+    //Returns attack damage value from a specific formula.
+    return ((int)((this->getLevel() * ((rand() % 11) + (2 * this->getLevel()))) + this->getAttackStat()));
 }
 
-// Attack Player::getAttack() {
-
-// }
+void Player::takeDamage(int damage) {
+    if ((this->getHP() - damage) <= 0) { //Checks to see if the damage resilts in negative HP.
+        //If it does result in negative HP, HP is set to 0 and the player is no longer alive.
+        this->setHP(0);
+        this->setIsAlive(false);
+    } else {
+        //If not, decrease the HP by the amount of damage taken and the player is still alive.
+        this->setHP((this->getHP() - damage));
+        this->setIsAlive(true);
+    }
+}
 
 void Player::addItem(Item* newItem) {
     //Checks to see if the item iventory is full and throws an errors if it is full
@@ -90,7 +101,16 @@ void Player::printInven() {
 }
 
 void Player::changeGold(int goldChange) {
-
+    if (goldChange < 0) { //Checks to see if there is a need to decease the amount of gold.
+        if ((int)(this->getGold() - abs(goldChange)) < 0) { //Checks to see if lowering the amount of gold will result in a negative value.
+            //Resulted in a negative value so gold is set to 0.
+            this->setGold(0);
+        } else {//There is a need to decrease the amount of gold so the change is subtracted from it.
+           this->setGold((this->getGold() - abs(goldChange))); 
+        }
+    } else { //There is a need to increase the amount of gold so the change is added in.
+        this->setGold((this->getGold() + abs(goldChange))); 
+    }
 }
 
 void Player::changeEXP(int expChange) {

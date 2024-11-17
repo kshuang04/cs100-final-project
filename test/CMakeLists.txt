@@ -11,9 +11,9 @@ add_executable(runPlayerTests
     ../stubs/HealthItemStub.cpp
     ../stubs/HealingPotStub.cpp
     ../stubs/MaxHPPotStub.cpp
-
     ../src/enemy.cpp
     enemyTest.cpp
+    itemTest.cpp
 )
 
 add_executable(runScreenTests
