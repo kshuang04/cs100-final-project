@@ -41,8 +41,6 @@ class Player {
         void consumeItem(Item* currentItem);
         void consumeItem(int itemIndex);
         void removeItem(int itemIndex);
-        void printStats();
-        void printInven();
         void changeGold(int goldChange);
         void changeEXP(int expChange);
         int expToNextLevel();

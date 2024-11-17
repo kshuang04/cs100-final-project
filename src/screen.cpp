@@ -1,13 +1,13 @@
 #include "../header/screen.hpp"
 
-void Screen::displayTextSlowly(const std::string& text, int delayMilliseconds, int endDelayMilliseconds) 
+void Screen::displayTextSlowly(const std::string& text) 
 {
     for (char c : text) {
         std::cout << c << std::flush;
-        std::this_thread::sleep_for(std::chrono::milliseconds(delayMilliseconds));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
     std::cout << std::endl;
-    std::this_thread::sleep_for(std::chrono::milliseconds(endDelayMilliseconds));
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
 }
 
 void MainMenuScreen::printScreen() 
@@ -16,14 +16,14 @@ void MainMenuScreen::printScreen()
 
     std::cout << "-------------------------------" << std::endl;
     message = "Welcome to the Path of Pain.";
-    Screen::displayTextSlowly(message, 50, 200);
+    Screen::displayTextSlowly(message);
     message = "I doubt you will make it far.";
-    Screen::displayTextSlowly(message, 50, 200);
+    Screen::displayTextSlowly(message);
     message = "Let's test your skill.";
-    Screen::displayTextSlowly(message, 50, 400);
+    Screen::displayTextSlowly(message);
     std::cout << "-------------------------------" << std::endl;
     message = "Choose an option:";
-    Screen::displayTextSlowly(message, 50, 400);
+    Screen::displayTextSlowly(message);
 	std::cout << "(1) Start Game" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "-------------------------------" << std::endl;
@@ -35,9 +35,9 @@ void LoseScreen::printScreen()
 
     std::cout << "--------------------" << std::endl;
     message = "You lost. Game over!";
-    Screen::displayTextSlowly(message, 50, 900);
+    Screen::displayTextSlowly(message);
     message = "Choose an option:";
-    Screen::displayTextSlowly(message, 50, 400);
+    Screen::displayTextSlowly(message);
     std::cout << "(1) Try Again" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "--------------------" << std::endl;
@@ -49,9 +49,9 @@ void WinScreen::printScreen()
 
     std::cout << "-----------------------------------------" << std::endl;
     message = "YOU COMPLETED THE GAME. CONGRATULATIONS!";
-    Screen::displayTextSlowly(message, 50, 900);
+    Screen::displayTextSlowly(message);
     message = "Choose an option:";
-    Screen::displayTextSlowly(message, 50, 200);
+    Screen::displayTextSlowly(message);
 	std::cout << "(1) Try Again" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "-----------------------------------------" << std::endl;
@@ -74,9 +74,9 @@ void ShopScreen::printScreen()
     message = dialogueOptions.at(optionChoice);
 
     cout << "------------------------------------------------------------------------------" << endl;
-    displayTextSlowly(message, 50, 200);
+    displayTextSlowly(message);
     message = "Choose an option (Wallet: " + to_string(player->getGold()) + "g):";
-    displayTextSlowly(message, 50, 200);
+    displayTextSlowly(message);
     cout << "(1) Small Health potion - 5g" << endl
         << "(2) Max Health Potion - 10g" << endl
 		<< "(2) Attack potion - 7g" << endl
@@ -97,7 +97,7 @@ void PlayerInventoryScreen::printScreen()
     string message;
     cout << "------------------------------------------------------------\n";
     message = "Player's Item Inventory:\n";
-    displayTextSlowly(message, 50, 200);
+    displayTextSlowly(message);
     for (int i = 0; i < player->getItemIven().size(); i++) {
         cout << (i + 1) << ". ";
         player->getItemIven().at(i)->printStat();
@@ -113,7 +113,11 @@ PlayerStatsScreen::PlayerStatsScreen(Player* player)
 
 void PlayerStatsScreen::printScreen()
 {
+    string message;
     cout << endl << "------------------------" << endl;
+    message = "Player's Stats:";
+    displayTextSlowly(message);
+    cout << endl;
     //Checks to see if the level number is valid and prints it if valid or throws an error if not valid.
     if ((player->getLevel() < 1) || (player->getLevel() > player->getMaxLevel())) {throw logic_error("The current level is not within the specified range.");}
     cout << "Level: " << player->getLevel() << endl;

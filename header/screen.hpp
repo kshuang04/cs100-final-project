@@ -13,7 +13,7 @@
 class Screen
 {
     protected:
-    void displayTextSlowly(const std::string& text, int delayMilliseconds, int endDelayMilliseconds);
+    void displayTextSlowly(const std::string& text);
 
     public:
     virtual void printScreen() = 0;
