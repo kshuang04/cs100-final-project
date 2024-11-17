@@ -1,9 +1,5 @@
 #include "gtest/gtest.h"
 #include "../header/screen.hpp"
-#include "../header/loseScreen.hpp"
-#include "../header/mainMenuScreen.hpp"
-#include "../header/shopScreen.hpp"
-#include "../header/winScreen.hpp"
 
 TEST(ScreenTest, LoseScreenTest)
 {

@@ -19,10 +19,6 @@ add_executable(runPlayerTests
 add_executable(runScreenTests
     screenTest.cpp
     ../src/screen.cpp
-    ../src/mainMenuScreen.cpp
-    ../src/loseScreen.cpp
-    ../src/winScreen.cpp
-    ../src/shopScreen.cpp
     ../src/Player.cpp
 )
 
