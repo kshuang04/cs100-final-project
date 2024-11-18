@@ -31,8 +31,7 @@ Item * Enemy::releaseDrops() {
     srand(time(0));
 
     int random = (rand() % 3) + 1;
-    GenerateItems items;
-    vector<Item*> listOfItems = items.generateItem();
+    vector<Item*> listOfItems = generateItem();
 
     for (unsigned i = 0; i < listOfItems.size(); i++) {
         if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity()) {
