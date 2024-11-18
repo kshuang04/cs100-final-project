@@ -2,6 +2,10 @@
 #define ENEMY_HPP
 
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include "../header/Item.hpp"
+#include <stdlib.h>
 
 using namespace std;
 
@@ -23,17 +27,13 @@ private:
     int region;
 
 public:
-    // DONT USE THIS CONSTRUCTOR
-    // this is only for enemy insertion in level class
     Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum);
 
     Enemy();
 
-    // ~Enemy(); //?
     int attack();
     void gotAttack(int playerDamage);
-    void heal(int healthIncrease); //?
-    void releaseDrops();
+    Item * releaseDrops();
     bool isAlive();
     void setDescription(string);
     string getName();
@@ -43,5 +43,9 @@ public:
     int getStage();
     int getRegion();
 };
+
+
+vector<Enemy> generateEnemy();
+
 
 #endif

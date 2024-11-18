@@ -1,51 +1,28 @@
-BOUND TO CHANGE 
-
-(Health, Defense, AttackPower, Exp, Gold)
-We can also add some sort of scaling multiplier but thats up to yall
-Just an idea on what some of the raw numbers are
-
-Also, defense can be a percentage rather than a number
-	this is because if defense > attackPower, we deal zero damage and thats
-	a problem
-
-Basic:
-
-	Early levels:
-
-		Goblin (3, 0, 2, 15, 20)
-		Zombie (5, 2, 3, 30, 10)
-		Imp (3, 0, 4, 30, 5)
-		Rat (5, 0, 3, 25, 5)
-		Slime (10, 0, 1, 20, 5)
-		Skeleton (2, 0, 5, 30, 5)
-		Bats (3, 0, 3, 15, 15)
-
-	Mid levels:
-
-		Bandit (15, 5, 5, 50, 40)
-		Mud Golem (5, 10, 3, 30, 10)
-		Flesh-Eating Plant (10, 3, 10, 50, 25)
-		Floating Skull (5, 1, 12, 50, 40)
-
-	End levels
-
-		Werewolf (20, 10, 10, 100, 45)
-		Fire Elemental (20, 5, 15, 125, 40)
-		Dragonlings (40, 15, 20, 200, 60)
-	
-This is for either as mini boss or random encounters (?)
-
-Elite:
-	Troll (30, 9, 8, 100, 55)
-	Giant Rat (30, 0, 8, 100, 35)
-	Stone Golem (20, 38, 7, 150, )
-	Witch (40, 3, 10, 200, 60)
-	Bandit Leader (60, 20, 10, 200, 100)
-	Mimic (100, 10, 40, 1000, 500)
-	
-
-Boss:
-	Dragon (150, 50, 37, 1000, 500)
-	Phoenix (200, 10, 26, 1500, 350)
-	Lich (150, 2, 45, 1500, 200)
-	
+10 2 3 5 1 Slime 1 1
+12 3 4 6 2 Goblin 1 2
+8 1 5 4 2 Bat 1 4
+15 4 6 8 3 Wolf_Pup 1 5
+20 5 7 10 4 Skeleton 1 3 
+18 4 5 8 3 Zombie 1 3
+25 6 8 12 5 Bandit 2 5
+30 7 9 14 6 Orc 2 1
+28 5 10 13 6 Spider 2 4
+35 8 12 16 7 Gnoll 2 2
+32 6 11 15 6 Harpy 2 1
+40 9 13 18 8 Hobgoblin 2 1
+30 15 15 18 8 Basilisk 2 5
+20 4 20 20 5 Water_Elemental 2 5
+50 10 15 20 10 Ogre 3 1 
+60 8 20 25 12 Wyvern 3 3 
+55 12 18 22 11 Troll 3 4
+45 15 25 30 15 Dark_Mage 3 4
+70 12 22 28 14 Minotaur 3 2
+80 14 30 35 18 Lich 3 4
+65 10 27 32 16 Cursed_Knight 3 3
+90 15 35 40 20 Demon_Spawn 3 1
+100 18 40 50 25 Dragon_Whelp 3 5
+85 13 32 38 17 Wraith 3 4
+120 20 50 60 30 Ancient_Golem 3 1
+95 18 35 47 18 Treants 3 2
+110 15 45 60 30 Manticore 3 2
+90 14 30 40 20 Serpant 3 5
