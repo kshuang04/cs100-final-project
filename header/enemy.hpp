@@ -32,6 +32,7 @@ class Enemy {
         void setDescription(string);
         string getName();
         int getHealth();
+        int getMaxHealth();
         
 };
 
