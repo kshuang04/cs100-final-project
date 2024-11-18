@@ -1,47 +1,68 @@
 #include "../header/enemy.hpp"
 
-Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName) :
-    maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
-    goldAmount(gold), name(enemyName), alive(true)
-{ 
+Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
+                                                                                                                              goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)
+{
     health = maxHealth;
 }
 
-Enemy::Enemy() {
-
+Enemy::Enemy()
+{
 }
 
 // Enemy::~Enemy() {
 //     delete this;
 // }
 
-void Enemy::gotAttack(int playerDamage) {
+void Enemy::gotAttack(int playerDamage)
+{
     int totalDamage = playerDamage - defense;
-    if (totalDamage < 0) {
+    if (totalDamage < 0)
+    {
         totalDamage = 0;
     }
     health -= totalDamage;
-    if (health <= 0) {
+    if (health <= 0)
+    {
         alive = false;
     }
 }
 
-bool Enemy::isAlive() {
+bool Enemy::isAlive()
+{
     return alive;
 }
 
-void Enemy::setDescription(string desc) {
+void Enemy::setDescription(string desc)
+{
     description = desc;
 }
 
-string Enemy::getName() {
+string Enemy::getName()
+{
     return name;
 }
 
-int Enemy::getHealth() {
+int Enemy::getHealth()
+{
     return health;
 }
 
 int Enemy::getMaxHealth() {
     return maxHealth;
+}
+
+int Enemy::getStage()
+{
+    return stage;
+}
+
+int Enemy::getRegion()
+{
+    return region;
+}
+
+int Enemy::getGold() const
+{
+    return goldAmount;
 }

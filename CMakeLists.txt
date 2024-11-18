@@ -25,5 +25,14 @@ add_executable(playGame
     stubs/levelStub.cpp
 )
 
+add_executable(runChestTest
+    src/chest.cpp
+    src/Player.cpp
+    src/Item.cpp
+    test/chestTest.cpp
+)
+
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
 TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
+
+target_link_libraries(runChestTest gtest)
