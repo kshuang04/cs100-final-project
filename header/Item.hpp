@@ -15,7 +15,8 @@ class Item {
 protected:
     string itemName;
     string description;
-    int levelType;
+    int stageType;
+    int rarity;
 
 public:
     Item();
@@ -25,13 +26,15 @@ public:
     virtual string getDescription();
     virtual void printStat();
     virtual void useItem(Player* player);   
+    int getStage();
+    int getRarity();
 };
 
 class AttackItem : public Item {
     private:
         int attackPower;
     public:
-        AttackItem(int attackPower, int levelType, string name);
+        AttackItem(int attackPower, int levelType, string name, int rarity);
         int getAttackPower();
 
 };
@@ -40,7 +43,7 @@ class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name);
+        DefenseItem(int defensePower, int levelType, string name, int rarity);
         int getDefensePower();
 };
 
@@ -48,17 +51,13 @@ class MaxHPPot : public Item {
     private: 
         int healthIncrease;
     public:
-        MaxHPPot(int healthIncrease, int levelType, string name);
+        MaxHPPot(int healthIncrease, int levelType, string name, int rarity);
         int getHealthIncrease();
 };
 
-struct GenerateItems {        
-        vector<Item*> generateItem();
+vector<Item*> generateItem();
         
-        vector<Item*> deletor = generateItem();
-        ~GenerateItems();
 
-};
 
 
 #endif
