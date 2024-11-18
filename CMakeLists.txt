@@ -21,6 +21,7 @@ add_executable(playGame
     src/Item.cpp
     src/screen.cpp
     src/enemy.cpp
+    src/level.cpp
 
     stubs/levelStub.cpp
 )

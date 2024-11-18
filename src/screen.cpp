@@ -138,10 +138,17 @@ void PlayerStatsScreen::printScreen()
     cout << "------------------------" << endl;
 }
 
-BattleScreen::BattleScreen(Player* player, Level* level)
+BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = (*level).getListOfEnemies();
+    this->listOfEnemies = (*l).getListOfEnemies();
+}
+
+//Constructor for Level stub
+BattleScreen::BattleScreen(Player* player, Level* l)
+{
+    this->player = player;
+    this->listOfEnemies = (*l).getListOfEnemies();
 }
 
 void BattleScreen::printScreen()

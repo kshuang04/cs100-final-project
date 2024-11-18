@@ -8,3 +8,4 @@ runPlayerTests
 h.autoSetupRemote
 playGame
 runScreenTests
+runChestTest

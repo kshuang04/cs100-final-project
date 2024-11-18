@@ -214,8 +214,8 @@ TEST(BattleScreenTest, StartBattle)
     Player* p = new Player();
     Level* l = new Level();
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy");
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum");
+    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
+    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
     l->addEnemy(e1);
     l->addEnemy(e2);
     EXPECT_NO_THROW(b.printScreen());
@@ -230,8 +230,8 @@ TEST(BattleScreenTest, DamageEnemy)
     Player* p = new Player();
     Level* l = new Level();
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy");
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum");
+    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
+    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
     l->addEnemy(e1);
     l->addEnemy(e2);
     e1->gotAttack(20);
@@ -248,8 +248,8 @@ TEST(BattleScreenTest, DamagePlayer)
     Player* p = new Player();
     Level* l = new Level();
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy");
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum");
+    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
+    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
     l->addEnemy(e1);
     l->addEnemy(e2);
     p->takeDamage(10);

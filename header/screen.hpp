@@ -9,6 +9,7 @@
 
 #include "../header/Player.hpp"
 #include "../header/enemy.hpp"
+#include "../header/level.hpp"
 
 //DELETE LATER AND ADD REAL LEVEL CLASS
 #include "../stubs/levelStub.hpp"
@@ -72,10 +73,11 @@ class BattleScreen : public Screen
 {
     private:
         Player* player;
-        Level level;
+        level* l;
         vector<Enemy*>* listOfEnemies;
     public:
-        BattleScreen(Player* player, Level* level);
+        BattleScreen(Player* player, level* l);
+        BattleScreen(Player* player, Level* l); //constructor for level stub
         void printScreen() override;
 };
 
