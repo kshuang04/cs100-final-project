@@ -55,13 +55,9 @@ class MaxHPPot : public Item {
         int getHealthIncrease();
 };
 
-struct GenerateItems {        
-        vector<Item*> generateItem();
+vector<Item*> generateItem();
         
-        vector<Item*> deletor = generateItem();
-        ~GenerateItems();
 
-};
 
 
 #endif

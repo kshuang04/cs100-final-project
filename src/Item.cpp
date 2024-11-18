@@ -29,7 +29,7 @@ int Item::getRarity() {
     return rarity;
 }
 
-vector<Item*> GenerateItems::generateItem() {
+vector<Item*> generateItem() {
     vector<Item*> listOfItem;
 
     //just template names
@@ -49,12 +49,6 @@ vector<Item*> GenerateItems::generateItem() {
 
     return listOfItem;
 
-}
-
-GenerateItems::~GenerateItems() {
-    for (unsigned i = 0; i < deletor.size(); i++) {
-        delete deletor.at(i);
-    }
 }
 
 AttackItem::AttackItem(int attackPower, int levelType, string name, int rarity) : attackPower(attackPower)

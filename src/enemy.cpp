@@ -71,7 +71,7 @@ int Enemy::getRegion()
     return region;
 }
 
-vector<Enemy> GenerateEnemies::generateEnemy() {
+vector<Enemy> generateEnemy() {
     vector<Enemy> listOfEnemy;
 
     int hp;

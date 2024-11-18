@@ -44,8 +44,8 @@ public:
     int getRegion();
 };
 
-struct GenerateEnemies {
-    vector<Enemy> generateEnemy();
-};
+
+vector<Enemy> generateEnemy();
+
 
 #endif
