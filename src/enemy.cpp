@@ -23,11 +23,27 @@ void Enemy::gotAttack(int playerDamage) {
     health -= totalDamage;
     if (health <= 0) {
         alive = false;
+        releaseDrops();
     }
 }
 
 bool Enemy::isAlive() {
     return alive;
+}
+
+Item Enemy::releaseDrops() {
+    srand(time(0));
+    GenerateItems item;
+    vector<Item*> listOfItems = item.generateItem();
+    int randomItem = rand() % 99;
+    /*
+    for (unsigned i = 0; i < listOfItems.size(); i ++) {
+        if (randomItem < 32 && level == listOfItems.getLevel()) {
+            return listOfItems.at(i);
+        } 
+        else if (randomItem < )
+    }
+    */
 }
 
 void Enemy::setDescription(string desc) {
@@ -40,4 +56,7 @@ string Enemy::getName() {
 
 int Enemy::getHealth() {
     return health;
+}
+int Enemy::getGold() {
+    return goldAmount;
 }

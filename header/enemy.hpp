@@ -2,6 +2,9 @@
 #define ENEMY_HPP
 
 #include <iostream>
+#include <stdlib.h>
+#include "../header/Item.hpp"
+#include <vector>
 
 using namespace std;
 
@@ -27,11 +30,12 @@ class Enemy {
         int attack();
         void gotAttack(int playerDamage);
         void heal(int healthIncrease); //?
-        void releaseDrops();
+        Item releaseDrops();
         bool isAlive();
         void setDescription(string);
         string getName();
         int getHealth();
+        int getGold();
         
 };
 
