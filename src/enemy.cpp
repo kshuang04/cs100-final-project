@@ -57,3 +57,8 @@ int Enemy::getRegion()
 {
     return region;
 }
+
+int Enemy::getGold() const
+{
+    return goldAmount;
+}

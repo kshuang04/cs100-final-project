@@ -1,72 +1,90 @@
 #include "../header/level.hpp"
+#include "../src/enemyManager.cpp"
+#include <ctime>   // For time-based random seed
+#include <cstdlib> // For rand() and srand()
 
-level::level() {
-    insertEnemies();
+// Constructor for level, now it populates the list of enemies
+level::level(int level, int region)
+{
+    numLevel = level;
+    // Seed the random number generator (to ensure randomness on each program run)
+    srand(static_cast<unsigned int>(time(0)));
+
+    // Determine the number of enemies based on level range
+    int enemyCount = (level % 10 == 0 || level % 10 <= 3) ? 1 : (level % 10 <= 6) ? 2
+                                                                                  : 3;
+    int stage = level % 10;
+
+    for (int i = 0; i < enemyCount; i++)
+    {
+        insertEnemies(level, region, stage); // Insert enemies into list based on level and stage
+    }
 }
 
-//Check Enemy.txt
-void level::insertEnemies() {
-    /*
-    I figure out an easier and cleaner way to do this
-    just use this for testing for now
+// Function to insert random enemies from the enemyManager
+void level::insertEnemies(int level, int region, int stage)
+{
+    static enemyManager manager; // Make enemyManager static to avoid recreating it multiple times
 
-    - Red
+    bool enemyFound = false; // Flag to check if a valid enemy has been found
 
-    */
+    while (!enemyFound)
+    {
+        // Randomly pick an enemy from the manager's list
+        int randomIndex = rand() % manager.enemies.size(); // Get random index in range of enemies vector
+        Enemy randomEnemy = manager.enemies[randomIndex];
 
+        // Check if the enemy's stage and region match
+        if (randomEnemy.getStage() == stage && randomEnemy.getRegion() == region)
+        {
+            // If they match, add this enemy to the list
+            listOfEnemies.push_back(randomEnemy);
+            enemyFound = true; // Valid enemy found, stop the loop
+        }
+    }
+}
 
-    //Basic (0 - 13)
-    Enemy Goblin(3, 0, 2, 15, 20, "Goblin");
-    Enemy Zombie(5, 2, 3, 30, 10, "Zombie");
-    Enemy Imp(3, 0, 4, 30, 5, "Imp");
-    Enemy Rat(5, 0, 3, 25, 5, "Rat");
-    Enemy Slime(10, 0, 1, 20, 5, "Slime");
-    Enemy Skeleton(2, 0, 5, 30, 5, "Skeleton");
-    Enemy Bats(3, 0, 3, 15, 15, "Bat");
+int level::getTotalGold()
+{
+    int totalGold = 0;                       // Initialize the variable to store the total gold
+    for (const Enemy &enemy : listOfEnemies) // Loop through all the enemies in the list
+    {
+        totalGold += enemy.getGold(); // Add the gold of the current enemy to the total
+    }
+    return totalGold; // Return the total gold
+}
 
-    Enemy Bandit(15, 5, 5, 50, 40, "Bandit");
-    Enemy Mud_Golem(5, 10, 3, 30, 10, "Mud Golem");
-    Enemy Flesh_Eating_Plant(10, 3, 10, 50, 25, "Flesh-Eating Plant");
-    Enemy Float_Skull(5, 1, 12, 50, 40, "Floating Skull");
+vector<Enemy> level::returnEnemyVector()
+{
+    return listOfEnemies;
+}
 
-    Enemy Werewolf(20, 10, 10, 100, 45, "Werewolf");
-    Enemy Fire_Elemental(20, 5, 15, 125, 40, "Fire Elemental");
-    Enemy Dragonlings(40, 15, 20, 200, 60, "Dragonlings");
+vector<Enemy *> *level::getListOfEnemies()
+{
+    // Create a new vector to store pointers to the enemies in listOfEnemies
+    vector<Enemy *> *enemyPointerList = new vector<Enemy *>;
 
+    // Populate the vector with addresses of the enemies in listOfEnemies
+    for (Enemy &enemy : listOfEnemies)
+    {
+        enemyPointerList->push_back(&enemy);
+    }
 
-    //Elite (14 - 18)
-    Enemy Troll(30, 9, 8, 100, 55, "Troll");
-    Enemy Giant_Rat(30, 0, 8, 100, 35, "Giant Rat");
-    Enemy Stone_Golem(20, 38, 7, 150, 50, "Stone_Golem");
-    Enemy Witch(40, 3, 10, 200, 60, "Witch");
-    Enemy Bandit_Leader(60, 20, 10, 200, 100, "Bandit Leader");
-    Enemy Mimic(100, 10, 40, 1000, 500, "Mimic");
+    // Return the dynamically allocated vector of enemy pointers
+    return enemyPointerList;
+}
 
-    //Boss (19 - 22)
-    Enemy Dragon(150, 50, 37, 1000, 500, "Dragon");
-    Enemy Phoenix(200, 10, 26, 1500, 350, "Phoenix");
-    Enemy Lich(150, 2, 45, 1500, 200, "Lich");
+int level::getLevelNum()
+{
+    return numLevel;
+}
 
-    listOfEnemies[0] = Goblin;
-    listOfEnemies[1] = Zombie;
-    listOfEnemies[2] = Imp;
-    listOfEnemies[3] = Rat;
-    listOfEnemies[4] = Slime;
-    listOfEnemies[5] = Skeleton;
-    listOfEnemies[6] = Bats;
-    listOfEnemies[7] = Bandit;
-    listOfEnemies[8] = Mud_Golem;
-    listOfEnemies[9] = Flesh_Eating_Plant;
-    listOfEnemies[10] = Float_Skull;
-    listOfEnemies[11] = Werewolf;
-    listOfEnemies[12] = Fire_Elemental;
-    listOfEnemies[13] = Dragonlings;
-    listOfEnemies[14] = Troll;
-    listOfEnemies[15] = Giant_Rat;
-    listOfEnemies[16] = Stone_Golem;
-    listOfEnemies[17] = Witch;
-    listOfEnemies[18] = Bandit_Leader;
-    listOfEnemies[19] = Mimic;
-    listOfEnemies[20] = Dragon;
-    listOfEnemies[21] = Phoenix;
+int level::getStage()
+{
+    return numStage;
+}
+
+int level::getRegion()
+{
+    return numRegion;
 }

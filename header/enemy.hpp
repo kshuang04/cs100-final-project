@@ -39,6 +39,7 @@ public:
     void setDescription(string);
     string getName();
     int getHealth();
+    int getGold() const;
 
     int getStage();
     int getRegion();
