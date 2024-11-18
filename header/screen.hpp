@@ -10,6 +10,9 @@
 #include "../header/Player.hpp"
 #include "../header/enemy.hpp"
 
+//DELETE LATER AND ADD REAL LEVEL CLASS
+#include "../stubs/levelStub.hpp"
+
 class Screen
 {
     protected:
@@ -68,10 +71,11 @@ class PlayerStatsScreen : public Screen
 class BattleScreen : public Screen
 {
     private:
-        std::vector<Enemy*> listOfEnemy;
         Player* player;
+        Level level;
+        vector<Enemy*>* listOfEnemies;
     public:
-        BattleScreen(Player* player, std::vector<Enemy*> listOfEnemy);
+        BattleScreen(Player* player, Level* level);
         void printScreen() override;
 };
 

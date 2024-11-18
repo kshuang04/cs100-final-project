@@ -16,14 +16,14 @@ void MainMenuScreen::printScreen()
 
     std::cout << "-------------------------------" << std::endl;
     message = "Welcome to the Path of Pain.";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     message = "I doubt you will make it far.";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     message = "Let's test your skill.";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     std::cout << "-------------------------------" << std::endl;
     message = "Choose an option:";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
 	std::cout << "(1) Start Game" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "-------------------------------" << std::endl;
@@ -35,9 +35,9 @@ void LoseScreen::printScreen()
 
     std::cout << "--------------------" << std::endl;
     message = "You lost. Game over!";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     message = "Choose an option:";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     std::cout << "(1) Try Again" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "--------------------" << std::endl;
@@ -49,9 +49,9 @@ void WinScreen::printScreen()
 
     std::cout << "-----------------------------------------" << std::endl;
     message = "YOU COMPLETED THE GAME. CONGRATULATIONS!";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
     message = "Choose an option:";
-    Screen::displayTextSlowly(message);
+    displayTextSlowly(message);
 	std::cout << "(1) Try Again" << std::endl
 		<< "(2) Exit" << std::endl
 		<< "-----------------------------------------" << std::endl;
@@ -77,10 +77,9 @@ void ShopScreen::printScreen()
     displayTextSlowly(message);
     message = "Choose an option (Wallet: " + to_string(player->getGold()) + "g):";
     displayTextSlowly(message);
-    cout << "(1) Small Health potion - 5g" << endl
-        << "(2) Max Health Potion - 10g" << endl
-		<< "(2) Attack potion - 7g" << endl
-		<< "(3) Defense potion - 9g" << endl
+    cout << "(1) Health potion - 10g" << endl
+		<< "(2) Attack potion - 15g" << endl
+		<< "(3) Defense potion - 20g" << endl
 		<< "(4) Sell items" << endl
 		<< "(4) Leave" << endl
 		<< "------------------------------------------------------------------------------" << endl;
@@ -139,12 +138,26 @@ void PlayerStatsScreen::printScreen()
     cout << "------------------------" << endl;
 }
 
-BattleScreen::BattleScreen(Player* player, std::vector<Enemy*> listOfEnemy)
+BattleScreen::BattleScreen(Player* player, Level* level)
 {
-
+    this->player = player;
+    this->listOfEnemies = (*level).getListOfEnemies();
 }
 
 void BattleScreen::printScreen()
 {
-
+    string message;
+    cout << "-------------------------" << endl;
+    message = "Enemies this stage:";
+    displayTextSlowly(message);
+    for (int i = 0; i < (*listOfEnemies).size(); i++)
+    {
+        cout << (*(*listOfEnemies).at(i)).getName() << " (Health: " << (*(*listOfEnemies).at(i)).getHealth() << "/" << (*(*listOfEnemies).at(i)).getMaxHealth() << ")" << endl;
+    }
+    cout << endl << "Player (Health: " << player->getHP() << "/" << player->getMaxHP() << ")" << endl << endl;
+    message = "Select an action:";
+    displayTextSlowly(message);
+    cout << "(1) Attack" << endl
+        << "(2) Use Items" << endl
+        << "-------------------------" << endl;
 }

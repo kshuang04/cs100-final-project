@@ -21,6 +21,10 @@ add_executable(runScreenTests
     ../src/screen.cpp
     ../src/Player.cpp
     ../src/Item.cpp
+    ../src/enemy.cpp
+
+
+    ../stubs/levelStub.cpp
 )
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)

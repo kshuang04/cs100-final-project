@@ -20,6 +20,9 @@ add_executable(playGame
     src/Player.cpp
     src/Item.cpp
     src/screen.cpp
+    src/enemy.cpp
+
+    stubs/levelStub.cpp
 )
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
