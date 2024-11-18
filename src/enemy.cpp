@@ -32,12 +32,14 @@ Item * Enemy::releaseDrops() {
 
     int random = (rand() % 3) + 1;
     vector<Item*> listOfItems = generateItem();
+    Item * drop;
 
     for (unsigned i = 0; i < listOfItems.size(); i++) {
         if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity()) {
-            return listOfItems.at(i);
+            drop = listOfItems.at(i);
         }
     }
+    return drop;
 }
 
 bool Enemy::isAlive()
