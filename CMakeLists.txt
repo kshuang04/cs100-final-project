@@ -20,8 +20,10 @@ add_executable(playGame
     src/Player.cpp
     src/Item.cpp
     src/screen.cpp
-    src/mainMenuScreen.cpp
+    src/enemy.cpp
+    src/level.cpp
 
+    stubs/levelStub.cpp
 )
 
 add_executable(runChestTest

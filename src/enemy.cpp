@@ -61,6 +61,10 @@ int Enemy::getHealth()
     return health;
 }
 
+int Enemy::getMaxHealth() {
+    return maxHealth;
+}
+
 int Enemy::getStage()
 {
     return stage;

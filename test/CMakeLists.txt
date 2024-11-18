@@ -16,14 +16,28 @@ add_executable(runPlayerTests
     itemTest.cpp
 )
 
+add_executable(runScreenTests
+    screenTest.cpp
+    ../src/screen.cpp
+    ../src/Player.cpp
+    ../src/Item.cpp
+    ../src/enemy.cpp
+    ../src/level.cpp
+
+    ../stubs/levelStub.cpp
+)
+
 add_executable(runChestTest
-    src/chest.cpp
-    src/Player.cpp
-    src/Item.cpp
-    test/chestTest.cpp
+    ../src/chest.cpp
+    ../src/Player.cpp
+    ../src/Item.cpp
+    chestTest.cpp
 )
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
 TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(runScreenTests gtest gtest_main)
+TARGET_COMPILE_DEFINITIONS(runScreenTests PRIVATE gtest_disable_pthreads=ON)
 
 target_link_libraries(runChestTest gtest)

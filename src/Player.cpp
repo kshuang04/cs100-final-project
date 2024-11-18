@@ -66,40 +66,6 @@ void Player::removeItem(int itemIndex) {
     this->setItemCount(this->getItemCount() - 1);
 }
 
-void Player::printStats() {
-    cout << endl << "------------------------" << endl;
-    //Checks to see if the level number is valid and prints it if valid or throws an error if not valid.
-    if ((this->getLevel() < 1) || (this->getLevel() > this->getMaxLevel())) {throw logic_error("The current level is not within the specified range.");}
-    cout << "Level: " << this->getLevel() << endl;
-    //Checks to see if the HP value is valid and prints it if valid or throws an error if not valid.
-    if ((this->getHP() < 0) || (this->getHP() > this->getMaxHP())) {throw logic_error("The current HP is not within the specified range.");}
-    cout << "Health Power: " << this->getHP() << " / " << this->getMaxHP() << endl;
-    //Checks to see if the attack stat value is valid and prints it if valid or throws an error if not valid.
-    if (this->getAttackStat() < 0) {throw logic_error("The current Attack Power is negative and invalid.");}
-    cout << "Attack Power: " << this->getAttackStat() << endl;
-    //Checks to see if the defense stat  value is valid and prints it if valid or throws an error if not valid.
-    if (this->getDefenseStat() < 0) {throw logic_error("The current Defense Power is negative and invalid.");}
-    cout << "Defense Power: " << this->getDefenseStat() << endl;
-    //Checks to see if the EXP value is valid and prints it if valid or throws an error if not valid.
-    if ((this->getEXP() < 0) || (this->getEXP() >= this->expToNextLevel())) {throw logic_error("The current EXP is not within the specified range.");}
-    cout << "Current EXP: " << this->getEXP() << endl;
-    //Checks to see if the remaining EXP value is valid and prints it if valid or throws an error if not valid.
-    if (((this->expToNextLevel() - this->getEXP()) < 0) || ((this->expToNextLevel() - this->getEXP()) > this->expToNextLevel())) {throw logic_error("The current EXP to Next Level is not within the specified range.");}
-    cout << "EXP To Next Level: " << (this->expToNextLevel() - this->getEXP()) << endl;
-    cout << "------------------------" << endl;
-}
-
-void Player::printInven() {
-    //Prints every item and its contents from the player's item inventory
-    cout << "------------------------\n" << "Player's Item Inventory\n\n";
-    for (int i = 0; i < this->getItemIven().size(); i++) {
-        cout << (i + 1) << ". ";
-        this->getItemIven().at(i)->printStat();
-        cout << endl;
-    }
-    cout << "------------------------\n";
-}
-
 void Player::changeGold(int goldChange) {
     if (goldChange < 0) { //Checks to see if there is a need to decease the amount of gold.
         if ((int)(this->getGold() - abs(goldChange)) < 0) { //Checks to see if lowering the amount of gold will result in a negative value.

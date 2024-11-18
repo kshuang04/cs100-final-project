@@ -21,7 +21,6 @@ private:
     int goldAmount;
     bool alive;
     string name;
-
     // 1 = early, 2 = mid, 3 = late
     int stage;
     // 1 = plains, 2 = forest, 3 = castle, 4 = grave, 5 = lake
@@ -39,7 +38,8 @@ public:
     void setDescription(string);
     string getName();
     int getHealth();
-
+    int getMaxHealth();
+    int getGold() const;
     int getStage();
     int getRegion();
 };
