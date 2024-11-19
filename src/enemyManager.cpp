@@ -52,7 +52,37 @@ public:
         Enemy(10, 0, 5, 5, 10, "Kingsman", 3, 3),
         Enemy(10, 0, 5, 5, 5, "Dragon", 3, 3),
         Enemy(10, 0, 5, 5, 5, "Royal Mage", 3, 3),
-        Enemy(10, 0, 5, 5, 5, "Great Shield", 3, 3)
+        Enemy(10, 0, 5, 5, 5, "Great Shield", 3, 3),
+
+        Enemy(10, 0, 5, 5, 10, "Bats", 1, 4),
+        Enemy(10, 0, 5, 5, 5, "Skeleton", 1, 4),
+        Enemy(10, 0, 5, 5, 5, "Guard", 1, 4),
+        Enemy(10, 0, 5, 5, 5, "Archer", 1, 4),
+
+        Enemy(10, 0, 5, 5, 10, "Knight", 2, 4),
+        Enemy(10, 0, 5, 5, 5, "Guard Dog", 2, 4),
+        Enemy(10, 0, 5, 5, 5, "Gargoyle", 2, 4),
+        Enemy(10, 0, 5, 5, 5, "Mage", 2, 4),
+
+        Enemy(10, 0, 5, 5, 10, "Kingsman", 3, 4),
+        Enemy(10, 0, 5, 5, 5, "Dragon", 3, 4),
+        Enemy(10, 0, 5, 5, 5, "Royal Mage", 3, 4),
+        Enemy(10, 0, 5, 5, 5, "Great Shield", 3, 4),
+
+        Enemy(10, 0, 5, 5, 10, "Bats", 1, 5),
+        Enemy(10, 0, 5, 5, 5, "Skeleton", 1, 5),
+        Enemy(10, 0, 5, 5, 5, "Guard", 1, 5),
+        Enemy(10, 0, 5, 5, 5, "Archer", 1, 5),
+
+        Enemy(10, 0, 5, 5, 10, "Knight", 2, 5),
+        Enemy(10, 0, 5, 5, 5, "Guard Dog", 2, 5),
+        Enemy(10, 0, 5, 5, 5, "Gargoyle", 2, 5),
+        Enemy(10, 0, 5, 5, 5, "Mage", 2, 5),
+
+        Enemy(10, 0, 5, 5, 10, "Kingsman", 3, 5),
+        Enemy(10, 0, 5, 5, 5, "Dragon", 3, 5),
+        Enemy(10, 0, 5, 5, 5, "Royal Mage", 3, 5),
+        Enemy(10, 0, 5, 5, 5, "Great Shield", 3, 5)
 
     };
 };

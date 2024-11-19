@@ -26,22 +26,27 @@ void level::insertEnemies(int level, int region, int stage)
 {
     static enemyManager manager; // Make enemyManager static to avoid recreating it multiple times
 
-    bool enemyFound = false; // Flag to check if a valid enemy has been found
+    vector<Enemy> filteredEnemies;
 
-    while (!enemyFound)
+    for (int i = 0; i < manager.enemies.size(); i++)
     {
-        // Randomly pick an enemy from the manager's list
-        int randomIndex = rand() % manager.enemies.size(); // Get random index in range of enemies vector
-        Enemy randomEnemy = manager.enemies[randomIndex];
-
-        // Check if the enemy's stage and region match
-        if (randomEnemy.getStage() == stage && randomEnemy.getRegion() == region)
+        if (manager.enemies.at(i).getRegion() == region && manager.enemies.at(i).getStage() == stage)
         {
-            // If they match, add this enemy to the list
-            listOfEnemies.push_back(randomEnemy);
-            enemyFound = true; // Valid enemy found, stop the loop
+            filteredEnemies.push_back(manager.enemies.at(i));
         }
     }
+
+    if (filteredEnemies.empty())
+    {
+        throw runtime_error("No enemies found for the specified region and stage.");
+    }
+
+    // Randomly pick an enemy from the filtered list
+    int randomIndex = rand() % filteredEnemies.size();
+    Enemy selectedEnemy = filteredEnemies[randomIndex];
+
+    // Add the selected enemy to the list
+    listOfEnemies.push_back(selectedEnemy);
 }
 
 int level::getTotalGold()
