@@ -21,6 +21,7 @@ public:
     Item();
     string getItemName();
     virtual void useItem(Player* player) = 0;   
+
     int getStage();
     int getRarity();
 };
