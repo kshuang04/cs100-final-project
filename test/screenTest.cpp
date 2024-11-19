@@ -226,7 +226,7 @@ TEST(BattleScreenTest, DamageOneEnemy)
     BattleScreen b = BattleScreen(p, l);
     vector<Enemy*>* list = l->getListOfEnemies();
     //Damage first enemy in vector
-    (*(*list).at(0)).gotAttack(1);
+    (*(*list).at(0)).gotAttack(100);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
     delete p;
@@ -271,7 +271,7 @@ TEST(BattleScreenTest, DamageAllEnemies)
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
-        (*(*list).at(i)).gotAttack(1);
+        (*(*list).at(i)).gotAttack(100);
     }
     EXPECT_NO_THROW(b.printScreen());
     delete l;
@@ -299,7 +299,7 @@ TEST(BattleScreenTest, DamageEveryone)
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
-        (*(*list).at(i)).gotAttack(1);
+        (*(*list).at(i)).gotAttack(100);
     }
     //Damage player
     p->takeDamage(10);
