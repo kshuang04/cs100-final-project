@@ -47,11 +47,6 @@ bool Enemy::isAlive()
     return alive;
 }
 
-void Enemy::setDescription(string desc)
-{
-    description = desc;
-}
-
 string Enemy::getName()
 {
     return name;

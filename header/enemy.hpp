@@ -16,7 +16,6 @@ private:
     int maxHealth;
     int attackPower;
     int defense;
-    string description;
     int expAmount;
     int goldAmount;
     bool alive;
@@ -35,7 +34,6 @@ public:
     void gotAttack(int playerDamage);
     Item * releaseDrops();
     bool isAlive();
-    void setDescription(string);
     string getName();
     int getHealth();
     int getMaxHealth();

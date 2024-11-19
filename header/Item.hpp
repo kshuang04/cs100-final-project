@@ -14,18 +14,13 @@ class Player;
 class Item {
 protected:
     string itemName;
-    string description;
     int stageType;
     int rarity;
 
 public:
     Item();
-    ~Item();
-    Item(string newItemName, string newDescription);
-    virtual string getItemName();
-    virtual string getDescription();
-    virtual void printStat();
-    virtual void useItem(Player* player);   
+    string getItemName();
+    virtual void useItem(Player* player) = 0;   
     int getStage();
     int getRarity();
 };
@@ -34,8 +29,9 @@ class AttackItem : public Item {
     private:
         int attackPower;
     public:
-        AttackItem(int attackPower, int levelType, string name, int rarity);
+        AttackItem(int attackPower, int stageType, string name, int rarity);
         int getAttackPower();
+        void useItem(Player* player);
 
 };
 
@@ -43,19 +39,29 @@ class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name, int rarity);
+        DefenseItem(int defensePower, int stageType, string name, int rarity);
         int getDefensePower();
+        void useItem(Player* player);
 };
 
 class MaxHPPot : public Item {
     private: 
         int healthIncrease;
     public:
-        MaxHPPot(int healthIncrease, int levelType, string name, int rarity);
+        MaxHPPot(int healthIncrease, int stageType, string name, int rarity);
         int getHealthIncrease();
+        void useItem(Player* player);
 };
 
-vector<Item*> generateItem();
+class HealingPot : public Item {
+    private:
+        int healingAmount;
+    public:
+        HealingPot(int healingAmount, int stageType, string name, int rarity);
+        int getHealthAmount();
+        void useItem(Player* player);
+};
+
         
 
 
