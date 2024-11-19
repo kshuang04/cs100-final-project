@@ -1,6 +1,15 @@
-#include "../header/enemyManager.hpp"
+#include <iostream>
+#include <vector>
 
-enemyManager::enemyManager() {
+#include "../header/enemy.hpp"
+
+using namespace std;
+
+class enemyManager
+{
+public:
+    vector<Enemy> enemies;
+    enemyManager() {
     int hp;
     int def;
     int atk;
@@ -36,4 +45,6 @@ enemyManager::enemyManager() {
     }
 
     file.close();
-}
+    }
+
+};
