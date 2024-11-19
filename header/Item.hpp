@@ -14,17 +14,12 @@ class Player;
 class Item {
 protected:
     string itemName;
-    string description;
     int stageType;
     int rarity;
 
 public:
     Item();
-    ~Item();
-    Item(string newItemName, string newDescription);
     virtual string getItemName();
-    virtual string getDescription();
-    virtual void printStat();
     virtual void useItem(Player* player);   
     int getStage();
     int getRarity();
