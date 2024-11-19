@@ -34,7 +34,7 @@ class AttackItem : public Item {
     private:
         int attackPower;
     public:
-        AttackItem(int attackPower, int levelType, string name, int rarity);
+        AttackItem(int attackPower, int levelType, string name, int rarity, string description);
         ~AttackItem();
         int getAttackPower();
         void printStat();
@@ -45,7 +45,7 @@ class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name, int rarity);
+        DefenseItem(int defensePower, int levelType, string name, int rarity, string description);
         ~DefenseItem();
         int getDefensePower();
         void printStat();
@@ -56,7 +56,7 @@ class MaxHPPot : public Item {
     private: 
         int healthIncrease;
     public:
-        MaxHPPot(int healthIncrease, int levelType, string name, int rarity);
+        MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description);
         ~MaxHPPot();
         int getHealthIncrease();
         void printStat();
@@ -67,7 +67,7 @@ class HealingPot : public Item {
     private: 
         int healthIncrease;
     public:
-        HealingPot(int healthIncrease, int levelType, string name, int rarity);
+        HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
         ~HealingPot();
         int getHealthIncrease();
         void printStat();
