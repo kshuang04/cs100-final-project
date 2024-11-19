@@ -23,8 +23,6 @@ add_executable(runScreenTests
     ../src/Item.cpp
     ../src/enemy.cpp
     ../src/level.cpp
-
-    ../stubs/levelStub.cpp
 )
 
 add_executable(runChestTest

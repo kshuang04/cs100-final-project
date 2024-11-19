@@ -31,7 +31,7 @@ void MainMenuScreen::printScreen()
 
 void LoseScreen::printScreen()
 {
-    std::string message = "";
+    std::string message;
 
     std::cout << "--------------------" << std::endl;
     message = "You lost. Game over!";
@@ -45,7 +45,7 @@ void LoseScreen::printScreen()
 
 void WinScreen::printScreen()
 {
-    std::string message = "";
+    std::string message;
 
     std::cout << "-----------------------------------------" << std::endl;
     message = "YOU COMPLETED THE GAME. CONGRATULATIONS!";
@@ -69,7 +69,10 @@ void ShopScreen::printScreen()
 {
     string message;
 
+    // seed random number to ensure randomness
     srand(time(0));
+
+    //choose random element in dialogueOptions vector and display
     int optionChoice = rand() % dialogueOptions.size();
     message = dialogueOptions.at(optionChoice);
 
@@ -144,24 +147,22 @@ BattleScreen::BattleScreen(Player* player, level* l)
     this->listOfEnemies = (*l).getListOfEnemies();
 }
 
-//Constructor for Level stub
-BattleScreen::BattleScreen(Player* player, Level* l)
-{
-    this->player = player;
-    this->listOfEnemies = (*l).getListOfEnemies();
-}
-
 void BattleScreen::printScreen()
 {
     string message;
     cout << "-------------------------" << endl;
     message = "Enemies this stage:";
     displayTextSlowly(message);
+
+    // get and display current health of all enemies in enemies vector
     for (int i = 0; i < (*listOfEnemies).size(); i++)
     {
         cout << (*(*listOfEnemies).at(i)).getName() << " (Health: " << (*(*listOfEnemies).at(i)).getHealth() << "/" << (*(*listOfEnemies).at(i)).getMaxHealth() << ")" << endl;
     }
+
+    //display player's current health
     cout << endl << "Player (Health: " << player->getHP() << "/" << player->getMaxHP() << ")" << endl << endl;
+
     message = "Select an action:";
     displayTextSlowly(message);
     cout << "(1) Attack" << endl

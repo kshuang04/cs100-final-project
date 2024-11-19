@@ -212,50 +212,49 @@ TEST(InvenScreenTest, MultipleItems) {
 TEST(BattleScreenTest, StartBattle)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(5, 2);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
     delete p;
 }
 
 TEST(BattleScreenTest, DamageEnemy)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(5, 2);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
-    e1->gotAttack(20);
-    e2->gotAttack(20);
+    vector<Enemy*>* list = l->getListOfEnemies();
+    //Damage first enemy in vector
+    (*(*list).at(0)).gotAttack(1);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageAllEnemies)
+{
+    Player* p = new Player();
+    level* l = new level(5, 2);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy*>* list = l->getListOfEnemies();
+    //Damage all enemies in vector
+    for (int i = 0; i < list->size(); i++)
+    {
+        (*(*list).at(i)).gotAttack(1);
+    }
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
     delete p;
 }
 
 TEST(BattleScreenTest, DamagePlayer)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(5, 2);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
     p->takeDamage(10);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
     delete p;
 }

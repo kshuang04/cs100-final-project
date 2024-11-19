@@ -11,12 +11,10 @@
 #include "../header/enemy.hpp"
 #include "../header/level.hpp"
 
-//DELETE LATER AND ADD REAL LEVEL CLASS
-#include "../stubs/levelStub.hpp"
-
 class Screen
 {
     protected:
+    // function that displays text in terminal as "running text", all subclasses use it
     void displayTextSlowly(const std::string& text);
 
     public:
@@ -44,8 +42,8 @@ class WinScreen : public Screen
 class ShopScreen : public Screen
 {
     private:
-        std::vector<std::string> dialogueOptions;
-        Player* player;
+        std::vector<std::string> dialogueOptions; // vector to store all possible dialogue variants
+        Player* player; // store pointer to player object so can access player's gold
     public:
         ShopScreen(Player* player);
         void printScreen() override;
@@ -54,7 +52,7 @@ class ShopScreen : public Screen
 class PlayerInventoryScreen : public Screen
 {
     private:
-        Player* player;
+        Player* player; // store pointer to player object so can access player's inventory member
     public:
         PlayerInventoryScreen(Player* player);
         void printScreen() override;
@@ -63,7 +61,7 @@ class PlayerInventoryScreen : public Screen
 class PlayerStatsScreen : public Screen
 {
     private:
-        Player* player;
+        Player* player; // store pointer to player object so can access player's stats
     public:
         PlayerStatsScreen(Player* player);  
         void printScreen() override;
@@ -72,12 +70,11 @@ class PlayerStatsScreen : public Screen
 class BattleScreen : public Screen
 {
     private:
-        Player* player;
-        level* l;
-        vector<Enemy*>* listOfEnemies;
+        Player* player; // store pointer to player object so can access player's health
+        level* l; // store pointer to level so can get what enemies are on the current level
+        vector<Enemy*>* listOfEnemies; //store pointer to vector that contains the list of Enemies on the current level so can access enemies health
     public:
         BattleScreen(Player* player, level* l);
-        BattleScreen(Player* player, Level* l); //constructor for level stub
         void printScreen() override;
 };
 

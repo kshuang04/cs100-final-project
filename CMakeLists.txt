@@ -22,8 +22,6 @@ add_executable(playGame
     src/screen.cpp
     src/enemy.cpp
     src/level.cpp
-
-    stubs/levelStub.cpp
 )
 
 add_executable(runChestTest
@@ -35,5 +33,7 @@ add_executable(runChestTest
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
 TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
+
+TARGET_LINK_LIBRARIES(playGame gtest)
 
 target_link_libraries(runChestTest gtest)
