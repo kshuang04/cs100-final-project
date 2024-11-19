@@ -20,7 +20,7 @@ protected:
 
 public:
     Item();
-    ~Item();
+    virtual ~Item();
     Item(string newItemName, string newDescription);
     virtual string getItemName();
     virtual string getDescription();
@@ -34,25 +34,44 @@ class AttackItem : public Item {
     private:
         int attackPower;
     public:
-        AttackItem(int attackPower, int levelType, string name, int rarity);
+        AttackItem(int attackPower, int levelType, string name, int rarity, string description);
+        ~AttackItem();
         int getAttackPower();
-
+        void printStat();
+        void useItem(Player* player); 
 };
 
 class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name, int rarity);
+        DefenseItem(int defensePower, int levelType, string name, int rarity, string description);
+        ~DefenseItem();
         int getDefensePower();
+        void printStat();
+        void useItem(Player* player); 
 };
 
 class MaxHPPot : public Item {
     private: 
         int healthIncrease;
     public:
-        MaxHPPot(int healthIncrease, int levelType, string name, int rarity);
+        MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        ~MaxHPPot();
         int getHealthIncrease();
+        void printStat();
+        void useItem(Player* player); 
+};
+
+class HealingPot : public Item {
+    private: 
+        int healthIncrease;
+    public:
+        HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        ~HealingPot();
+        int getHealthIncrease();
+        void printStat();
+        void useItem(Player* player); 
 };
 
 vector<Item*> generateItem();

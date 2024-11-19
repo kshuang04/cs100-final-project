@@ -105,6 +105,19 @@ void PlayerInventoryScreen::printScreen()
     cout << "------------------------------------------------------------\n";
 }
 
+void PlayerInventoryScreen::printHealingItemsScreen() {
+    string message;
+    message = "Player's Healing Potion Inventory:\n";
+    cout << "------------------------------------------------------------\n";
+    displayTextSlowly(message);
+    for (int i = 0; i < player->getHealingPotIven().size(); i++) {
+        cout << (i + 1) << ". ";
+        player->getHealingPotIven().at(i)->printStat();
+        cout << endl;
+    }
+    cout << "------------------------------------------------------------\n";
+}
+
 PlayerStatsScreen::PlayerStatsScreen(Player* player)
 {
     this->player = player;
@@ -121,8 +134,8 @@ void PlayerStatsScreen::printScreen()
     if ((player->getLevel() < 1) || (player->getLevel() > player->getMaxLevel())) {throw logic_error("The current level is not within the specified range.");}
     cout << "Level: " << player->getLevel() << endl;
     //Checks to see if the HP value is valid and prints it if valid or throws an error if not valid.
-    if ((player->getHP() < 0) || (player->getHP() > player->getMaxHP())) {throw logic_error("The current HP is not within the specified range.");}
-    cout << "Health Power: " << player->getHP() << " / " << player->getMaxHP() << endl;
+    if ((player->getHP() < 0) || (player->getHP() > player->getMaxHPFromLevel())) {throw logic_error("The current HP is not within the specified range.");}
+    cout << "Health Power: " << player->getHP() << " / " << player->getMaxHPFromLevel() << endl;
     //Checks to see if the attack stat value is valid and prints it if valid or throws an error if not valid.
     if (player->getAttackStat() < 0) {throw logic_error("The current Attack Power is negative and invalid.");}
     cout << "Attack Power: " << player->getAttackStat() << endl;
@@ -141,14 +154,14 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = (*l).getListOfEnemies();
+    //this->listOfEnemies = (*l).getListOfEnemies();
 }
 
 //Constructor for Level stub
 BattleScreen::BattleScreen(Player* player, Level* l)
 {
     this->player = player;
-    this->listOfEnemies = (*l).getListOfEnemies();
+    //this->listOfEnemies = (*l).getListOfEnemies();
 }
 
 void BattleScreen::printScreen()
