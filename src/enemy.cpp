@@ -28,17 +28,17 @@ void Enemy::gotAttack(int playerDamage)
 }
 
 Item * Enemy::releaseDrops() {
-    srand(time(0));
+    // srand(time(0));
 
-    int random = (rand() % 3) + 1;
-    GenerateItems items;
-    vector<Item*> listOfItems = items.generateItem();
+    // int random = (rand() % 3) + 1;
+    // GenerateItems items;
+    // vector<Item*> listOfItems = items.generateItem();
 
-    for (unsigned i = 0; i < listOfItems.size(); i++) {
-        if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity()) {
-            return listOfItems.at(i);
-        }
-    }
+    // for (unsigned i = 0; i < listOfItems.size(); i++) {
+    //     if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity()) {
+    //         return listOfItems.at(i);
+    //     }
+    // }
 }
 
 bool Enemy::isAlive()
@@ -73,6 +73,11 @@ int Enemy::getStage()
 int Enemy::getRegion()
 {
     return region;
+}
+
+int Enemy::getGold() const
+{
+    return goldAmount;
 }
 
 vector<Enemy> generateEnemy() {

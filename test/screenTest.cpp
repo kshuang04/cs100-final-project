@@ -168,7 +168,7 @@ TEST(InvenScreenTest, BasicInventory)
 
 TEST(InvenScreenTest, OneAttackItem) {
     Player* myPlayer = new Player();
-    AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion");
+    AttackItem* newAttackItem = new AttackItem(2, 1, "+2 attack", 1);
     myPlayer->addItem(newAttackItem);
     EXPECT_EQ(newAttackItem->getAttackPower(), 2);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -178,7 +178,7 @@ TEST(InvenScreenTest, OneAttackItem) {
 
 TEST(InvenScreenTest, OneDefenseItem) {
     Player* myPlayer = new Player();
-    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion");
+    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "+4 defense", 2);
     myPlayer->addItem(newDefenseItem);
     EXPECT_EQ(newDefenseItem->getDefensePower(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -188,7 +188,7 @@ TEST(InvenScreenTest, OneDefenseItem) {
 
 TEST(InvenScreenTest, OneHealingPotItem) {
     Player* myPlayer = new Player();
-    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion");
+    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "+4 health", 3);
     myPlayer->addItem(newHealingPotItem);
     EXPECT_EQ(newHealingPotItem->getHealthIncrease(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -198,11 +198,11 @@ TEST(InvenScreenTest, OneHealingPotItem) {
 
 TEST(InvenScreenTest, MultipleItems) {
     Player* myPlayer = new Player();
-    AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion");
+    AttackItem* newAttackItem = new AttackItem(2, 1, "+2 attack", 1);
     myPlayer->addItem(newAttackItem);
-    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion");
+    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "+4 defense", 2);
     myPlayer->addItem(newDefenseItem);
-    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion");
+    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "+4 health", 3);
     myPlayer->addItem(newHealingPotItem);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
