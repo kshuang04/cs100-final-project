@@ -4,20 +4,20 @@
 #include <cstdlib> // For rand() and srand()
 
 // Constructor for level, now it populates the list of enemies
-level::level(int level, int region)
+level::level(int currLevel, int region)
 {
-    numLevel = level;
+    numLevel = currLevel;
     // Seed the random number generator (to ensure randomness on each program run)
     srand(static_cast<unsigned int>(time(0)));
 
     // Determine the number of enemies based on level range
-    int enemyCount = (level % 10 == 0 || level % 10 <= 3) ? 1 : (level % 10 <= 6) ? 2
+    int enemyCount = (currLevel % 10 == 0 || currLevel % 10 <= 3) ? 1 : (currLevel % 10 <= 6) ? 2
                                                                                   : 3;
-    int stage = level % 10;
+    int stage = currLevel % 10;
 
     for (int i = 0; i < enemyCount; i++)
     {
-        insertEnemies(level, region, stage); // Insert enemies into list based on level and stage
+        insertEnemies(currLevel, region, stage); // Insert enemies into list based on level and stage
     }
 }
 
