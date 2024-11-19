@@ -14,6 +14,7 @@ class Player;
 class Item {
 protected:
     string itemName;
+    string description;
     int stageType;
     int rarity;
 
@@ -21,6 +22,7 @@ public:
     Item();
     string getItemName();
     virtual void useItem(Player* player) = 0;   
+    void printStat();
 
     int getStage();
     int getRarity();

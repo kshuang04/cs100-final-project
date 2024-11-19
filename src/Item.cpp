@@ -4,6 +4,11 @@
 Item::Item() {}
 
 
+void Item::printStat() {
+    cout << "Item: " << this->getItemName() << endl;
+}
+
+
 string Item::getItemName() {
     return this->itemName;
 }
