@@ -25,5 +25,5 @@ void HealingPotStub::printStat() {
 }
 
 void HealingPotStub::useItem(Player* player) {
-    player->setHP(min((player->getHP() + this->getHPPower()), player->getMaxHP()));
+    player->setHP(min((player->getHP() + this->getHPPower()), player->getMaxHPFromLevel()));
 }
