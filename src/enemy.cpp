@@ -1,17 +1,14 @@
 #include "../header/enemy.hpp"
 
-Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : 
-maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
-goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)
+Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
+                                                                                                                              goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)
 {
     health = maxHealth;
 }
 
 Enemy::Enemy()
 {
-
 }
-
 
 void Enemy::gotAttack(int playerDamage)
 {
@@ -27,18 +24,22 @@ void Enemy::gotAttack(int playerDamage)
     }
 }
 
-Item * Enemy::releaseDrops() {
-    // srand(time(0));
+Item *Enemy::releaseDrops()
+{
+    srand(time(0));
 
-    // int random = (rand() % 3) + 1;
-    // GenerateItems items;
-    // vector<Item*> listOfItems = items.generateItem();
+    int random = (rand() % 3) + 1;
+    vector<Item *> listOfItems = generateItem();
+    Item *drop;
 
-    // for (unsigned i = 0; i < listOfItems.size(); i++) {
-    //     if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity()) {
-    //         return listOfItems.at(i);
-    //     }
-    // }
+    for (unsigned i = 0; i < listOfItems.size(); i++)
+    {
+        if (listOfItems.at(i)->getStage() == stage && random == listOfItems.at(i)->getRarity())
+        {
+            drop = listOfItems.at(i);
+        }
+    }
+    return drop;
 }
 
 bool Enemy::isAlive()
@@ -61,7 +62,8 @@ int Enemy::getHealth()
     return health;
 }
 
-int Enemy::getMaxHealth() {
+int Enemy::getMaxHealth()
+{
     return maxHealth;
 }
 
@@ -80,7 +82,8 @@ int Enemy::getGold() const
     return goldAmount;
 }
 
-vector<Enemy> generateEnemy() {
+vector<Enemy> generateEnemy()
+{
     vector<Enemy> listOfEnemy;
 
     int hp;
@@ -95,18 +98,21 @@ vector<Enemy> generateEnemy() {
     ifstream file;
     file.open("src/Enemy.txt");
 
-    if (!(file.is_open())) {
+    if (!(file.is_open()))
+    {
         throw runtime_error("File not open");
     }
 
     int index;
 
-    while (file >> hp >> def >> atk >> exp >> gold >> name >> stage >> region) {
-        
-        //Enemy with name with 2 words
-        //Replace "_" with " "
+    while (file >> hp >> def >> atk >> exp >> gold >> name >> stage >> region)
+    {
+
+        // Enemy with name with 2 words
+        // Replace "_" with " "
         index = name.find("_");
-        if (index != string::npos) {
+        if (index != string::npos)
+        {
             name.replace(index, 1, " ");
         }
 
