@@ -5,9 +5,8 @@
 
 using namespace std;
 
-class enemyManager
+struct enemyManager
 {
-public:
     vector<Enemy> enemies;
     enemyManager() {
     int hp;
