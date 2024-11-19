@@ -57,7 +57,7 @@ Finally, another one of our main screens will be the shopkeeper's screen:\
 This screen follows our general layout. If the user chooses to visit the shopkeeper after completing a level, they will be greeted with this screen that shows how much currency they currently have and the items avaiable to purchase from the shopkeeper. Again, the user is prompted to choose an option and input their choice as a numerical input. If they choose to buy an item, that item will be added to their inventory and the cost of that item will be deducted from their total currency. The user is also given the choice to sell items that they currently have in exchange for currency. Finally, the user is given the choice to leave the shopkeeper and continue their journey through Path of Pain.
 
 
-## Class Diagram
+### Class Diagram
   ![UML Diagram](images/UMLDiagram.png)
 
   The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
@@ -72,7 +72,7 @@ This screen follows our general layout. If the user chooses to visit the shopkee
 
   The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level. 
   
- SOLID Principles Applications:\
+ ### SOLID Principles Applications:
  We applied the Single Responsibility Principle, Liskov Substitution Principle, and the Dependency Inversion Principle in our class diagram.
  * In order to apply SRP, we created a new class, screen.cpp, that displays all of the screens, information about the player, and information about the level. Initially, these print functions were members of their respective classes. This change helps us right better code because it allows us to purposefully modularize our classes so a single class is not doing all of the work. If a single class does everything, it can get confusing to read and understand. Additionally, when classes have single responsibilities, it becomes easy to locate bugs and make changes.
  * We applied LSP in our implementation of health items. The Health Item class has two subclasses: HealingPot and MaxHPPot. If a player heals using an item from the Health Item class, they would recover some HP, but it the player were to heal using an item from the MaxHPPot class, they would also heal HP, but this time they fully recover all of their HP. This demonstrates LSP because Health Item is replaceable with its subtype, MaxHPPot, and this replacement does not alter the correctness of the program. This principle helps us write better code because since we expect for subclasses to match their base classes' functionality, we will avoid creating subclasses that behave differently from the base class.
