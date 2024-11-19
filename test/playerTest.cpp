@@ -1,5 +1,6 @@
 #include "gtest/gtest.h"
 #include "../header/Player.hpp"
+#include "../header/Item.hpp"
 #include "../test/stubs/AttackItemStub.hpp"
 #include "../test/stubs/DefenseItemStub.hpp"
 #include "../test/stubs/HealthItemStub.hpp"
@@ -65,156 +66,137 @@ TEST(ChangeEXPTests, IncreaseNegativeEXP) {
 
 TEST(UseItemTests, UseAttackItem) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    AttackItem* newAttackItem = new AttackItem(25, 1, "Strength", 1);
     myPlayer->addItem(newAttackItem);
-    myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 40);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 15);
-    EXPECT_EQ(myPlayer->getHP(), 30);
-    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    EXPECT_EQ(myPlayer->getAttackStat(), 25);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UseDefenseItem) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    DefenseItem* newDefenseItem = new DefenseItem(20, 1, "Shield", 1);
     myPlayer->addItem(newDefenseItem);
-    myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 15);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 35);
-    EXPECT_EQ(myPlayer->getHP(), 30);
-    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 20);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UseHealingPotItemButHPExceedsMaxHP) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 18, "Looks like green hot chocolate.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    HealingPot* newHealingPotItem = new HealingPot(18, 1, "Green Hot Chocolate", 1);
     myPlayer->addItem(newHealingPotItem);
     myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 15);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 15);
-    EXPECT_EQ(myPlayer->getHP(), 45);
-    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    EXPECT_EQ(myPlayer->getAttackStat(), 1);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 1);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UseHealingPotItemButHPDoesNotExceedsMaxHP) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 12, "Looks like green hot chocolate.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(5);
+    myPlayer->setMaxHPStat(0);
+    HealingPot* newHealingPotItem = new HealingPot(12, 1, "Green Hot Chocolate", 1);
     myPlayer->addItem(newHealingPotItem);
     myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 15);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 15);
-    EXPECT_EQ(myPlayer->getHP(), 42);
-    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    EXPECT_EQ(myPlayer->getAttackStat(), 1);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 1);
+    EXPECT_EQ(myPlayer->getHP(), 17);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMaxHPPotItem) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(5);
+    myPlayer->setMaxHPStat(0);
+    MaxHPPot* newMaxHPPotItem = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
     myPlayer->addItem(newMaxHPPotItem);
-    myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 15);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 15);
-    EXPECT_EQ(myPlayer->getHP(), 30);
-    EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 5);
+    EXPECT_EQ(myPlayer->getMaxHPStat(), 12);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 32);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase1) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    myPlayer->setMaxHPStat(0);
+    AttackItem* newAttackItem = new AttackItem(25, 1, "Strength", 1);
     myPlayer->addItem(newAttackItem);
-    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    DefenseItem* newDefenseItem = new DefenseItem(20, 1, "Shield", 1);
     myPlayer->addItem(newDefenseItem);
-    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 18, "Looks like green hot chocolate.");
+    HealingPot* newHealingPotItem = new HealingPot(18, 1, "Green Hot Chocolate", 1);
     myPlayer->addItem(newHealingPotItem);
-    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    MaxHPPot* newMaxHPPotItem = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
     myPlayer->addItem(newMaxHPPotItem);
-    myPlayer->consumeItem(3);
-    myPlayer->consumeItem(3);
-    myPlayer->consumeItem(2);
     myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 40);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 35);
-    EXPECT_EQ(myPlayer->getHP(), 45);
-    EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    EXPECT_EQ(myPlayer->getAttackStat(), 25);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 20);
+    EXPECT_EQ(myPlayer->getHP(), 32);
+    EXPECT_EQ(myPlayer->getMaxHPStat(), 12);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 32);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase2) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    myPlayer->setMaxHPStat(0);
+    AttackItem* newAttackItem = new AttackItem(25, 1, "Strength", 1);
     myPlayer->addItem(newAttackItem);
-    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    DefenseItem* newDefenseItem = new DefenseItem(20, 1, "Shield", 1);
     myPlayer->addItem(newDefenseItem);
-    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 18, "Looks like green hot chocolate.");
+    HealingPot* newHealingPotItem = new HealingPot(18, 1, "Green Hot Chocolate", 1);
     myPlayer->addItem(newHealingPotItem);
-    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    MaxHPPot* newMaxHPPotItem = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
     myPlayer->addItem(newMaxHPPotItem);
-    myPlayer->consumeItem(4);
-    myPlayer->consumeItem(3);
-    myPlayer->consumeItem(2);
     myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 40);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 35);
-    EXPECT_EQ(myPlayer->getHP(), 48);
-    EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    EXPECT_EQ(myPlayer->getAttackStat(), 25);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 20);
+    EXPECT_EQ(myPlayer->getHP(), 32);
+    EXPECT_EQ(myPlayer->getMaxHPStat(), 12);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 32);
     delete myPlayer;
 }
 
 TEST(UseItemTests, UsingMultipleItemsCase3) {
     Player* myPlayer = new Player();
-    myPlayer->setAttackStat(15);
-    myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->setLevel(1);
+    myPlayer->setHP(20);
+    myPlayer->setMaxHPStat(0);
+    AttackItem* newAttackItem = new AttackItem(25, 1, "Strength", 1);
     myPlayer->addItem(newAttackItem);
-    DefenseItemStub* newDefenseItem = new DefenseItemStub("Shield", 20, "Creates a shield around you.");
+    DefenseItem* newDefenseItem = new DefenseItem(20, 1, "Shield", 1);
     myPlayer->addItem(newDefenseItem);
-    HealingPotStub* newHealingPotItem = new HealingPotStub("Healing Pot", 12, "Looks like green hot chocolate.");
+    HealingPot* newHealingPotItem = new HealingPot(18, 1, "Green Hot Chocolate", 1);
     myPlayer->addItem(newHealingPotItem);
-    MaxHPPotStub* newMaxHPPotItem = new MaxHPPotStub("Max HP Pot Deluxe", 12, "Looks like strawberry jam.");
+    MaxHPPot* newMaxHPPotItem = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
     myPlayer->addItem(newMaxHPPotItem);
-    myPlayer->consumeItem(3);
-    myPlayer->consumeItem(3);
-    myPlayer->consumeItem(2);
     myPlayer->consumeItem(1);
-    EXPECT_EQ(myPlayer->getAttackStat(), 40);
-    EXPECT_EQ(myPlayer->getDefenseStat(), 35);
-    EXPECT_EQ(myPlayer->getHP(), 42);
-    EXPECT_EQ(myPlayer->getMaxHP(), 57);
+    EXPECT_EQ(myPlayer->getAttackStat(), 25);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 20);
+    EXPECT_EQ(myPlayer->getHP(), 32);
+    EXPECT_EQ(myPlayer->getMaxHPStat(), 12);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 32);
     delete myPlayer;
 }
 
@@ -222,14 +204,13 @@ TEST(UseItemTests, UseItemDirectly) {
     Player* myPlayer = new Player();
     myPlayer->setAttackStat(15);
     myPlayer->setDefenseStat(15);
-    myPlayer->setHP(30);
-    myPlayer->setMaxHP(45);
-    AttackItemStub* newAttackItem = new AttackItemStub("Strength", 25, "Makes you muscular.");
+    myPlayer->setHP(20);
+    AttackItem* newAttackItem = new AttackItem(25, 1, "Strength", 1);
     myPlayer->consumeItem(newAttackItem);
     EXPECT_EQ(myPlayer->getAttackStat(), 40);
     EXPECT_EQ(myPlayer->getDefenseStat(), 15);
-    EXPECT_EQ(myPlayer->getHP(), 30);
-    EXPECT_EQ(myPlayer->getMaxHP(), 45);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
     delete myPlayer;
 }
 
@@ -238,7 +219,6 @@ TEST(AttackValueTests, LevelOneAttack) {
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 2);
     EXPECT_LE(damage, 12);
     delete myPlayer;
@@ -249,7 +229,6 @@ TEST(AttackValueTests, LevelTenAttack) {
     myPlayer->setLevel(10);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    cout << damage << endl;
     EXPECT_GE(damage, 200);
     EXPECT_LE(damage, 300);
     delete myPlayer;
@@ -329,7 +308,6 @@ TEST(ChangeGoldTests, SubtractGoldButResultsNegative) {
 
 TEST(TakeDamageTests, DamageButStillAlive) {
     Player* myPlayer = new Player();
-    myPlayer->setMaxHP(20);
     myPlayer->setHP(20);
     myPlayer->takeDamage(10);
     EXPECT_EQ(myPlayer->getHP(), 10);
@@ -339,7 +317,6 @@ TEST(TakeDamageTests, DamageButStillAlive) {
 
 TEST(TakeDamageTests, DamageToZeroHP) {
     Player* myPlayer = new Player();
-    myPlayer->setMaxHP(20);
     myPlayer->setHP(20);
     myPlayer->takeDamage(20);
     EXPECT_EQ(myPlayer->getHP(), 0);
@@ -349,11 +326,114 @@ TEST(TakeDamageTests, DamageToZeroHP) {
 
 TEST(TakeDamageTests, DamageToNegativeHP) {
     Player* myPlayer = new Player();
-    myPlayer->setMaxHP(20);
     myPlayer->setHP(20);
     myPlayer->takeDamage(30);
     EXPECT_EQ(myPlayer->getHP(), 0);
     EXPECT_EQ(myPlayer->getIsAlive(), false);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackAttackItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    AttackItem* newAttackItem1 = new AttackItem(25, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem1);
+    AttackItem* newAttackItem2 = new AttackItem(50, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem2);
+    AttackItem* newAttackItem3 = new AttackItem(75, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 150);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackDefensetems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    DefenseItem* newDefenseItem1 = new DefenseItem(20, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem1);
+    DefenseItem* newDefenseItem2 = new DefenseItem(35, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem2);
+    DefenseItem* newDefenseItem3 = new DefenseItem(55, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 110);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackMaxHPtems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    ASSERT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    MaxHPPot* newMaxHPPotItem1 = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem1);
+    MaxHPPot* newMaxHPPotItem2 = new MaxHPPot(53, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem2);
+    MaxHPPot* newMaxHPPotItem3 = new MaxHPPot(31, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 116);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackHealingPotItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    HealingPot* newHealingPotItem1 = new HealingPot(12, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem1);
+    HealingPot* newHealingPotItem2 = new HealingPot(25, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem2);
+    HealingPot* newHealingPotItem3 = new HealingPot(69, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem3);
+    myPlayer->stackItemStats();
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    EXPECT_EQ(myPlayer->getHealingPotIven().size(), 3);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackMultipleTypeItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    ASSERT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    AttackItem* newAttackItem1 = new AttackItem(25, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem1);
+    DefenseItem* newDefenseItem1 = new DefenseItem(20, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem1);
+    MaxHPPot* newMaxHPPotItem1 = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem1);
+    HealingPot* newHealingPotItem1 = new HealingPot(12, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem1);
+    AttackItem* newAttackItem2 = new AttackItem(50, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem2);
+    DefenseItem* newDefenseItem2 = new DefenseItem(35, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem2);
+    MaxHPPot* newMaxHPPotItem2 = new MaxHPPot(53, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem2);
+    HealingPot* newHealingPotItem2 = new HealingPot(25, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem2);
+    AttackItem* newAttackItem3 = new AttackItem(75, 1, "Strength", 1);
+    myPlayer->addItem(newAttackItem3);
+    DefenseItem* newDefenseItem3 = new DefenseItem(55, 1, "Shield", 1);
+    myPlayer->addItem(newDefenseItem3);
+    MaxHPPot* newMaxHPPotItem3 = new MaxHPPot(31, 1, "Max HP Pot Deluxe", 1);
+    myPlayer->addItem(newMaxHPPotItem3);
+    HealingPot* newHealingPotItem3 = new HealingPot(69, 1, "Lucky Healing Potion", 1);
+    myPlayer->addItem(newHealingPotItem3);
+    myPlayer->stackItemStats();
+    EXPECT_EQ(myPlayer->getAttackStat(), 150);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 110);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 116);
+    EXPECT_EQ(myPlayer->getHealingPotIven().size(), 3);
     delete myPlayer;
 }
 
