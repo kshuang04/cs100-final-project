@@ -45,7 +45,6 @@ public:
 };
 
 
-vector<Enemy> generateEnemy();
 
 
 #endif
