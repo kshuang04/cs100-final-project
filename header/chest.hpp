@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include "Item.hpp"
+#include "ItemInventory.hpp"
+
 class Chest
 {   
     private:

@@ -1,21 +1,13 @@
 #include "../header/Player.hpp"
 
 //Default Player Constructor
-Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), maxHPStat(0), gold(0), itemCount(0), healingPotCount(0), isAlive(true) {}
+Player::Player() : currHP(20), maxHP(20), level(1), maxLevel(20), exp(0), attackStat(1), defenseStat(1), maxHPStat(0), gold(0), isAlive(true), playerIven(new ItemInventory()) {}
 
 //Specific Player Constructor
-Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), maxHPStat(0), gold(gold), itemCount(0), healingPotCount(0), isAlive(true) {}
+Player::Player(int maxHP, int maxLevel, int attack, int defense, int gold) : currHP(maxHP), maxHP(maxHP), level(1), maxLevel(maxLevel), exp(0), attackStat(attack), defenseStat(defense), maxHPStat(0), gold(gold), isAlive(true), playerIven(new ItemInventory()) {}
 
 Player::~Player() {
-    //Deletes every item in the item Inventory
-    for (int i = 0; i < this->getItemIven().size(); i++) {
-        delete this->getItemIven().at(i);
-        this->getItemIven().at(i) = nullptr;
-    }
-    for (int i = 0; i < this->getHealingPotIven().size(); i++) {
-        delete this->getHealingPotIven().at(i);
-        this->getHealingPotIven().at(i) = nullptr;
-    }
+    delete this->getPlayerInven();
 }
 
 int Player::attack() {
@@ -35,55 +27,6 @@ void Player::takeDamage(int damage) {
         this->setHP((this->getHP() - damage));
         this->setIsAlive(true);
     }
-}
-
-void Player::addItem(HealingPot* newHealingPotItem) {
-    //Adds the new Healing Pot Item to a separate inventory
-    this->getHealingPotIven().push_back(newHealingPotItem);
-    this->setHealingPotCount(this->getHealingPotCount() + 1);
-}
-
-void Player::addItem(Item* newItem) {
-    //Adds the item, increases the item count by 1, and update the player's stats.
-    this->getItemIven().push_back(newItem);
-    this->setItemCount(this->getItemCount() + 1);
-    this->stackItemStats();
-}
-
-void Player::consumeItem(Item* currentItem) {
-    //Checks to see if the item is real and availabe
-    if (currentItem == nullptr) {throw logic_error("Using an item that does not exist.");}
-    //Consumes the item and then remove it
-    currentItem->useItem(this);
-    delete currentItem;
-}
-
-void Player::consumeItem(int itemIndex) {
-    //Check to see if the item index is within the range and throws an error if not.
-    if (((itemIndex - 1) < 0) || ((itemIndex - 1) >= this->getHealingPotCount()) || (this->getHealingPotCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
-    //Uses the item and then removes it from the item inventory.
-    this->getHealingPotIven().at((itemIndex - 1))->useItem(this);
-    this->removeItem(itemIndex);
-}
-
-void Player::stackItemStats() {
-    //Resets the attack, defense, and max HP stats to be able to recalculate those stats correctly.
-    this->setAttackStat(0);
-    this->setDefenseStat(0);
-    this->setMaxHPStat(0);
-    //Takes each item in the player's inventory and updates their respective stat.
-    for (int i = 0; i < this->getItemIven().size(); i++) {
-        this->getItemIven().at(i)->useItem(this);        
-    }
-}
-
-void Player::removeItem(int itemIndex) {
-    //Check to see if the item index is within the range and throws an error if not.
-    if (((itemIndex - 1) < 0) || ((itemIndex - 1) > this->getHealingPotCount()) || (this->getHealingPotCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
-    //Deletes the Item pointer and then removes it from the vector for item inventory, and decreases item count by 1
-    delete this->getHealingPotIven().at((itemIndex - 1));
-    this->getHealingPotIven().erase(this->getHealingPotIven().begin() + (itemIndex - 1));
-    this->setHealingPotCount(this->getHealingPotCount() - 1);
 }
 
 void Player::changeGold(int goldChange) {
