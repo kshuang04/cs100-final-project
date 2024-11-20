@@ -5,7 +5,7 @@ Item::Item() {}
 
 
 void Item::printStat() {
-    cout << "Item: " << this->getItemName() << endl;
+    cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
 }
 
 
@@ -80,4 +80,8 @@ void MaxHPPot::useItem(Player * player) {
 
 void HealingPot::useItem(Player * player) {
     player->setHP(player->getHP() + healingAmount);
+}
+
+string Item::getDescription() {
+    return description;
 }

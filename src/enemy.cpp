@@ -1,4 +1,5 @@
 #include "../header/enemy.hpp"
+#include "../src/itemGenerator.cpp"
 
 Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
                                                                                                                               goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)
@@ -8,6 +9,10 @@ Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, str
 
 Enemy::Enemy()
 {
+}
+
+void Item::setDesc(string desc) {
+    description = desc;
 }
 
 void Enemy::gotAttack(int playerDamage)
@@ -20,6 +25,7 @@ void Enemy::gotAttack(int playerDamage)
     health -= totalDamage;
     if (health <= 0)
     {
+        health = 0;
         alive = false;
     }
 }
@@ -29,7 +35,9 @@ Item *Enemy::releaseDrops()
     srand(time(0));
 
     int random = (rand() % 3) + 1;
-    vector<Item *> listOfItems = generateItem();
+
+    vector<Item*> listOfItems = generateItem();
+
     Item *drop;
 
     for (unsigned i = 0; i < listOfItems.size(); i++)

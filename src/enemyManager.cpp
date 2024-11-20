@@ -19,7 +19,7 @@ struct enemyManager
     int region;
 
     ifstream file;
-    file.open("src/Enemy.txt");
+    file.open("../Enemy.txt");
 
     if (!(file.is_open()))
     {

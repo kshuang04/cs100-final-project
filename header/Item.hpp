@@ -23,7 +23,9 @@ public:
     string getItemName();
     virtual void useItem(Player* player) = 0;   
     void printStat();
+    void setDesc(string);
 
+    string getDescription();
     int getStage();
     int getRarity();
 };
