@@ -1,7 +1,7 @@
 #ifndef MAX_HP_POT_STUB_HPP
 #define MAX_HP_POT_STUB_HPP
 
-#include "../../stubs/HealthItemStub.hpp"
+#include "../stubs/HealthItemStub.hpp"
 
 class MaxHPPotStub : public HealthItemStub {
     int maxHPPower;
