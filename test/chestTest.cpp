@@ -16,10 +16,10 @@ TEST(ChestTest, FewerItemsThanCapacity) {
 
     EXPECT_TRUE(chest->isEmpty());
     // Clean up
-    for (auto item : player->getPlayerInven()->getItemIven()) {
+    for (auto item : player->getPlayerInven()->getItemInven()) {
         delete item;
     }
-    player->getPlayerInven()->getItemIven().clear();
+    player->getPlayerInven()->getItemInven().clear();
     delete player;
     delete chest;
 }
