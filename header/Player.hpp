@@ -9,10 +9,9 @@
 #include <vector>
 #include <typeinfo>
 
-#include "../header/Item.hpp"
+#include "../header/ItemInventory.hpp"
 
-class Item;
-class HealingPot;
+class ItemInventory;
 
 using namespace std;
 
@@ -26,11 +25,8 @@ class Player {
         int attackStat;
         int defenseStat;
         int maxHPStat;
+        ItemInventory* playerIven;
         unsigned int gold;
-        vector<Item*> itemIven;
-        vector<HealingPot*> healingPotIven;
-        int itemCount;
-        int healingPotCount;
         bool isAlive;
     public:
         Player();
@@ -39,12 +35,6 @@ class Player {
         //Functions
         int attack();
         void takeDamage(int damage);
-        void addItem(HealingPot* newHealingPotItem);
-        void addItem(Item* newItem);
-        void consumeItem(Item* currentItem);
-        void consumeItem(int itemIndex);
-        void stackItemStats();
-        void removeItem(int itemIndex);
         void changeGold(int goldChange);
         void changeEXP(int expChange);
         int expToNextLevel();
@@ -58,11 +48,8 @@ class Player {
         int getAttackStat() {return this->attackStat;}
         int getDefenseStat() {return this->defenseStat;}
         int getMaxHPStat() {return this->maxHPStat;}
+        ItemInventory* getPlayerInven() {return this->playerIven;}
         unsigned int getGold() {return this->gold;}
-        int getItemCount() {return this->itemCount;}
-        int getHealingPotCount() {return this->healingPotCount;}
-        vector<Item*>& getItemIven() {return this->itemIven;}
-        vector<HealingPot*>& getHealingPotIven() {return this->healingPotIven;}
         bool getIsAlive() {return this->isAlive;}
         //Mutators
         void setHP(int newHP) {this->currHP = newHP;}
@@ -76,8 +63,6 @@ class Player {
             this->maxHP = (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));
         }
         void setGold(unsigned int newGoldAmount) {this->gold = newGoldAmount;}
-        void setItemCount(int newCount) {this->itemCount = newCount;}
-        void setHealingPotCount(int newHealingPotCount) {this->healingPotCount = newHealingPotCount;}
         void setIsAlive(bool newAliveStatus) {this->isAlive = newAliveStatus;}
 };
 

@@ -97,9 +97,9 @@ void PlayerInventoryScreen::printScreen()
     cout << "------------------------------------------------------------\n";
     message = "Player's Item Inventory:\n";
     displayTextSlowly(message);
-    for (int i = 0; i < player->getItemIven().size(); i++) {
+    for (int i = 0; i < player->getPlayerInven()->getItemIven().size(); i++) {
         cout << (i + 1) << ". ";
-        player->getItemIven().at(i)->printStat();
+        player->getPlayerInven()->getItemIven().at(i)->printStat();
         cout << endl;
     }
     cout << "------------------------------------------------------------\n";
@@ -110,9 +110,9 @@ void PlayerInventoryScreen::printHealingItemsScreen() {
     message = "Player's Healing Potion Inventory:\n";
     cout << "------------------------------------------------------------\n";
     displayTextSlowly(message);
-    for (int i = 0; i < player->getHealingPotIven().size(); i++) {
+    for (int i = 0; i < player->getPlayerInven()->getHealingPotIven().size(); i++) {
         cout << (i + 1) << ". ";
-        player->getHealingPotIven().at(i)->printStat();
+        player->getPlayerInven()->getHealingPotIven().at(i)->printStat();
         cout << endl;
     }
     cout << "------------------------------------------------------------\n";

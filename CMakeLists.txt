@@ -6,6 +6,7 @@ add_executable(runPlayerTests
     test/playerTest.cpp
     src/Player.cpp
     src/Item.cpp
+    src/ItemInventory.cpp
     test/stubs/AttackItemStub.cpp
     test/stubs/DefenseItemStub.cpp
     test/stubs/HealthItemStub.cpp
@@ -22,7 +23,7 @@ add_executable(playGame
     src/screen.cpp
     src/enemy.cpp
     src/level.cpp
-
+    src/ItemInventory.cpp
     test/stubs/levelStub.cpp
 )
 
@@ -31,6 +32,7 @@ add_executable(runChestTest
     src/Player.cpp
     src/Item.cpp
     test/chestTest.cpp
+    src/ItemInventory.cpp
 )
 
 TARGET_LINK_LIBRARIES(runPlayerTests gtest)
