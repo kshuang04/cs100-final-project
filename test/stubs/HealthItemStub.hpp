@@ -10,7 +10,7 @@ class HealthItemStub : public Item {
 public:
     HealthItemStub();
     ~HealthItemStub();
-    HealthItemStub(string newItemName, int newDefensePower, string newDescription);
+    HealthItemStub(int healthIncrease, int levelType, string name, int rarity, string description);
     int getHealthPower();
     virtual string getItemName() = 0;
     virtual string getDescription() = 0;

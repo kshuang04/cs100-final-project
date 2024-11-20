@@ -11,7 +11,7 @@ public:
     Player* player;
     AttackItemStub();
     ~AttackItemStub();
-    AttackItemStub(string newItemName, int newAttackPower, string newDescription);
+    AttackItemStub(int newAttackPower, int levelType, string name, int rarity, string description);
     int getAttackPower();
     string getItemName() override;
     string getDescription() override;
