@@ -1,11 +1,16 @@
 #include "../stubs/MaxHPPotStub.hpp"
 
-MaxHPPotStub::MaxHPPotStub() : HealthItemStub("NULL", 0, "NULL") {}
+MaxHPPotStub::MaxHPPotStub() : HealthItemStub(1, 1, "NULL", 1, "NULL") {}
 
 MaxHPPotStub::~MaxHPPotStub() {}
 
-MaxHPPotStub::MaxHPPotStub(string newItemName, int newMAXHPPower, string newDescription)
-    : maxHPPower(newMAXHPPower), HealthItemStub(newItemName, newMAXHPPower, newDescription) {}
+MaxHPPotStub::MaxHPPotStub(int healthIncrease, int levelType, string name, int rarity, string description) : maxHPPower(healthIncrease)
+{
+    this->itemName = name;
+    this->stageType = levelType;
+    this->rarity = rarity;
+    this->description = description;
+}
 
 int MaxHPPotStub::getMaxHPPower() {
     return this->maxHPPower;

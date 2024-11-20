@@ -10,7 +10,7 @@ class DefenseItemStub : public Item {
 public:
     DefenseItemStub();
     ~DefenseItemStub();
-    DefenseItemStub(string newItemName, int newDefensePower, string newDescription);
+    DefenseItemStub(int newDefensePower, int levelType, string name, int rarity, string description);
     int getDefensePower();
     string getItemName() override;
     string getDescription() override;
