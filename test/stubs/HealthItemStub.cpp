@@ -1,4 +1,4 @@
-#include "../../test/stubs/HealthItemStub.hpp"
+#include "../stubs/HealthItemStub.hpp"
 
 HealthItemStub::HealthItemStub() : healthPower(0), Item("NULL", "NULL") {}
 

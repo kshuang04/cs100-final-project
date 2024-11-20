@@ -34,7 +34,7 @@ TEST(StatsScreenTest, Normal) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -48,7 +48,7 @@ TEST(StatsScreenTest, NegLevel) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -62,7 +62,7 @@ TEST(StatsScreenTest, PastMAXLevel) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -76,7 +76,7 @@ TEST(StatsScreenTest, NegativeEXP) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(-30);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -90,7 +90,7 @@ TEST(StatsScreenTest, TooMuchEXPAndNotLeveledUp) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(2000);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -104,7 +104,7 @@ TEST(StatsScreenTest, NegativeHP) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(-5);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -118,7 +118,7 @@ TEST(StatsScreenTest, ExtraHP) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(30);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -132,7 +132,7 @@ TEST(StatsScreenTest, NegAttackStat) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(-100);
     myPlayer->setDefenseStat(20);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -146,7 +146,7 @@ TEST(StatsScreenTest, NegDefenseStat) {
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
     myPlayer->setHP(15);
-    myPlayer->setMaxHP(20);
+    myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(-50);
     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
@@ -158,8 +158,8 @@ TEST(InvenScreenTest, BasicInventory)
 {
     Player* p = new Player();
     PlayerInventoryScreen s = PlayerInventoryScreen(p);
-    Item* i1 = new Item("test item 1", "test desc 1");
-    Item* i2 = new Item("test item 2", "test desc 2");
+    Item* i1 = new Item("test item 1", "test desc 1", 1, 1);
+    Item* i2 = new Item("test item 2", "test desc 2", 1, 1);
     (*p).addItem(i1);
     (*p).addItem(i2);
     EXPECT_NO_THROW(s.printScreen());
@@ -168,7 +168,7 @@ TEST(InvenScreenTest, BasicInventory)
 
 TEST(InvenScreenTest, OneAttackItem) {
     Player* myPlayer = new Player();
-    AttackItem* newAttackItem = new AttackItem(2, 1, "+2 attack", 1);
+    AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
     myPlayer->addItem(newAttackItem);
     EXPECT_EQ(newAttackItem->getAttackPower(), 2);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -178,7 +178,7 @@ TEST(InvenScreenTest, OneAttackItem) {
 
 TEST(InvenScreenTest, OneDefenseItem) {
     Player* myPlayer = new Player();
-    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "+4 defense", 2);
+    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
     myPlayer->addItem(newDefenseItem);
     EXPECT_EQ(newDefenseItem->getDefensePower(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -188,7 +188,7 @@ TEST(InvenScreenTest, OneDefenseItem) {
 
 TEST(InvenScreenTest, OneHealingPotItem) {
     Player* myPlayer = new Player();
-    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "+4 health", 3);
+    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
     myPlayer->addItem(newHealingPotItem);
     EXPECT_EQ(newHealingPotItem->getHealthIncrease(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
@@ -198,11 +198,11 @@ TEST(InvenScreenTest, OneHealingPotItem) {
 
 TEST(InvenScreenTest, MultipleItems) {
     Player* myPlayer = new Player();
-    AttackItem* newAttackItem = new AttackItem(2, 1, "+2 attack", 1);
+    AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
     myPlayer->addItem(newAttackItem);
-    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "+4 defense", 2);
+    DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
     myPlayer->addItem(newDefenseItem);
-    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "+4 health", 3);
+    MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
     myPlayer->addItem(newHealingPotItem);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());

@@ -1,4 +1,4 @@
-#include "../../test/stubs/AttackItemStub.hpp"
+#include "../stubs/AttackItemStub.hpp"
 
 AttackItemStub::AttackItemStub() : attackPower(0), Item("NULL", "NULL") {}
 
