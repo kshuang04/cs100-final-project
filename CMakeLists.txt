@@ -23,7 +23,7 @@ add_executable(playGame
     src/enemy.cpp
     src/level.cpp
 
-    stubs/levelStub.cpp
+    test/stubs/levelStub.cpp
 )
 
 add_executable(runChestTest
