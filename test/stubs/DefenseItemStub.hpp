@@ -1,7 +1,7 @@
 #ifndef DEFENSE_ITEM_STUB_HPP
 #define DEFENSE_ITEM_STUB_HPP
 
-#include "../header/Item.hpp"
+#include "../../header/Item.hpp"
 
 class Player;
 
