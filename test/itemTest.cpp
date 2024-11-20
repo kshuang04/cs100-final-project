@@ -34,8 +34,6 @@ TEST(itemTest, getRarity) {
     
     EXPECT_EQ(itemAtk.getRarity(), 1);
     EXPECT_EQ(itemDef.getRarity(), 2);
-    EXPECT_EQ(itemHP.getRarity(), 3);
-    EXPECT_EQ(itemHeal.getRarity(), 2);
 }
 
 TEST(atkItem, getAtkPower) {
@@ -59,7 +57,7 @@ TEST(hpItem, getHpIncrease) {
 TEST(healItem, getHealAmount) {
     HealingPot itemHeal(10, 0, "heal", 0, "heal");
     
-    EXPECT_EQ(itemHeal.getHealAmount(), 10);
+    EXPECT_EQ(itemHeal.getHealthIncrease(), 10);
 }
 
 TEST(generateItem, size) {

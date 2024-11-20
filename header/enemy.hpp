@@ -25,6 +25,7 @@ private:
     // 1 = plains, 2 = forest, 3 = castle, 4 = grave, 5 = lake
     int region;
 
+
 public:
     Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum);
 

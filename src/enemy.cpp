@@ -42,6 +42,8 @@ Item *Enemy::releaseDrops()
         {
             drop = listOfItems.at(i);
         }
+        else
+            delete listOfItems.at(i);
     }
     return drop;
 }

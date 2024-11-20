@@ -23,7 +23,6 @@ vector<Item*> generateItem() {
     int nameIndex;
     int descIndex;
 
-    int counter = 0;
 
     if (!(file.is_open())) {
         throw runtime_error("File not open");
@@ -44,15 +43,14 @@ vector<Item*> generateItem() {
             desc.replace(descIndex, 1, " ");
             descIndex = desc.find("_");
         }
-        if (counter < 3) 
+        if (name.find("attack") != string::npos) 
             listOfItems.push_back(new AttackItem(stat, stage, name, rarity, desc));
-        else if (counter < 6) 
+        else if (name.find("defense") != string ::npos) 
             listOfItems.push_back(new DefenseItem(stat, stage, name, rarity, desc));
-        else if (counter < 9)
+        else if (name.find("HP") != string::npos)
             listOfItems.push_back(new MaxHPPot(stat, stage, name, rarity, desc));
         else
             listOfItems.push_back(new HealingPot(stat, stage, name, rarity, desc));
-        counter++;
 
     }
     return listOfItems;

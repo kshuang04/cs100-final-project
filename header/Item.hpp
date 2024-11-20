@@ -35,7 +35,7 @@ class AttackItem : public Item {
         int attackPower;
     public:
 
-        AttackItem(int attackPower, int levelType, string name, int rarity, string description);
+        AttackItem(int attackPower, int stageType, string name, int rarity, string description);
         ~AttackItem();
         int getAttackPower();
         void printStat();
@@ -46,7 +46,7 @@ class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name, int rarity, string description);
+        DefenseItem(int defensePower, int stageType, string name, int rarity, string description);
         ~DefenseItem();
         int getDefensePower();
         void printStat();
@@ -56,16 +56,16 @@ class DefenseItem : public Item {
 class HealthItem : public Item {
 protected:
     int healthIncrease;
-    int levelType;
+    int stageType;
     string name;
     int rarity;
     string description;
 public:
     HealthItem();
     virtual ~HealthItem();
-    HealthItem(int healthIncrease, int levelType, string name, int rarity, string description);
+    HealthItem(int healthIncrease, int stageType, string name, int rarity, string description);
     virtual int getHealthIncrease();
-    virtual string getItemName();
+    string getItemName();
     virtual string getDescription();
     virtual void printStat();
     virtual void useItem(Player* player);   
@@ -76,7 +76,7 @@ class MaxHPPot : public HealthItem {
         int healthIncrease;
     public:
 
-        MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        MaxHPPot(int healthIncrease, int stageType, string name, int rarity, string description);
         ~MaxHPPot();
         string getItemName();
         int getHealthIncrease();
@@ -89,7 +89,7 @@ class HealingPot : public HealthItem {
     private: 
         int healthIncrease;
     public:
-        HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        HealingPot(int healthIncrease, int stageType, string name, int rarity, string description);
         ~HealingPot();
         string getItemName();
         int getHealthIncrease();

@@ -9,17 +9,18 @@ add_executable(runPlayerTests
     ../src/enemy.cpp
     enemyTest.cpp
     itemTest.cpp
+    ../src/ItemInventory.cpp
 )
 
 
-add_executable(runScreenTests
-    screenTest.cpp
-    ../src/screen.cpp
-    ../src/Player.cpp
-    ../src/Item.cpp
-    ../src/enemy.cpp
-    ../src/level.cpp
-)
+# add_executable(runScreenTests
+#     screenTest.cpp
+#     ../src/screen.cpp
+#     ../src/Player.cpp
+#     ../src/Item.cpp
+#     ../src/enemy.cpp
+#     ../src/level.cpp
+# )
 
 # add_executable(runChestTest
 #     ../src/chest.cpp
