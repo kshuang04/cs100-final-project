@@ -1,4 +1,4 @@
-#include "../../test/stubs/DefenseItemStub.hpp"
+#include "../stubs/DefenseItemStub.hpp"
 
 DefenseItemStub::DefenseItemStub() : defensePower(0), Item("NULL", "NULL") {}
 

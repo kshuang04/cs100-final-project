@@ -1,7 +1,7 @@
 #ifndef HEALTH_ITEM_STUB_HPP
 #define HEALTH_ITEM_STUB_HPP
 
-#include "../../header/Item.hpp"
+#include "../header/Item.hpp"
 
 class Player;
 

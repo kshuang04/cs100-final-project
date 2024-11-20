@@ -1,4 +1,4 @@
-#include "../../test/stubs/HealingPotStub.hpp"
+#include "../stubs/HealingPotStub.hpp"
 
 HealingPotStub::HealingPotStub() : HealthItemStub("NULL", 0, "NULL") {}
 
@@ -25,5 +25,5 @@ void HealingPotStub::printStat() {
 }
 
 void HealingPotStub::useItem(Player* player) {
-    player->setHP(min((player->getHP() + this->getHPPower()), player->getMaxHPFromLevel()));
+    player->setHP(min((player->getHP() + this->getHPPower()), player->getMaxHP()));
 }
