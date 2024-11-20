@@ -7,8 +7,8 @@
 TEST(ChestTest, FewerItemsThanCapacity) {
     Player player; // Assume player's maxItem = 3
     std::vector<Item*> items = {
-        new AttackItem(10, 1, "Sword"),
-        new DefenseItem(5, 1, "Shield")
+        new AttackItem(10, 1, "Sword", 1, "Has a sharpe blade."),
+        new DefenseItem(5, 1, "Shield", 1, "Has protective material.")
     };
     Chest chest(2, items, 100);
     chest.collectItems(&player);

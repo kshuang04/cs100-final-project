@@ -58,6 +58,7 @@ class PlayerInventoryScreen : public Screen
     public:
         PlayerInventoryScreen(Player* player);
         void printScreen() override;
+        void printHealingItemsScreen();
 };
 
 class PlayerStatsScreen : public Screen
