@@ -6,7 +6,6 @@ Item::Item() {}
 
 void Item::printStat() {
     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
-
 }
 
 

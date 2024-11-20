@@ -6,6 +6,7 @@
 // #include "../test/stubs/HealingPotStub.hpp"
 // #include "../test/stubs/MaxHPPotStub.hpp"
 
+
 // TEST(ChangeEXPTests, IncreaseEXPForButNoLevelIncrease) {
 //     Player* myPlayer = new Player();
 //     myPlayer->changeEXP(50);
@@ -255,6 +256,7 @@
 //     delete myPlayer;
 // }
 
+
 // TEST(AttackValueTests, LevelTwentyAttack) {
 //     Player* myPlayer = new Player();
 //     myPlayer->setLevel(20);
@@ -356,6 +358,111 @@
 //     EXPECT_EQ(myPlayer->getIsAlive(), false);
 //     delete myPlayer;
 // }
+
+
+TEST(StackItemTests, StackAttackItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    AttackItem* newAttackItem1 = new AttackItem(25, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem1);
+    AttackItem* newAttackItem2 = new AttackItem(50, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem2);
+    AttackItem* newAttackItem3 = new AttackItem(75, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 150);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackDefensetems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    DefenseItem* newDefenseItem1 = new DefenseItem(20, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem1);
+    DefenseItem* newDefenseItem2 = new DefenseItem(35, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem2);
+    DefenseItem* newDefenseItem3 = new DefenseItem(55, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 110);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackMaxHPtems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    ASSERT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    MaxHPPot* newMaxHPPotItem1 = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem1);
+    MaxHPPot* newMaxHPPotItem2 = new MaxHPPot(53, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem2);
+    MaxHPPot* newMaxHPPotItem3 = new MaxHPPot(31, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem3);
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 116);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackHealingPotItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    HealingPot* newHealingPotItem1 = new HealingPot(12, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem1);
+    HealingPot* newHealingPotItem2 = new HealingPot(25, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem2);
+    HealingPot* newHealingPotItem3 = new HealingPot(69, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem3);
+    myPlayer->stackItemStats();
+    EXPECT_EQ(myPlayer->getAttackStat(), 0);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 0);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    EXPECT_EQ(myPlayer->getHealingPotIven().size(), 3);
+    delete myPlayer;
+}
+
+TEST(StackItemTests, StackMultipleTypeItems) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(1);
+    ASSERT_EQ(myPlayer->getMaxHPFromLevel(), 20);
+    AttackItem* newAttackItem1 = new AttackItem(25, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem1);
+    DefenseItem* newDefenseItem1 = new DefenseItem(20, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem1);
+    MaxHPPot* newMaxHPPotItem1 = new MaxHPPot(12, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem1);
+    HealingPot* newHealingPotItem1 = new HealingPot(12, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem1);
+    AttackItem* newAttackItem2 = new AttackItem(50, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem2);
+    DefenseItem* newDefenseItem2 = new DefenseItem(35, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem2);
+    MaxHPPot* newMaxHPPotItem2 = new MaxHPPot(53, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem2);
+    HealingPot* newHealingPotItem2 = new HealingPot(25, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem2);
+    AttackItem* newAttackItem3 = new AttackItem(75, 1, "Strength", 1, "Makes you stronger.");
+    myPlayer->addItem(newAttackItem3);
+    DefenseItem* newDefenseItem3 = new DefenseItem(55, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->addItem(newDefenseItem3);
+    MaxHPPot* newMaxHPPotItem3 = new MaxHPPot(31, 1, "Max HP Pot Deluxe", 1, "Boosts your max health.");
+    myPlayer->addItem(newMaxHPPotItem3);
+    HealingPot* newHealingPotItem3 = new HealingPot(69, 1, "Lucky Healing Potion", 1, "Heals up your health from damage taken.");
+    myPlayer->addItem(newHealingPotItem3);
+    myPlayer->stackItemStats();
+    EXPECT_EQ(myPlayer->getAttackStat(), 150);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 110);
+    EXPECT_EQ(myPlayer->getHP(), 20);
+    EXPECT_EQ(myPlayer->getMaxHPFromLevel(), 116);
+    EXPECT_EQ(myPlayer->getHealingPotIven().size(), 3);
+    delete myPlayer;
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
