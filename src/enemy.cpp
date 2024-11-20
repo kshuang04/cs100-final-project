@@ -11,10 +11,6 @@ Enemy::Enemy()
 {
 }
 
-void Item::setDesc(string desc) {
-    description = desc;
-}
-
 void Enemy::gotAttack(int playerDamage)
 {
     int totalDamage = playerDamage - defense;

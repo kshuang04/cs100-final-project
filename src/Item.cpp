@@ -3,11 +3,15 @@
 
 Item::Item() {}
 
+Item::~Item() {}
 
 void Item::printStat() {
     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
 }
 
+string Item::getDescription() {
+    return description;
+}
 
 string Item::getItemName() {
     return this->itemName;
@@ -23,28 +27,6 @@ int Item::getRarity() {
     return rarity;
 }
 
-
-vector<Item*> generateItem() {
-    vector<Item*> listOfItem;
-
-    //just template names
-    listOfItem.push_back(new AttackItem(2, 1, "+2 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(4, 1, "+4 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(4, 1, "+4 health", 3, "Boosts your max health."));
-
-
-    listOfItem.push_back(new AttackItem(4, 2, "+4 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(7, 2, "+7 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(7, 2, "+7 health", 3, "Boosts your max health."));
-
-
-    listOfItem.push_back(new AttackItem(7, 3, "+7 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(13, 3, "+13 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(13, 3, "+13 health", 3, "Boosts your max health."));
-
-    return listOfItem;
-
-}
 
 AttackItem::AttackItem(int attackPower, int levelType, string name, int rarity, string description) : attackPower(attackPower)
 { 
@@ -127,15 +109,15 @@ HealingPot::HealingPot(int healthIncrease, int levelType, string name, int rarit
 
 HealingPot::~HealingPot() {}
 
-int HealingPot::getHealthIncrease() {
+int HealingPot::getHealAmount() {
     return healthIncrease;
 }
 
 void HealingPot::printStat() {
-    if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
+    if (this->getHealAmount() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
+    cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealAmount() << "\n  Description: " << this->getDescription() << endl;
 }
 
 void HealingPot::useItem(Player* player) {
-    player->setHP(min(player->getMaxHP(), (player->getHP() + this->getHealthIncrease())));
+    player->setHP(min(player->getMaxHP(), (player->getHP() + this->getHealAmount())));
 }

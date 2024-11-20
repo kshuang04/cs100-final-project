@@ -1,12 +1,12 @@
-2 1 Lesser_attack 1 Increase_atk_by 2
-4 2 Medium_attack 1 Increase_atk_by 4
-7 3 Strong_attack 1 Increase_atk_by 7
-4 1 Lesser_defense 2 Increase_def_by_4
-7 2 Medium_defense 2 Increase_def_by_7
-13 3 Strong_defense 2 Increase_def_by_13
-4 1 Lesser_Max_HP 3 Increase_hp_by_4
-7 2 Medium_Max_HP 3 Increase_hp_by_7
-13 3 Strong_Max_HP 3 Increase_hp_by_13
+2 1 Lesser_attack 1 Makes_you_stronger.
+4 2 Medium_attack 1 Makes_you_stronger.
+7 3 Strong_attack 1 Makes_you_stronger.
+4 1 Lesser_defense 2 Creates_a_shield_around_you.
+7 2 Medium_defense 2 Creates_a_shield_around_you.
+13 3 Strong_defense 2 Creates_a_shield_around_you.
+4 1 Lesser_Max_HP 3 Boosts_your_max_health.
+7 2 Medium_Max_HP 3 Boosts_your_max_health.
+13 3 Strong_Max_HP 3 Boosts_your_max_health.
 5 1 Lesser_Healing 4 Heal_5_hp
 20 2 Medium_Healing 4 Heal_20_hp
 40 3 Strong_Healing 4 Heal_40_hp

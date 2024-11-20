@@ -24,5 +24,5 @@ void MaxHPPotStub::printStat() {
 }
 
 void MaxHPPotStub::useItem(Player* player) {
-    player->setMaxHPStat(player->getMaxHPStat() + this->getMaxHPPower());
+    player->setMaxHP(player->getMaxHPStat() + this->getMaxHPPower());
 }

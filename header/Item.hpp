@@ -71,11 +71,12 @@ class HealingPot : public Item {
     public:
         HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
         ~HealingPot();
-        int getHealthIncrease();
+        int getHealAmount();
         void printStat();
         void useItem(Player* player); 
 };
 
+vector<Item*> generateItem();
         
 
 

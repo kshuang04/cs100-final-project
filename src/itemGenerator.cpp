@@ -45,16 +45,13 @@ vector<Item*> generateItem() {
             descIndex = desc.find("_");
         }
         if (counter < 3) 
-            listOfItems.push_back(new AttackItem(stat, stage, name, rarity));
+            listOfItems.push_back(new AttackItem(stat, stage, name, rarity, desc));
         else if (counter < 6) 
-            listOfItems.push_back(new DefenseItem(stat, stage, name, rarity));
+            listOfItems.push_back(new DefenseItem(stat, stage, name, rarity, desc));
         else if (counter < 9)
-            listOfItems.push_back(new MaxHPPot(stat, stage, name, rarity));
+            listOfItems.push_back(new MaxHPPot(stat, stage, name, rarity, desc));
         else
-            listOfItems.push_back(new HealingPot(stat, stage, name, rarity));
-            
-
-        listOfItems.at(counter)->setDesc(desc);
+            listOfItems.push_back(new HealingPot(stat, stage, name, rarity, desc));
         counter++;
 
     }
