@@ -21,7 +21,7 @@ protected:
 public:
     Item();
     virtual ~Item();
-    Item(string newItemName, string newDescription);
+    Item(string newItemName, string newDescription, int newStageType, int newRarity);
     virtual string getItemName();
     virtual string getDescription();
     virtual void printStat();
@@ -63,6 +63,7 @@ public:
     HealthItem();
     virtual ~HealthItem();
     HealthItem(int healthIncrease, int levelType, string name, int rarity, string description);
+    virtual int getHealthIncrease();
     virtual string getItemName();
     virtual string getDescription();
     virtual void printStat();
@@ -78,6 +79,7 @@ class MaxHPPot : public HealthItem {
         string getItemName();
         int getHealthIncrease();
         void printStat();
+        string getDescription();
         void useItem(Player* player); 
 };
 
@@ -90,6 +92,7 @@ class HealingPot : public HealthItem {
         string getItemName();
         int getHealthIncrease();
         void printStat();
+        string getDescription();
         void useItem(Player* player); 
 };
 
