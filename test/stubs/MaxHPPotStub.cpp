@@ -1,4 +1,4 @@
-#include "../../test/stubs/MaxHPPotStub.hpp"
+#include "../stubs/MaxHPPotStub.hpp"
 
 MaxHPPotStub::MaxHPPotStub() : HealthItemStub("NULL", 0, "NULL") {}
 
@@ -24,5 +24,5 @@ void MaxHPPotStub::printStat() {
 }
 
 void MaxHPPotStub::useItem(Player* player) {
-    player->setMaxHPStat(player->getMaxHPStat() + this->getMaxHPPower());
+    player->setMaxHPStat(player->getMaxHP() + this->getMaxHPPower());
 }

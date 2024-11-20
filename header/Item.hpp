@@ -52,23 +52,42 @@ class DefenseItem : public Item {
         void useItem(Player* player); 
 };
 
-class MaxHPPot : public Item {
+class HealthItem : public Item {
+protected:
+    int healthIncrease;
+    int levelType;
+    string name;
+    int rarity;
+    string description;
+public:
+    HealthItem();
+    virtual ~HealthItem();
+    HealthItem(int healthIncrease, int levelType, string name, int rarity, string description);
+    virtual string getItemName();
+    virtual string getDescription();
+    virtual void printStat();
+    virtual void useItem(Player* player);   
+};
+
+class MaxHPPot : public HealthItem {
     private: 
         int healthIncrease;
     public:
         MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description);
         ~MaxHPPot();
+        string getItemName();
         int getHealthIncrease();
         void printStat();
         void useItem(Player* player); 
 };
 
-class HealingPot : public Item {
+class HealingPot : public HealthItem {
     private: 
         int healthIncrease;
     public:
         HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
         ~HealingPot();
+        string getItemName();
         int getHealthIncrease();
         void printStat();
         void useItem(Player* player); 

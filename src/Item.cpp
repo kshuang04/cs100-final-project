@@ -97,15 +97,40 @@ void DefenseItem::useItem(Player* player) {
     player->setDefenseStat(player->getDefenseStat() + this->getDefensePower());
 }
 
+HealthItem::HealthItem() : healthIncrease(0), levelType(1), name("NULL"), rarity(1), description("NULL") {}
+
+HealthItem::~HealthItem() {}
+
+HealthItem::HealthItem(int healthIncrease, int levelType, string name, int rarity, string description)
+    : healthIncrease(healthIncrease), levelType(levelType), name(name), rarity(rarity), description(description) {}
+
+string HealthItem::getItemName() {
+    return this->itemName;
+}
+
+string HealthItem::getDescription() {
+    return this->description;
+}
+
+void HealthItem::printStat() {
+    cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
+}
+
+void HealthItem::useItem(Player* player) {}
+
 MaxHPPot::MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description) : healthIncrease(healthIncrease)
 {
-    itemName = name;
+    this->itemName = name;
     this->stageType = levelType;
     this->rarity = rarity;
     this->description = description;
 }
 
 MaxHPPot::~MaxHPPot() {}
+
+string MaxHPPot::getItemName() {
+    return this->itemName;
+}
 
 int MaxHPPot::getHealthIncrease() {
     return healthIncrease;
@@ -122,13 +147,17 @@ void MaxHPPot::useItem(Player* player) {
 
 HealingPot::HealingPot(int healthIncrease, int levelType, string name, int rarity, string description) : healthIncrease(healthIncrease)
 {
-    itemName = name;
+    this->itemName = name;
     this->stageType = levelType;
     this->rarity = rarity;
     this->description = description;
 }
 
 HealingPot::~HealingPot() {}
+
+string HealingPot::getItemName() {
+    return this->itemName;
+}
 
 int HealingPot::getHealthIncrease() {
     return healthIncrease;

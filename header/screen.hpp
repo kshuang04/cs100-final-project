@@ -12,7 +12,7 @@
 #include "../header/level.hpp"
 
 //DELETE LATER AND ADD REAL LEVEL CLASS
-#include "../stubs/levelStub.hpp"
+#include "../test/stubs/levelStub.hpp"
 
 class Screen
 {

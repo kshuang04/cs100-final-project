@@ -3,7 +3,7 @@
 
 #include <algorithm>
 
-#include "../../stubs/HealthItemStub.hpp"
+#include "../stubs/HealthItemStub.hpp"
 
 class Player;
 
