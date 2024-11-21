@@ -1,11 +1,16 @@
-#include "../../test/stubs/DefenseItemStub.hpp"
+#include "../stubs/DefenseItemStub.hpp"
 
-DefenseItemStub::DefenseItemStub() : defensePower(0), Item("NULL", "NULL") {}
+DefenseItemStub::DefenseItemStub() : defensePower(0), Item("NULL", "NULL", 1, 1) {}
 
 DefenseItemStub::~DefenseItemStub() {}
 
-DefenseItemStub::DefenseItemStub(string newItemName, int newDefensePower, string newDescription)
-    : defensePower(newDefensePower), Item(newItemName, newDescription) {}
+DefenseItemStub::DefenseItemStub(int newDefensePower, int levelType, string name, int rarity, string description) : defensePower(newDefensePower)
+{
+    this->itemName = name;
+    this->stageType = levelType;
+    this->rarity = rarity;
+    this->description = description;
+}
 
 int DefenseItemStub::getDefensePower() {
     return this->defensePower;

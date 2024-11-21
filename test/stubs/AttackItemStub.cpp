@@ -1,11 +1,16 @@
-#include "../../test/stubs/AttackItemStub.hpp"
+#include "../stubs/AttackItemStub.hpp"
 
-AttackItemStub::AttackItemStub() : attackPower(0), Item("NULL", "NULL") {}
+AttackItemStub::AttackItemStub() : attackPower(0), Item("NULL", "NULL", 1, 1) {}
 
 AttackItemStub::~AttackItemStub() {}
 
-AttackItemStub::AttackItemStub(string newItemName, int newAttackPower, string newDescription)
-    : attackPower(newAttackPower), Item(newItemName, newDescription) {}
+AttackItemStub::AttackItemStub(int newAttackPower, int levelType, string name, int rarity, string description) : attackPower(newAttackPower)
+{
+    this->itemName = name;
+    this->stageType = levelType;
+    this->rarity = rarity;
+    this->description = description;
+}
 
 int AttackItemStub::getAttackPower() {
     return this->attackPower;
