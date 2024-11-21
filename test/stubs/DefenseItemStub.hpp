@@ -14,7 +14,7 @@ public:
     int getDefensePower();
     string getItemName() override;
     string getDescription() override;
-    void printStat() override;
+    // void printStat() override;
     void useItem(Player* player) override;
 };
 

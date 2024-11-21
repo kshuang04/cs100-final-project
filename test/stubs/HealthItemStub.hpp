@@ -14,7 +14,7 @@ public:
     int getHealthPower();
     virtual string getItemName() = 0;
     virtual string getDescription() = 0;
-    virtual void printStat() = 0;
+    // virtual void printStat() = 0;
     virtual void useItem(Player* player) = 0;
 };
 

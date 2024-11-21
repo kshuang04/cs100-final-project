@@ -23,10 +23,10 @@ string MaxHPPotStub::getItemName() {
 string MaxHPPotStub::getDescription() {
     return this->description;
 }
-void MaxHPPotStub::printStat() {
-    if (this->getMaxHPPower() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getMaxHPPower() << "\n  Description: " << this->getDescription() << endl;
-}
+// void MaxHPPotStub::printStat() {
+//     if (this->getMaxHPPower() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getMaxHPPower() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 void MaxHPPotStub::useItem(Player* player) {
     player->setMaxHPStat(player->getMaxHP() + this->getMaxHPPower());
