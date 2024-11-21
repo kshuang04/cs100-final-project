@@ -157,7 +157,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    //this->listOfEnemies = (*l).getListOfEnemies(); //why is this commented out?
+    this->listOfEnemies = (*l).getListOfEnemies();
 }
 
 void BattleScreen::printScreen()

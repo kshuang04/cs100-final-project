@@ -12,16 +12,6 @@ add_executable(runPlayerTests
     itemTest.cpp
 )
 
-add_executable(runScreenTests
-    screenTest.cpp
-    ../src/screen.cpp
-    ../src/Player.cpp
-    ../src/Item.cpp
-    ../src/enemy.cpp
-    ../src/level.cpp
-    ../src/ItemInventory.cpp
-)
-
 add_executable(runChestTest
     ../src/chest.cpp
     ../src/Player.cpp

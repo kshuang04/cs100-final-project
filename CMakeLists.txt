@@ -27,6 +27,16 @@ add_executable(playGame
     test/stubs/levelStub.cpp
 )
 
+add_executable(runScreenTests
+    test/screenTest.cpp
+    src/screen.cpp
+    src/Player.cpp
+    src/Item.cpp
+    src/enemy.cpp
+    src/level.cpp
+    src/ItemInventory.cpp
+)
+
 add_executable(runChestTest
     src/chest.cpp
     src/Player.cpp
