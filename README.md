@@ -59,7 +59,7 @@ This screen follows our general layout. If the user chooses to visit the shopkee
 
 
 ### Class Diagram
-  ![UML Diagram](images/UMLDiagram.png)
+  ![UML Diagram 1](images/UMLDiagram1.png) ![UML Diagram 2](images/UMLDiagram2.png)
 
   The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
 
@@ -74,9 +74,9 @@ This screen follows our general layout. If the user chooses to visit the shopkee
   The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level. 
   
  ### SOLID Principles Applications:
- We applied the Single Responsibility Principle, Liskov Substitution Principle, and the Dependency Inversion Principle in our class diagram.
+ We applied the Single Responsibility Principle, Open-Closed Principle, and the Dependency Inversion Principle in our class diagram.
  * In order to apply SRP, we created a new class, screen.cpp, that displays all of the screens, information about the player, and information about the level. Initially, these print functions were members of their respective classes. This change helps us right better code because it allows us to purposefully modularize our classes so a single class is not doing all of the work. If a single class does everything, it can get confusing to read and understand. Additionally, when classes have single responsibilities, it becomes easy to locate bugs and make changes.
- * We applied LSP in our implementation of health items. The Health Item class has two subclasses: HealingPot and MaxHPPot. If a player heals using an item from the Health Item class, they would recover some HP, but it the player were to heal using an item from the MaxHPPot class, they would also heal HP, but this time they fully recover all of their HP. This demonstrates LSP because Health Item is replaceable with its subtype, MaxHPPot, and this replacement does not alter the correctness of the program. This principle helps us write better code because since we expect for subclasses to match their base classes' functionality, we will avoid creating subclasses that behave differently from the base class.
+ * OCP is present in our implementation of the ItemInventory class. ItemInventory follows OCP because it is open for extension, but closed for modification because it stores objects of the base class Item (which all items like health and attack potions will derive from). For example, if we decide to add a new item to our game in the future, let's say a regeneration potion, we do not have to modify the code in ItemInventory because it stores Item object and the regeneration potion item would be a subclass of the Item class. Applying OCP helps us write better code because it allows us to add new features to a program without breaking or modifying existing code. This will also save us time because we would not have to modify/add code in order to have our new features work as intended.
  * We applied DIP in the screen class. The screen class has several subclasses for the different screens our game will have. Our screen class demonstrates DIP because the screen class itself is the high-level module and its subclasses are low-level modules. When we make calls to print a screen, we will make those calls using the screen class so our program will not be looking for a specific type of screen to print. Applying DIP allows us to write better code because, similar to OCP, it allows us to add new features (in our case, new screens) without altering existing code.
 
 
