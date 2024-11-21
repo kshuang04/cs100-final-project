@@ -8,7 +8,7 @@ class MaxHPPotStub : public HealthItemStub {
 public:
     MaxHPPotStub();
     ~MaxHPPotStub();
-    MaxHPPotStub(string newItemName, int newMaxHPPower, string newDescription);
+    MaxHPPotStub(int healthIncrease, int levelType, string name, int rarity, string description);
     int getMaxHPPower();
     string getItemName() override;
     string getDescription() override;

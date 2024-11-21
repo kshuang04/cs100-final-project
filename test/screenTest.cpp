@@ -160,8 +160,8 @@ TEST(InvenScreenTest, BasicInventory)
     PlayerInventoryScreen s = PlayerInventoryScreen(p);
     Item* i1 = new Item("test item 1", "test desc 1", 1, 1);
     Item* i2 = new Item("test item 2", "test desc 2", 1, 1);
-    (*p).addItem(i1);
-    (*p).addItem(i2);
+    (*p).getPlayerInven()->addItem(i1, p);
+    (*p).getPlayerInven()->addItem(i2, p);
     EXPECT_NO_THROW(s.printScreen());
     delete p;
 }
@@ -169,7 +169,7 @@ TEST(InvenScreenTest, BasicInventory)
 TEST(InvenScreenTest, OneAttackItem) {
     Player* myPlayer = new Player();
     AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
-    myPlayer->addItem(newAttackItem);
+    myPlayer->getPlayerInven()->addItem(newAttackItem, myPlayer);
     EXPECT_EQ(newAttackItem->getAttackPower(), 2);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -179,7 +179,7 @@ TEST(InvenScreenTest, OneAttackItem) {
 TEST(InvenScreenTest, OneDefenseItem) {
     Player* myPlayer = new Player();
     DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
-    myPlayer->addItem(newDefenseItem);
+    myPlayer->getPlayerInven()->addItem(newDefenseItem, myPlayer);
     EXPECT_EQ(newDefenseItem->getDefensePower(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -189,7 +189,7 @@ TEST(InvenScreenTest, OneDefenseItem) {
 TEST(InvenScreenTest, OneHealingPotItem) {
     Player* myPlayer = new Player();
     MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
-    myPlayer->addItem(newHealingPotItem);
+    myPlayer->getPlayerInven()->addItem(newHealingPotItem, myPlayer);
     EXPECT_EQ(newHealingPotItem->getHealthIncrease(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -199,11 +199,11 @@ TEST(InvenScreenTest, OneHealingPotItem) {
 TEST(InvenScreenTest, MultipleItems) {
     Player* myPlayer = new Player();
     AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
-    myPlayer->addItem(newAttackItem);
+    myPlayer->getPlayerInven()->addItem(newAttackItem, myPlayer);
     DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
-    myPlayer->addItem(newDefenseItem);
+    myPlayer->getPlayerInven()->addItem(newDefenseItem, myPlayer);
     MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
-    myPlayer->addItem(newHealingPotItem);
+    myPlayer->getPlayerInven()->addItem(newHealingPotItem, myPlayer);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
     delete myPlayer;

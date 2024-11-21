@@ -12,7 +12,7 @@ class HealingPotStub : public HealthItemStub {
 public:
     HealingPotStub();
     ~HealingPotStub();
-    HealingPotStub(string newItemName, int newHPPower, string newDescription);
+    HealingPotStub(int healthIncrease, int levelType, string name, int rarity, string description);
     int getHPPower();
     string getItemName() override;
     string getDescription() override;

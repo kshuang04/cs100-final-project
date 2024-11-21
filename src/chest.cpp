@@ -34,7 +34,7 @@ void Chest::collectItems(Player* player) {
     for (Item* item : itemInven){
             // since there is no upper limit for number of item a player can hold
             // just load everything into it
-            player->addItem(item);  // add item to player's inventory
+            player->getPlayerInven()->addItem(item, player);  // add item to player's inventory
             std:: cout << "You have obtained" << item->getItemName() << std::endl;
         
     }
