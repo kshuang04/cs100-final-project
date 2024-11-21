@@ -73,8 +73,7 @@ class BattleScreen : public Screen
     private:
         Player* player; // store pointer to player object so can access player's health
         level* l; // store pointer to level so can get what enemies are on the current level
-        vector<Enemy*>* listOfEnemies; //store pointer to vector that contains the list of Enemies on the current level so can access enemies health
-        vector<Enemy>* testList;
+        vector<Enemy>* listOfEnemies; //store pointer to vector that contains the list of Enemies on the current level so can access enemies health
     public:
         BattleScreen(Player* player, level* l);
         void printScreen() override;
