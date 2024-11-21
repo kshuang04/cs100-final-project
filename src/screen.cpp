@@ -157,7 +157,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = (*l).getListOfEnemies();
+    this->testList = l->returnEnemyVector();
 }
 
 void BattleScreen::printScreen()
@@ -168,9 +168,9 @@ void BattleScreen::printScreen()
     displayTextSlowly(message);
 
     // get and display current health of all enemies in enemies vector
-    for (int i = 0; i < (*listOfEnemies).size(); i++)
+    for (int i = 0; i < testList->size(); i++)
     {
-        cout << (*(*listOfEnemies).at(i)).getName() << " (Health: " << (*(*listOfEnemies).at(i)).getHealth() << "/" << (*(*listOfEnemies).at(i)).getMaxHealth() << ")" << endl;
+        cout << testList->at(i).getName() << " (Health: " << testList->at(i).getHealth() << "/" << testList->at(i).getMaxHealth() << ")" << endl;
     }
 
     //display player's current health

@@ -112,19 +112,19 @@ TEST(StatsScreenTest, NegativeHP) {
     delete myPlayer;
 }
 
-// TEST(StatsScreenTest, ExtraHP) { //not throwing expection
-//     Player* myPlayer = new Player();
-//     myPlayer->setLevel(2);
-//     myPlayer->setMaxLevel(20);
-//     myPlayer->setEXP(50);
-//     myPlayer->setHP(50);
-//     myPlayer->setMaxHPStat(20);
-//     myPlayer->setAttackStat(25);
-//     myPlayer->setDefenseStat(20);
-//     PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
-//     EXPECT_ANY_THROW(s.printScreen());
-//     delete myPlayer;
-// }
+TEST(StatsScreenTest, ExtraHP) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(2);
+    myPlayer->setMaxLevel(20);
+    myPlayer->setEXP(50);
+    myPlayer->setHP(50);
+    myPlayer->setMaxHPStat(20);
+    myPlayer->setAttackStat(25);
+    myPlayer->setDefenseStat(20);
+    PlayerStatsScreen s = PlayerStatsScreen(myPlayer);
+    EXPECT_ANY_THROW(s.printScreen());
+    delete myPlayer;
+}
 
 TEST(StatsScreenTest, NegAttackStat) {
     Player* myPlayer = new Player();
@@ -197,24 +197,11 @@ TEST(InvenScreenTest, MultipleItems) {
     delete myPlayer;
 }
 
-TEST(BattleScreenTest, OneEnemyLowLvl)
+TEST(BattleScreenTest, OneEnemy)
 {
     Player* p = new Player();
     level* l = new level(1, 1);
     BattleScreen b = BattleScreen(p, l);
-    EXPECT_NO_THROW(b.printScreen());
-    delete l;
-    delete p;
-}
-
-TEST(BattleScreenTest, DamageOneEnemy)
-{
-    Player* p = new Player();
-    level* l = new level(1, 1);
-    BattleScreen b = BattleScreen(p, l);
-    vector<Enemy*>* list = l->getListOfEnemies();
-    //Damage first enemy in vector
-    (*(*list).at(0)).gotAttack(100);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
     delete p;
@@ -250,16 +237,29 @@ TEST(BattleScreenTest, OneEnemyHighLvl)
     delete p;
 }
 
+TEST(BattleScreenTest, DamageOneEnemy)
+{
+    Player* p = new Player();
+    level* l = new level(1, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    //Damage first enemy in vector
+    list->at(0).gotAttack(100);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
 TEST(BattleScreenTest, DamageAllEnemies)
 {
     Player* p = new Player();
     level* l = new level(7, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy*>* list = l->getListOfEnemies();
+    vector<Enemy>* list = l->returnEnemyVector();
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
-        (*(*list).at(i)).gotAttack(100);
+        list->at(i).gotAttack(100);
     }
     EXPECT_NO_THROW(b.printScreen());
     delete l;
@@ -283,11 +283,30 @@ TEST(BattleScreenTest, DamageEveryone)
     Player* p = new Player();
     level* l = new level(17, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy*>* list = l->getListOfEnemies();
+    vector<Enemy>* list = l->returnEnemyVector();
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
-        (*(*list).at(i)).gotAttack(100);
+        list->at(i).gotAttack(100);
+    }
+    //Damage player
+    p->takeDamage(10);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageEveryoneAfterPrinting)
+{
+    Player* p = new Player();
+    level* l = new level(17, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    EXPECT_NO_THROW(b.printScreen());
+    //Damage all enemies in vector
+    for (int i = 0; i < list->size(); i++)
+    {
+        list->at(i).gotAttack(100);
     }
     //Damage player
     p->takeDamage(10);

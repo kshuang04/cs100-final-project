@@ -59,9 +59,9 @@ int level::getTotalGold()
     return totalGold; // Return the total gold
 }
 
-vector<Enemy> level::returnEnemyVector()
+vector<Enemy>* level::returnEnemyVector()
 {
-    return listOfEnemies;
+    return &listOfEnemies;
 }
 
 vector<Enemy *> *level::getListOfEnemies()

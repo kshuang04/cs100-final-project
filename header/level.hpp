@@ -21,7 +21,7 @@ private:
 public:
     level(int level, int region); // Default constructor
     int getTotalGold();
-    vector<Enemy> returnEnemyVector();
+    vector<Enemy>* returnEnemyVector();
     vector<Enemy *> *getListOfEnemies();
 
     int getLevelNum();
