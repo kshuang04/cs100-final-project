@@ -47,7 +47,8 @@ Here, the user is shown information about the enemies' current health as well as
 
 If the user were to want to use an item in battle, they will be greeted with the following screen:\
 ![Inventory Screen](images/inventoryScreen.png) \
-This screen shows how our program would look if a player were to input their choices. The user is first shown how many of each item they have possess, and then prompted to choose an item to use. This image shows that the user chose to use an item they currently have none of, so the program notifies the user that they have no items to use of that type, and then reprompts the user to choose an item. After the user choosed a valid action, the program will show validation of their input. In this case, text output to the terminal showing that the user used a health potion. The user also has the option to return to battle after using the items they desire. This action will return the user to the battle screen and initiate the enemies' turn. \
+This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does. \
+
 The enemies' turn screen will look like this:\
 ![Enemy Turn Screen](images/enemyTurnScreen.png)\
 This screen gives information to the user about the enemies' action. There is no user input for this screen. In this case, Enemy 1 attacked Player and Player lost 20 health. After the enemies' turn, if the player survives the attack, the battle screen will be shown again with the new updated health and the choices the user is able to make. 
