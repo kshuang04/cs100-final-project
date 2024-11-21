@@ -6,20 +6,27 @@ add_executable(runPlayerTests
     playerTest.cpp
     ../src/Player.cpp
     ../src/Item.cpp
-    ../stubs/AttackItemStub.cpp
-    ../stubs/DefenseItemStub.cpp
-    ../stubs/HealthItemStub.cpp
-    ../stubs/HealingPotStub.cpp
-    ../stubs/MaxHPPotStub.cpp
+    ../src/ItemInventory.cpp
     ../src/enemy.cpp
     enemyTest.cpp
     itemTest.cpp
+)
+
+add_executable(runScreenTests
+    screenTest.cpp
+    ../src/screen.cpp
+    ../src/Player.cpp
+    ../src/Item.cpp
+    ../src/enemy.cpp
+    ../src/level.cpp
+    ../src/ItemInventory.cpp
 )
 
 add_executable(runChestTest
     ../src/chest.cpp
     ../src/Player.cpp
     ../src/Item.cpp
+    ../src/ItemInventory.cpp
     chestTest.cpp
 )
 

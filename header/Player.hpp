@@ -9,9 +9,9 @@
 #include <vector>
 #include <typeinfo>
 
-#include "../header/Item.hpp"
+#include "../header/ItemInventory.hpp"
 
-class Item;
+class ItemInventory;
 
 using namespace std;
 
@@ -24,12 +24,10 @@ class Player {
         int exp;
         int attackStat;
         int defenseStat;
+        int maxHPStat;
+        ItemInventory* playerIven;
         unsigned int gold;
-        vector<Item*> itemIven;
-        int itemCount;
         bool isAlive;
-    public:
-        const int maxItem = 16;
     public:
         Player();
         Player(int maxHP, int maxLevel, int attack, int defense, int gold);
@@ -37,35 +35,34 @@ class Player {
         //Functions
         int attack();
         void takeDamage(int damage);
-        void addItem(Item* newItem);
-        void consumeItem(Item* currentItem);
-        void consumeItem(int itemIndex);
-        void removeItem(int itemIndex);
         void changeGold(int goldChange);
         void changeEXP(int expChange);
         int expToNextLevel();
         //Accessors
         int getHP() {return this->currHP;}
+        int getMaxHPFromLevel() {return (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));}
         int getMaxHP() {return this->maxHP;}
         int getLevel() {return this->level;}
         int getMaxLevel() {return this->maxLevel;}
         int getEXP() {return this->exp;}
         int getAttackStat() {return this->attackStat;}
         int getDefenseStat() {return this->defenseStat;}
+        int getMaxHPStat() {return this->maxHPStat;}
+        ItemInventory* getPlayerInven() {return this->playerIven;}
         unsigned int getGold() {return this->gold;}
-        int getItemCount() {return this->itemCount;}
-        vector<Item*>& getItemIven() {return this->itemIven;}
         bool getIsAlive() {return this->isAlive;}
         //Mutators
         void setHP(int newHP) {this->currHP = newHP;}
-        void setMaxHP(int newMaxHP) {this->maxHP = newMaxHP;}
         void setLevel(int newLevel) {this->level = newLevel;}
         void setMaxLevel(int newMaxLevel) {this->maxLevel = newMaxLevel;}
         void setEXP(int newEXP) {this->exp = newEXP;}
         void setAttackStat(int newAttackStat) {this->attackStat = newAttackStat;}
         void setDefenseStat(int newDefenseStat) {this->defenseStat = newDefenseStat;}
+        void setMaxHPStat(int newMaxHPStat) {
+            this->maxHPStat = newMaxHPStat;
+            this->maxHP = (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));
+        }
         void setGold(unsigned int newGoldAmount) {this->gold = newGoldAmount;}
-        void setItemCount(int newCount) {this->itemCount = newCount;}
         void setIsAlive(bool newAliveStatus) {this->isAlive = newAliveStatus;}
 };
 

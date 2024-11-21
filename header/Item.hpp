@@ -20,8 +20,8 @@ protected:
 
 public:
     Item();
-    ~Item();
-    Item(string newItemName, string newDescription);
+    virtual ~Item();
+    Item(string newItemName, string newDescription, int newStageType, int newRarity);
     virtual string getItemName();
     virtual string getDescription();
     virtual void printStat();
@@ -34,25 +34,66 @@ class AttackItem : public Item {
     private:
         int attackPower;
     public:
-        AttackItem(int attackPower, int levelType, string name, int rarity);
+        AttackItem(int attackPower, int levelType, string name, int rarity, string description);
+        ~AttackItem();
         int getAttackPower();
-
+        void printStat();
+        void useItem(Player* player); 
 };
 
 class DefenseItem : public Item {
     private:
         int defensePower;
     public:
-        DefenseItem(int defensePower, int levelType, string name, int rarity);
+        DefenseItem(int defensePower, int levelType, string name, int rarity, string description);
+        ~DefenseItem();
         int getDefensePower();
+        void printStat();
+        void useItem(Player* player); 
 };
 
-class MaxHPPot : public Item {
+class HealthItem : public Item {
+protected:
+    int healthIncrease;
+    int levelType;
+    string name;
+    int rarity;
+    string description;
+public:
+    HealthItem();
+    virtual ~HealthItem();
+    HealthItem(int healthIncrease, int levelType, string name, int rarity, string description);
+    virtual int getHealthIncrease();
+    virtual string getItemName();
+    virtual string getDescription();
+    virtual void printStat();
+    virtual void useItem(Player* player);   
+};
+
+class MaxHPPot : public HealthItem {
     private: 
         int healthIncrease;
     public:
-        MaxHPPot(int healthIncrease, int levelType, string name, int rarity);
+        MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        ~MaxHPPot();
+        string getItemName();
         int getHealthIncrease();
+        void printStat();
+        string getDescription();
+        void useItem(Player* player); 
+};
+
+class HealingPot : public HealthItem {
+    private: 
+        int healthIncrease;
+    public:
+        HealingPot(int healthIncrease, int levelType, string name, int rarity, string description);
+        ~HealingPot();
+        string getItemName();
+        int getHealthIncrease();
+        void printStat();
+        string getDescription();
+        void useItem(Player* player); 
 };
 
 vector<Item*> generateItem();

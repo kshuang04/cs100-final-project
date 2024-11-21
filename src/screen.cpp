@@ -100,9 +100,22 @@ void PlayerInventoryScreen::printScreen()
     cout << "------------------------------------------------------------\n";
     message = "Player's Item Inventory:\n";
     displayTextSlowly(message);
-    for (int i = 0; i < player->getItemIven().size(); i++) {
+    for (int i = 0; i < player->getPlayerInven()->getItemInven().size(); i++) {
         cout << (i + 1) << ". ";
-        player->getItemIven().at(i)->printStat();
+        player->getPlayerInven()->getItemInven().at(i)->printStat();
+        cout << endl;
+    }
+    cout << "------------------------------------------------------------\n";
+}
+
+void PlayerInventoryScreen::printHealingItemsScreen() {
+    string message;
+    message = "Player's Healing Potion Inventory:\n";
+    cout << "------------------------------------------------------------\n";
+    displayTextSlowly(message);
+    for (int i = 0; i < player->getPlayerInven()->getHealingPotInven().size(); i++) {
+        cout << (i + 1) << ". ";
+        player->getPlayerInven()->getHealingPotInven().at(i)->printStat();
         cout << endl;
     }
     cout << "------------------------------------------------------------\n";
@@ -124,8 +137,8 @@ void PlayerStatsScreen::printScreen()
     if ((player->getLevel() < 1) || (player->getLevel() > player->getMaxLevel())) {throw logic_error("The current level is not within the specified range.");}
     cout << "Level: " << player->getLevel() << endl;
     //Checks to see if the HP value is valid and prints it if valid or throws an error if not valid.
-    if ((player->getHP() < 0) || (player->getHP() > player->getMaxHP())) {throw logic_error("The current HP is not within the specified range.");}
-    cout << "Health Power: " << player->getHP() << " / " << player->getMaxHP() << endl;
+    if ((player->getHP() < 0) || (player->getHP() > player->getMaxHPFromLevel())) {throw logic_error("The current HP is not within the specified range.");}
+    cout << "Health Power: " << player->getHP() << " / " << player->getMaxHPFromLevel() << endl;
     //Checks to see if the attack stat value is valid and prints it if valid or throws an error if not valid.
     if (player->getAttackStat() < 0) {throw logic_error("The current Attack Power is negative and invalid.");}
     cout << "Attack Power: " << player->getAttackStat() << endl;
@@ -144,7 +157,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = (*l).getListOfEnemies();
+    //this->listOfEnemies = (*l).getListOfEnemies(); //why is this commented out?
 }
 
 void BattleScreen::printScreen()
