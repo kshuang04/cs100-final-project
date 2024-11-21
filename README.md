@@ -47,7 +47,7 @@ Here, the user is shown information about the enemies' current health as well as
 
 If the user were to want to use an item in battle, they will be greeted with the following screen:\
 ![Inventory Screen](images/inventoryScreen.png) \
-This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does. \
+This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does.
 
 The enemies' turn screen will look like this:\
 ![Enemy Turn Screen](images/enemyTurnScreen.png)\
