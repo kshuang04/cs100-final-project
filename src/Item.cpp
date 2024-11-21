@@ -15,9 +15,9 @@ string Item::getDescription() {
     return this->description;
 }
 
-void Item::printStat() {
-    cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
-}
+// void Item::printStat() {
+//     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
+// }
 
 void Item::useItem(Player* player) {}
 
@@ -65,10 +65,10 @@ int AttackItem::getAttackPower() {
     return attackPower;
 }
 
-void AttackItem::printStat() {
-    if (this->getAttackPower() < 0) {throw logic_error("The Attack Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Attack Power: " << this->getAttackPower() << "\n  Description: " << this->getDescription() << endl;
-}
+// void AttackItem::printStat() {
+//     if (this->getAttackPower() < 0) {throw logic_error("The Attack Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Attack Power: " << this->getAttackPower() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 void AttackItem::useItem(Player* player) {
     player->setAttackStat(player->getAttackStat() + this->getAttackPower());
@@ -88,10 +88,10 @@ int DefenseItem::getDefensePower() {
     return defensePower;
 }
 
-void DefenseItem::printStat() {
-    if (this->getDefensePower() < 0) {throw logic_error("The Defense Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Defense Power: " << this->getDefensePower() << "\n  Description: " << this->getDescription() << endl;
-}
+// void DefenseItem::printStat() {
+//     if (this->getDefensePower() < 0) {throw logic_error("The Defense Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Defense Power: " << this->getDefensePower() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 void DefenseItem::useItem(Player* player) {
     player->setDefenseStat(player->getDefenseStat() + this->getDefensePower());
@@ -115,9 +115,9 @@ string HealthItem::getDescription() {
     return this->description;
 }
 
-void HealthItem::printStat() {
-    cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
-}
+// void HealthItem::printStat() { //DELETE
+//     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
+// }
 
 void HealthItem::useItem(Player* player) {}
 
@@ -139,10 +139,10 @@ int MaxHPPot::getHealthIncrease() {
     return healthIncrease;
 }
 
-void MaxHPPot::printStat() {
-    if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
-}
+// void MaxHPPot::printStat() {
+//     if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 string MaxHPPot::getDescription() {
     return this->description;
@@ -170,10 +170,10 @@ int HealingPot::getHealthIncrease() {
     return healthIncrease;
 }
 
-void HealingPot::printStat() {
-    if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
-}
+// void HealingPot::printStat() {
+//     if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 string HealingPot::getDescription() {
     return this->description;
