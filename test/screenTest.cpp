@@ -1,5 +1,5 @@
-#include "gtest/gtest.h"
 #include "../header/screen.hpp"
+#include "gtest/gtest.h"
 
 TEST(LoseScreenTest, Lose)
 {
@@ -117,7 +117,7 @@ TEST(StatsScreenTest, ExtraHP) {
     myPlayer->setLevel(2);
     myPlayer->setMaxLevel(20);
     myPlayer->setEXP(50);
-    myPlayer->setHP(30);
+    myPlayer->setHP(50);
     myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
     myPlayer->setDefenseStat(20);
@@ -154,22 +154,10 @@ TEST(StatsScreenTest, NegDefenseStat) {
     delete myPlayer;
 }
 
-TEST(InvenScreenTest, BasicInventory)
-{
-    Player* p = new Player();
-    PlayerInventoryScreen s = PlayerInventoryScreen(p);
-    Item* i1 = new Item("test item 1", "test desc 1", 1, 1);
-    Item* i2 = new Item("test item 2", "test desc 2", 1, 1);
-    (*p).addItem(i1);
-    (*p).addItem(i2);
-    EXPECT_NO_THROW(s.printScreen());
-    delete p;
-}
-
 TEST(InvenScreenTest, OneAttackItem) {
     Player* myPlayer = new Player();
     AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
-    myPlayer->addItem(newAttackItem);
+    myPlayer->getPlayerInven()->addItem(newAttackItem, myPlayer);
     EXPECT_EQ(newAttackItem->getAttackPower(), 2);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -179,7 +167,7 @@ TEST(InvenScreenTest, OneAttackItem) {
 TEST(InvenScreenTest, OneDefenseItem) {
     Player* myPlayer = new Player();
     DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
-    myPlayer->addItem(newDefenseItem);
+    myPlayer->getPlayerInven()->addItem(newDefenseItem, myPlayer);
     EXPECT_EQ(newDefenseItem->getDefensePower(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -189,7 +177,7 @@ TEST(InvenScreenTest, OneDefenseItem) {
 TEST(InvenScreenTest, OneHealingPotItem) {
     Player* myPlayer = new Player();
     MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
-    myPlayer->addItem(newHealingPotItem);
+    myPlayer->getPlayerInven()->addItem(newHealingPotItem, myPlayer);
     EXPECT_EQ(newHealingPotItem->getHealthIncrease(), 4);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
@@ -199,63 +187,130 @@ TEST(InvenScreenTest, OneHealingPotItem) {
 TEST(InvenScreenTest, MultipleItems) {
     Player* myPlayer = new Player();
     AttackItem* newAttackItem = new AttackItem(2, 1, "Attack Potion", 1, "Gives more strength");
-    myPlayer->addItem(newAttackItem);
+    myPlayer->getPlayerInven()->addItem(newAttackItem, myPlayer);
     DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Defense Potion", 1, "Gives more defense");
-    myPlayer->addItem(newDefenseItem);
+    myPlayer->getPlayerInven()->addItem(newDefenseItem, myPlayer);
     MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
-    myPlayer->addItem(newHealingPotItem);
+    myPlayer->getPlayerInven()->addItem(newHealingPotItem, myPlayer);
     PlayerInventoryScreen s = PlayerInventoryScreen(myPlayer);
     EXPECT_NO_THROW(s.printScreen());
     delete myPlayer;
 }
 
-TEST(BattleScreenTest, StartBattle)
+TEST(BattleScreenTest, OneEnemy)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(1, 1);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
     delete p;
 }
 
-TEST(BattleScreenTest, DamageEnemy)
+TEST(BattleScreenTest, TwoEnemies)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(4, 1);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
-    e1->gotAttack(20);
-    e2->gotAttack(20);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
+    delete p;
+}
+
+TEST(BattleScreenTest, ThreeEnemies)
+{
+    Player* p = new Player();
+    level* l = new level(7, 1);
+    BattleScreen b = BattleScreen(p, l);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(BattleScreenTest, OneEnemyHighLvl)
+{
+    Player* p = new Player();
+    level* l = new level(10, 1);
+    BattleScreen b = BattleScreen(p, l);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageOneEnemy)
+{
+    Player* p = new Player();
+    level* l = new level(1, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    //Damage first enemy in vector
+    list->at(0).gotAttack(100);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageAllEnemies)
+{
+    Player* p = new Player();
+    level* l = new level(7, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    //Damage all enemies in vector
+    for (int i = 0; i < list->size(); i++)
+    {
+        list->at(i).gotAttack(100);
+    }
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
     delete p;
 }
 
 TEST(BattleScreenTest, DamagePlayer)
 {
     Player* p = new Player();
-    Level* l = new Level();
+    level* l = new level(1, 1);
     BattleScreen b = BattleScreen(p, l);
-    Enemy* e1 = new Enemy(50, 0, 10, 10, 10, "Dummy", 1, 1);
-    Enemy* e2 = new Enemy(100, 0, 10, 10, 10, "Dum Dum", 1, 1);
-    l->addEnemy(e1);
-    l->addEnemy(e2);
+    //Damage player
     p->takeDamage(10);
     EXPECT_NO_THROW(b.printScreen());
     delete l;
-    delete e1;
-    delete e2;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageEveryone)
+{
+    Player* p = new Player();
+    level* l = new level(17, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    //Damage all enemies in vector
+    for (int i = 0; i < list->size(); i++)
+    {
+        list->at(i).gotAttack(100);
+    }
+    //Damage player
+    p->takeDamage(10);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(BattleScreenTest, DamageEveryoneAfterPrinting)
+{
+    Player* p = new Player();
+    level* l = new level(17, 1);
+    BattleScreen b = BattleScreen(p, l);
+    vector<Enemy>* list = l->returnEnemyVector();
+    EXPECT_NO_THROW(b.printScreen());
+    //Damage all enemies in vector
+    for (int i = 0; i < list->size(); i++)
+    {
+        list->at(i).gotAttack(100);
+    }
+    //Damage player
+    p->takeDamage(10);
+    EXPECT_NO_THROW(b.printScreen());
+    delete l;
     delete p;
 }

@@ -4,20 +4,20 @@
 #include <cstdlib> // For rand() and srand()
 
 // Constructor for level, now it populates the list of enemies
-level::level(int level, int region)
+level::level(int currLevel, int region)
 {
-    numLevel = level;
+    numLevel = currLevel;
     // Seed the random number generator (to ensure randomness on each program run)
     srand(static_cast<unsigned int>(time(0)));
 
     // Determine the number of enemies based on level range
-    int enemyCount = (level % 10 == 0 || level % 10 <= 3) ? 1 : (level % 10 <= 6) ? 2
+    int enemyCount = (currLevel % 10 == 0 || currLevel % 10 <= 3) ? 1 : (currLevel % 10 <= 6) ? 2
                                                                                   : 3;
-    int stage = level % 10;
+    int stage = (currLevel - 1) / 10 + 1;
 
     for (int i = 0; i < enemyCount; i++)
     {
-        insertEnemies(level, region, stage); // Insert enemies into list based on level and stage
+        insertEnemies(currLevel, region, stage); // Insert enemies into list based on level and stage
     }
 }
 
@@ -26,22 +26,27 @@ void level::insertEnemies(int level, int region, int stage)
 {
     static enemyManager manager; // Make enemyManager static to avoid recreating it multiple times
 
-    bool enemyFound = false; // Flag to check if a valid enemy has been found
+    vector<Enemy> filteredEnemies;
 
-    while (!enemyFound)
+    for (int i = 0; i < manager.enemies.size(); i++)
     {
-        // Randomly pick an enemy from the manager's list
-        int randomIndex = rand() % manager.enemies.size(); // Get random index in range of enemies vector
-        Enemy randomEnemy = manager.enemies[randomIndex];
-
-        // Check if the enemy's stage and region match
-        if (randomEnemy.getStage() == stage && randomEnemy.getRegion() == region)
+        if (manager.enemies.at(i).getRegion() == region && manager.enemies.at(i).getStage() == stage)
         {
-            // If they match, add this enemy to the list
-            listOfEnemies.push_back(randomEnemy);
-            enemyFound = true; // Valid enemy found, stop the loop
+            filteredEnemies.push_back(manager.enemies.at(i));
         }
     }
+
+    if (filteredEnemies.empty())
+    {
+        throw runtime_error("No enemies found for the specified region and stage.");
+    }
+
+    // Randomly pick an enemy from the filtered list
+    int randomIndex = rand() % filteredEnemies.size();
+    Enemy selectedEnemy = filteredEnemies[randomIndex];
+
+    // Add the selected enemy to the list
+    listOfEnemies.push_back(selectedEnemy);
 }
 
 int level::getTotalGold()
@@ -54,9 +59,9 @@ int level::getTotalGold()
     return totalGold; // Return the total gold
 }
 
-vector<Enemy> level::returnEnemyVector()
+vector<Enemy>* level::returnEnemyVector()
 {
-    return listOfEnemies;
+    return &listOfEnemies;
 }
 
 vector<Enemy *> *level::getListOfEnemies()

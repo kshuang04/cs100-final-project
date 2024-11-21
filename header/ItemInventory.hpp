@@ -27,7 +27,7 @@ class ItemInventory {
     public:
         ItemInventory();
         ~ItemInventory();
-        void addItem(HealingPot* newHealingPotItem);
+        void addItem(HealingPot* newHealingPotItem, Player* player);
         void addItem(Item* newItem, Player* player);
         void consumeItem(Item* currentItem, Player* player);
         void consumeItem(int itemIndex, Player* player);
@@ -36,8 +36,8 @@ class ItemInventory {
         //Accessors
         int getItemCount() {return this->itemCount;}
         int getHealingPotCount() {return this->healingPotCount;}
-        vector<Item*>& getItemIven() {return this->itemIven;}
-        vector<HealingPot*>& getHealingPotIven() {return this->healingPotIven;}
+        vector<Item*>& getItemInven() {return this->itemIven;}
+        vector<HealingPot*>& getHealingPotInven() {return this->healingPotIven;}
         //Mutators
         void setItemCount(int newCount) {this->itemCount = newCount;}
         void setHealingPotCount(int newHealingPotCount) {this->healingPotCount = newHealingPotCount;}
