@@ -6,6 +6,7 @@
 #include <fstream>
 #include "../header/Item.hpp"
 #include <stdlib.h>
+#include "../header/Player.hpp"
 
 using namespace std;
 
@@ -31,7 +32,7 @@ public:
 
     Enemy();
 
-    int attack();
+    int attack(Player* target);
     void gotAttack(int playerDamage);
     Item * releaseDrops();
     bool isAlive();

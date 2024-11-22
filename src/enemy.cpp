@@ -11,13 +11,19 @@ Enemy::Enemy()
 {
 }
 
+
+int Enemy::attack(Player* target) {
+    int calcuTargetDefense = attackPower - target->getDefenseStat();
+    if (calcuTargetDefense < 0) 
+        calcuTargetDefense = 0;
+    target->setHP(target->getHP() - calcuTargetDefense);
+    return calcuTargetDefense;
+}
+
 void Enemy::gotAttack(int playerDamage)
 {
-    int totalDamage = playerDamage - defense;
-    if (totalDamage < 0)
-    {
-        totalDamage = 0;
-    }
+    double defensePercent = defense / 100.0;
+    double totalDamage = playerDamage - (playerDamage * defensePercent);
     health -= totalDamage;
     if (health <= 0)
     {

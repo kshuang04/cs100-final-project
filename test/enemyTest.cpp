@@ -3,6 +3,7 @@
 #include "../src/enemyManager.cpp"
 #include <vector>
 #include "../header/Item.hpp"
+#include "../header/Player.hpp"
 
 TEST(EnemyClass, gotAttack)
 {
@@ -15,9 +16,10 @@ TEST(EnemyClass, gotAttack)
 
 TEST(EnemyClass, healthWhenAttacked)
 {
-    Enemy test(10, 5, 10, 10, 10, "test", 1, 1);
-    test.gotAttack(10);
-    EXPECT_EQ(test.getHealth(), 5);
+    Enemy test(100, 10, 10, 10, 10, "test", 1, 1);
+    test.gotAttack(20);
+    cout << test.getHealth() << endl;
+    EXPECT_EQ(test.getHealth(), 82);
 }
 
 TEST(EnemyClass, getName)
@@ -52,4 +54,13 @@ TEST(EnemyManager, name) {
     EXPECT_EQ(test.enemies.at(4).getName(), "Skeleton");
     EXPECT_EQ(test.enemies.at(5).getName(), "Zombie");
     EXPECT_EQ(test.enemies.at(6).getName(), "Bandit");
+}
+
+TEST(EnemyClass, attack) {
+    Player* test = new Player(10, 10, 10, 5, 10);
+    Enemy testEnemy(10, 0, 10, 0, 0, "test", 0, 0);
+    testEnemy.attack(test);
+    cout << test->getHP() << endl;
+    EXPECT_EQ(test->getHP(), 5);
+    delete test;
 }
