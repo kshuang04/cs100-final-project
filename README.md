@@ -61,17 +61,15 @@ This screen follows our general layout. If the user chooses to visit the shopkee
 ### Class Diagram
   ![UML Diagram 1](images/UMLDiagram1.png) ![UML Diagram 2](images/UMLDiagram2.png)
 
-  The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
-
-  The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
-
-  Additionally, each player can possess various items, represented by an Item class. The Item class acts as a parent class for specific item types like health, attack, and defense boosters, allowing for flexible item management and customization.
-
-  The Level class handles the environment where gameplay events occur. Each level contains a list of enemies, which are instances of the Enemy class, detailing enemy attributes and behavior.
-
-  Levels may also include rewards, which often consist of items that the player can collect. These items derive from the Item class, linking gameplay rewards with the player’s inventory.
-
-  The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level. 
+  * The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
+  * The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
+  * Additionally, each player can possess various items, represented by an Item class. The Item class acts as a parent class for specific item types like health, attack, and defense boosters, allowing for flexible item management and customization.
+  * The Enemy class creates enemies that the player will fight against in battles. There will be several different types of enemies with different stats throughout our game.
+  * The Level class handles the environment where gameplay events occur. Each level contains a list of enemies which the player will have to fight.
+  * Levels may also include rewards, which often consist of items that the player can collect. These items derive from the Item class, linking gameplay rewards with the player’s inventory.
+  * The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level.
+  * The Screen class's subclasses are responsible for displaying their respective screens to the terminal. For example, during a battle the BattleScreen class would display its screen which contains information about the enemies' health, the player's health, and the possible actions the player can make.
+  * The Shop class is responsible for changing the amount of gold and items in the player's inventory after each transaction.
   
  ### SOLID Principles Applications:
  We applied the Single Responsibility Principle, Open-Closed Principle, and the Dependency Inversion Principle in our class diagram.
