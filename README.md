@@ -33,7 +33,7 @@
   
 ### Navigation Diagram
  ![User Navigation Diagram](images/userNavigationDiagram.png)
- The User Navigation Diagram represents the flow of the game iself of how the roguelike game is played and what steps are taken to go from one part to an another. This includes any player inputs or game mechanics to show what things are output in a certain scenario like purchasing items from a shop, fight monsters in a battle, or changing equipment before proceeding to the next level. It also shows the parts to be within one of 6 main screens used here. The "Start Screen" is used to for starting the program or game. The "Player Equipment Screen" is used for the players to change items or use items before proceeding tothe next level. The "Shop Screen" is used for players to purchase and/or sell items from the Shop. The "Battle Screen" is used to show the actions from the players and monsters in a fight to see the outcomes. The "Game Over Screen" is used when the game ends from either the player lost or the last level is completed.
+ The User Navigation Diagram represents the flow of the game iself of how the roguelike game is played and what steps are taken to go from one part to an another. This includes any player inputs or game mechanics to show what things are output in a certain scenario like purchasing items from a shop, fight monsters in a battle, or using items from the player's inventory. It also shows when specific screens are going to be displayed. The "Start Screen" is used to for starting the program or game. The "Player Inventory Screen" is used for the players use items to boost their stats. The "Shop Screen" is used for players to purchase and/or sell items from the Shop in exchange for gold. The "Battle Screen" is used to show the actions from the players and monsters in a fight to see the outcomes. The "Game Over Screen" is used when the game ends from either the player lost or the last level is completed.
 
 ### Screen Layouts
 The general layout for our screens will consist of details about the current state of the game followed by a user prompt and the choices available for the user to make. The user will then input their choice as numerical input through the terminal.
@@ -47,7 +47,8 @@ Here, the user is shown information about the enemies' current health as well as
 
 If the user were to want to use an item in battle, they will be greeted with the following screen:\
 ![Inventory Screen](images/inventoryScreen.png) \
-This screen shows how our program would look if a player were to input their choices. The user is first shown how many of each item they have possess, and then prompted to choose an item to use. This image shows that the user chose to use an item they currently have none of, so the program notifies the user that they have no items to use of that type, and then reprompts the user to choose an item. After the user choosed a valid action, the program will show validation of their input. In this case, text output to the terminal showing that the user used a health potion. The user also has the option to return to battle after using the items they desire. This action will return the user to the battle screen and initiate the enemies' turn. \
+This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does.
+
 The enemies' turn screen will look like this:\
 ![Enemy Turn Screen](images/enemyTurnScreen.png)\
 This screen gives information to the user about the enemies' action. There is no user input for this screen. In this case, Enemy 1 attacked Player and Player lost 20 health. After the enemies' turn, if the player survives the attack, the battle screen will be shown again with the new updated health and the choices the user is able to make. 
@@ -57,44 +58,24 @@ Finally, another one of our main screens will be the shopkeeper's screen:\
 This screen follows our general layout. If the user chooses to visit the shopkeeper after completing a level, they will be greeted with this screen that shows how much currency they currently have and the items avaiable to purchase from the shopkeeper. Again, the user is prompted to choose an option and input their choice as a numerical input. If they choose to buy an item, that item will be added to their inventory and the cost of that item will be deducted from their total currency. The user is also given the choice to sell items that they currently have in exchange for currency. Finally, the user is given the choice to leave the shopkeeper and continue their journey through Path of Pain.
 
 
-## Class Diagram
-  ![UML Diagram](images/UMLDiagram.png)
+### Class Diagram
+  ![UML Diagram 1](images/UMLDiagram1.png) ![UML Diagram 2](images/UMLDiagram2.png)
 
-  The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
-
-  The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
-
-  Additionally, each player can possess various items, represented by an Item class. The Item class acts as a parent class for specific item types like health, attack, and defense boosters, allowing for flexible item management and customization.
-
-  The Level class handles the environment where gameplay events occur. Each level contains a list of enemies, which are instances of the Enemy class, detailing enemy attributes and behavior.
-
-  Levels may also include rewards, which often consist of items that the player can collect. These items derive from the Item class, linking gameplay rewards with the player’s inventory.
-
-  The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level. 
+  * The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
+  * The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
+  * Additionally, each player can possess various items, represented by an Item class. The Item class acts as a parent class for specific item types like health, attack, and defense boosters, allowing for flexible item management and customization.
+  * The Enemy class creates enemies that the player will fight against in battles. There will be several different types of enemies with different stats throughout our game.
+  * The Level class handles the environment where gameplay events occur. Each level contains a list of enemies which the player will have to fight.
+  * Levels may also include rewards, which often consist of items that the player can collect. These items derive from the Item class, linking gameplay rewards with the player’s inventory.
+  * The Level class has a reference to the Player class, enabling direct interaction between the player and the game's environment. This reference allows the level to access the player's current state, respond to player actions, and apply changes based on gameplay events. The level can also give rewards to the player. The player also has access to the level, where the player can affect the enemies that are within the level.
+  * The Screen class's subclasses are responsible for displaying their respective screens to the terminal. For example, during a battle the BattleScreen class would display its screen which contains information about the enemies' health, the player's health, and the possible actions the player can make.
+  * The Shop class is responsible for changing the amount of gold and items in the player's inventory after each transaction.
   
- 
-  ## Phase III
-  You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
-
- 
-  BEFORE the meeting you should do the following:
-  * Update your class diagram from Phase II to include any feedback you received from your TA/grader.
-  * Considering the SOLID design principles, reflect back on your class diagram and think about how you can use the SOLID principles to improve your design. You should then update the README.md file by adding the following:
-    * A new class diagram incorporating your changes after considering the SOLID principles.
-    * For each update in your class diagram, you must explain in 3-4 sentences:
-      * What SOLID principle(s) did you apply?
-      * How did you apply it? i.e. describe the change.
-      * How did this change help you write better code?
-  * Perform a new sprint plan like you did in Phase II.
-  * Make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
-  * Each team member should also submit the Individual Contributions Form on Canvas for phase III. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for phase III, and a description of their contributions. Remember that each team member should submit the form individually.
- 
- During the meeting with your reader you will discuss: 
-  * How effective your last sprint was (each member should talk about what they did)
-  * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
-  * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
-  * What tasks you are planning for this next sprint.
-
+ ### SOLID Principles Applications:
+ We applied the Single Responsibility Principle, Open-Closed Principle, and the Dependency Inversion Principle in our class diagram.
+ * In order to apply SRP, we created a new class, screen.cpp, that displays all of the screens, information about the player, and information about the level. Initially, these print functions were members of their respective classes. This change helps us right better code because it allows us to purposefully modularize our classes so a single class is not doing all of the work. If a single class does everything, it can get confusing to read and understand. Additionally, when classes have a single responsibility, it becomes easy to locate bugs and make changes.
+ * OCP is present in our implementation of the ItemInventory class. ItemInventory follows OCP because it is open for extension, but closed for modification because it stores objects of the base class Item (which all items like health and attack potions will derive from). For example, if we decide to add a new item to our game in the future, let's say a regeneration potion, we do not have to modify the code in ItemInventory because it stores Item object and the regeneration potion item would be a subclass of the Item class. Applying OCP helps us write better code because it allows us to add new features to a program without breaking or modifying existing code. This will also save us time because we would not have to modify/add code in order to have our new features work as intended.
+ * We applied DIP in the screen class. The screen class has several subclasses for the different screens our game will have. Our screen class demonstrates DIP because the screen class itself is the high-level module and its subclasses are low-level modules. When we make calls to print a screen, we will make those calls using the screen class so our program will not be looking for a specific type of screen to print. Applying DIP allows us to write better code because, similar to OCP, it allows us to add new features (in our case, new screens) without altering existing code.
  
   ## Final deliverable
   All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 

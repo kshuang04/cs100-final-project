@@ -24,10 +24,10 @@ string AttackItemStub::getDescription() {
     return this->description;
 }
 
-void AttackItemStub::printStat() {
-    if (this->getAttackPower() < 0) {throw logic_error("The Attack Power is negative and invalid.");}
-    cout << "Item: " << this->getItemName() << "\n  Attack Power: " << this->getAttackPower() << "\n  Description: " << this->getDescription() << endl;
-}
+// void AttackItemStub::printStat() {
+//     if (this->getAttackPower() < 0) {throw logic_error("The Attack Power is negative and invalid.");}
+//     cout << "Item: " << this->getItemName() << "\n  Attack Power: " << this->getAttackPower() << "\n  Description: " << this->getDescription() << endl;
+// }
 
 void AttackItemStub::useItem(Player* player) {
     player->setAttackStat(player->getAttackStat() + this->getAttackPower());

@@ -25,7 +25,6 @@ public:
     Item(string newItemName, string newDescription, int newStageType, int newRarity);
     virtual string getItemName();
     virtual string getDescription();
-    virtual void printStat();
     virtual void useItem(Player* player);   
     int getStage();
     int getRarity();
@@ -39,7 +38,6 @@ class AttackItem : public Item {
         AttackItem(int attackPower, int stageType, string name, int rarity, string description);
         ~AttackItem();
         int getAttackPower();
-        void printStat();
         void useItem(Player* player); 
 };
 
@@ -50,7 +48,6 @@ class DefenseItem : public Item {
         DefenseItem(int defensePower, int stageType, string name, int rarity, string description);
         ~DefenseItem();
         int getDefensePower();
-        void printStat();
         void useItem(Player* player); 
 };
 
@@ -68,7 +65,6 @@ public:
     virtual int getHealthIncrease();
     string getItemName();
     virtual string getDescription();
-    virtual void printStat();
     virtual void useItem(Player* player);   
 };
 
@@ -81,7 +77,6 @@ class MaxHPPot : public HealthItem {
         ~MaxHPPot();
         string getItemName();
         int getHealthIncrease();
-        void printStat();
         string getDescription();
         void useItem(Player* player); 
 };
@@ -94,7 +89,6 @@ class HealingPot : public HealthItem {
         ~HealingPot();
         string getItemName();
         int getHealthIncrease();
-        void printStat();
         string getDescription();
         void useItem(Player* player); 
 };

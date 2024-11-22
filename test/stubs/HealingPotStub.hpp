@@ -16,7 +16,7 @@ public:
     int getHPPower();
     string getItemName() override;
     string getDescription() override;
-    void printStat() override;
+    // void printStat() override;
     void useItem(Player* player) override;
 };
 
