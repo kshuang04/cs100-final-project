@@ -6,6 +6,7 @@
 #include <fstream>
 #include "../header/Item.hpp"
 #include <stdlib.h>
+#include "../header/Player.hpp"
 
 using namespace std;
 
@@ -16,7 +17,6 @@ private:
     int maxHealth;
     int attackPower;
     int defense;
-    string description;
     int expAmount;
     int goldAmount;
     bool alive;
@@ -26,16 +26,16 @@ private:
     // 1 = plains, 2 = forest, 3 = castle, 4 = grave, 5 = lake
     int region;
 
+
 public:
     Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum);
 
     Enemy();
 
-    int attack();
+    int attack(Player* target);
     void gotAttack(int playerDamage);
     Item * releaseDrops();
     bool isAlive();
-    void setDescription(string);
     string getName();
     int getHealth();
     int getMaxHealth();
@@ -45,7 +45,6 @@ public:
 };
 
 
-vector<Enemy> generateEnemy();
 
 
 #endif

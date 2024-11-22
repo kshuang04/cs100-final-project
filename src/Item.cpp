@@ -12,7 +12,7 @@ string Item::getItemName() {
 }
 
 string Item::getDescription() {
-    return this->description;
+    return description;
 }
 
 // void Item::printStat() {
@@ -29,31 +29,10 @@ int Item::getRarity() {
     return rarity;
 }
 
-vector<Item*> generateItem() {
-    vector<Item*> listOfItem;
 
-    //just template names
-    listOfItem.push_back(new AttackItem(2, 1, "+2 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(4, 1, "+4 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(4, 1, "+4 health", 3, "Boosts your max health."));
-
-
-    listOfItem.push_back(new AttackItem(4, 2, "+4 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(7, 2, "+7 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(7, 2, "+7 health", 3, "Boosts your max health."));
-
-
-    listOfItem.push_back(new AttackItem(7, 3, "+7 attack", 1, "Makes you stronger."));
-    listOfItem.push_back(new DefenseItem(13, 3, "+13 defense", 2, "Creates a shield around you."));
-    listOfItem.push_back(new MaxHPPot(13, 3, "+13 health", 3, "Boosts your max health."));
-
-    return listOfItem;
-
-}
-
-AttackItem::AttackItem(int attackPower, int levelType, string name, int rarity, string description) : attackPower(attackPower)
+AttackItem::AttackItem(int attackPower, int stageType, string name, int rarity, string description) : attackPower(attackPower)
 { 
-    this->stageType = levelType;
+    this->stageType = stageType;
     this->itemName = name;
     this->rarity = rarity;
     this->description = description;
@@ -74,10 +53,10 @@ void AttackItem::useItem(Player* player) {
     player->setAttackStat(player->getAttackStat() + this->getAttackPower());
 }
 
-DefenseItem::DefenseItem(int defensePower, int levelType, string name, int rarity, string description) : defensePower(defensePower)
+DefenseItem::DefenseItem(int defensePower, int stageType, string name, int rarity, string description) : defensePower(defensePower)
 {
     itemName = name;
-    this->stageType = levelType;
+    this->stageType = stageType;
     this->rarity = rarity;
     this->description = description;
 }
@@ -97,12 +76,12 @@ void DefenseItem::useItem(Player* player) {
     player->setDefenseStat(player->getDefenseStat() + this->getDefensePower());
 }
 
-HealthItem::HealthItem() : healthIncrease(0), levelType(1), name("NULL"), rarity(1), description("NULL") {}
+HealthItem::HealthItem() : healthIncrease(0), stageType(1), name("NULL"), rarity(1), description("NULL") {}
 
 HealthItem::~HealthItem() {}
 
-HealthItem::HealthItem(int healthIncrease, int levelType, string name, int rarity, string description)
-    : healthIncrease(healthIncrease), levelType(levelType), name(name), rarity(rarity), description(description) {}
+HealthItem::HealthItem(int healthIncrease, int stageType, string name, int rarity, string description)
+    : healthIncrease(healthIncrease), stageType(stageType), name(name), rarity(rarity), description(description) {}
 
 int HealthItem::getHealthIncrease() {
     return this->healthIncrease;
@@ -121,10 +100,10 @@ string HealthItem::getDescription() {
 
 void HealthItem::useItem(Player* player) {}
 
-MaxHPPot::MaxHPPot(int healthIncrease, int levelType, string name, int rarity, string description) : healthIncrease(healthIncrease)
+MaxHPPot::MaxHPPot(int healthIncrease, int stageType, string name, int rarity, string description) : healthIncrease(healthIncrease)
 {
     this->itemName = name;
-    this->stageType = levelType;
+    this->stageType = stageType;
     this->rarity = rarity;
     this->description = description;
 }
@@ -152,10 +131,10 @@ void MaxHPPot::useItem(Player* player) {
     player->setMaxHPStat(player->getMaxHPStat() + this->getHealthIncrease());
 }
 
-HealingPot::HealingPot(int healthIncrease, int levelType, string name, int rarity, string description) : healthIncrease(healthIncrease)
+HealingPot::HealingPot(int healthIncrease, int stageType, string name, int rarity, string description) : healthIncrease(healthIncrease)
 {
     this->itemName = name;
-    this->stageType = levelType;
+    this->stageType = stageType;
     this->rarity = rarity;
     this->description = description;
 }
@@ -181,4 +160,54 @@ string HealingPot::getDescription() {
 
 void HealingPot::useItem(Player* player) {
     player->setHP(min(player->getMaxHP(), (player->getHP() + this->getHealthIncrease())));
+}
+
+vector<Item*> generateItem() {
+        
+    vector<Item*> listOfItems;
+
+    int stat;
+    int stage;
+    string name;
+    int rarity;
+    string desc;
+
+    ifstream file;
+
+    file.open("../data/Item.txt");
+
+    int nameIndex;
+    int descIndex;
+
+
+    if (!(file.is_open())) {
+        throw runtime_error("File not open");
+    }
+
+    while (file >> stat >> stage >> name >> rarity >> desc) {
+
+        //Replace the "_" with " "
+        nameIndex = name.find("_");
+        descIndex = desc.find("_");
+
+        if (nameIndex != string::npos) {
+            name.replace(nameIndex, 1, " ");
+        }
+
+        //the desc has multiplie "_"
+        while (descIndex != string::npos) {
+            desc.replace(descIndex, 1, " ");
+            descIndex = desc.find("_");
+        }
+        if (name.find("attack") != string::npos) 
+            listOfItems.push_back(new AttackItem(stat, stage, name, rarity, desc));
+        else if (name.find("defense") != string ::npos) 
+            listOfItems.push_back(new DefenseItem(stat, stage, name, rarity, desc));
+        else if (name.find("HP") != string::npos)
+            listOfItems.push_back(new MaxHPPot(stat, stage, name, rarity, desc));
+        else
+            listOfItems.push_back(new HealingPot(stat, stage, name, rarity, desc));
+
+    }
+    return listOfItems;
 }

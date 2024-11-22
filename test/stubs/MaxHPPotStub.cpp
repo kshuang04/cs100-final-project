@@ -29,5 +29,6 @@ string MaxHPPotStub::getDescription() {
 // }
 
 void MaxHPPotStub::useItem(Player* player) {
+
     player->setMaxHPStat(player->getMaxHP() + this->getMaxHPPower());
 }
