@@ -15,10 +15,6 @@ string Item::getDescription() {
     return description;
 }
 
-// void Item::printStat() {
-//     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
-// }
-
 void Item::useItem(Player* player) {}
 
 int Item::getStage() {
@@ -44,10 +40,6 @@ int AttackItem::getAttackPower() {
     return attackPower;
 }
 
-// void AttackItem::printStat() {
-//     if (this->getAttackPower() < 0) {throw logic_error("The Attack Power is negative and invalid.");}
-//     cout << "Item: " << this->getItemName() << "\n  Attack Power: " << this->getAttackPower() << "\n  Description: " << this->getDescription() << endl;
-// }
 
 void AttackItem::useItem(Player* player) {
     player->setAttackStat(player->getAttackStat() + this->getAttackPower());
@@ -67,38 +59,11 @@ int DefenseItem::getDefensePower() {
     return defensePower;
 }
 
-// void DefenseItem::printStat() {
-//     if (this->getDefensePower() < 0) {throw logic_error("The Defense Power is negative and invalid.");}
-//     cout << "Item: " << this->getItemName() << "\n  Defense Power: " << this->getDefensePower() << "\n  Description: " << this->getDescription() << endl;
-// }
 
 void DefenseItem::useItem(Player* player) {
     player->setDefenseStat(player->getDefenseStat() + this->getDefensePower());
 }
 
-HealthItem::HealthItem() : healthIncrease(0), stageType(1), name("NULL"), rarity(1), description("NULL") {}
-
-HealthItem::~HealthItem() {}
-
-HealthItem::HealthItem(int healthIncrease, int stageType, string name, int rarity, string description)
-    : healthIncrease(healthIncrease), stageType(stageType), name(name), rarity(rarity), description(description) {}
-
-int HealthItem::getHealthIncrease() {
-    return this->healthIncrease;
-}
-string HealthItem::getItemName() {
-    return this->itemName;
-}
-
-string HealthItem::getDescription() {
-    return this->description;
-}
-
-// void HealthItem::printStat() { //DELETE
-//     cout << "Item: " << this->getItemName() << ", Description: " << this->getDescription() << endl;
-// }
-
-void HealthItem::useItem(Player* player) {}
 
 MaxHPPot::MaxHPPot(int healthIncrease, int stageType, string name, int rarity, string description) : healthIncrease(healthIncrease)
 {
@@ -110,28 +75,20 @@ MaxHPPot::MaxHPPot(int healthIncrease, int stageType, string name, int rarity, s
 
 MaxHPPot::~MaxHPPot() {}
 
-string MaxHPPot::getItemName() {
-    return this->itemName;
-}
+
 
 int MaxHPPot::getHealthIncrease() {
     return healthIncrease;
 }
 
-// void MaxHPPot::printStat() {
-//     if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-//     cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
-// }
 
-string MaxHPPot::getDescription() {
-    return this->description;
-}
+
 
 void MaxHPPot::useItem(Player* player) {
     player->setMaxHPStat(player->getMaxHPStat() + this->getHealthIncrease());
 }
 
-HealingPot::HealingPot(int healthIncrease, int stageType, string name, int rarity, string description) : healthIncrease(healthIncrease)
+HealingPot::HealingPot(int healingAmount, int stageType, string name, int rarity, string description) : healingAmount(healingAmount)
 {
     this->itemName = name;
     this->stageType = stageType;
@@ -141,22 +98,11 @@ HealingPot::HealingPot(int healthIncrease, int stageType, string name, int rarit
 
 HealingPot::~HealingPot() {}
 
-string HealingPot::getItemName() {
-    return this->itemName;
-}
 
 int HealingPot::getHealthIncrease() {
-    return healthIncrease;
+    return healingAmount;
 }
 
-// void HealingPot::printStat() {
-//     if (this->getHealthIncrease() < 0) {throw logic_error("The Max HP Power is negative and invalid.");}
-//     cout << "Item: " << this->getItemName() << "\n  Increases Max HP by " << this->getHealthIncrease() << "\n  Description: " << this->getDescription() << endl;
-// }
-
-string HealingPot::getDescription() {
-    return this->description;
-}
 
 void HealingPot::useItem(Player* player) {
     player->setHP(min(player->getMaxHP(), (player->getHP() + this->getHealthIncrease())));
