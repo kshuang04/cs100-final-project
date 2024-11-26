@@ -23,9 +23,9 @@ public:
     Item();
     virtual ~Item();
     Item(string newItemName, string newDescription, int newStageType, int newRarity);
-    virtual string getItemName();
-    virtual string getDescription();
-    virtual void useItem(Player* player);   
+    string getItemName();
+    string getDescription();
+    virtual void useItem(Player* player) = 0;   
     int getStage();
     int getRarity();
 };
@@ -34,7 +34,6 @@ class AttackItem : public Item {
     private:
         int attackPower;
     public:
-
         AttackItem(int attackPower, int stageType, string name, int rarity, string description);
         ~AttackItem();
         int getAttackPower();
@@ -51,45 +50,24 @@ class DefenseItem : public Item {
         void useItem(Player* player); 
 };
 
-class HealthItem : public Item {
-protected:
-    int healthIncrease;
-    int stageType;
-    string name;
-    int rarity;
-    string description;
-public:
-    HealthItem();
-    virtual ~HealthItem();
-    HealthItem(int healthIncrease, int stageType, string name, int rarity, string description);
-    virtual int getHealthIncrease();
-    string getItemName();
-    virtual string getDescription();
-    virtual void useItem(Player* player);   
-};
-
-class MaxHPPot : public HealthItem {
+class MaxHPPot : public Item {
     private: 
         int healthIncrease;
     public:
 
         MaxHPPot(int healthIncrease, int stageType, string name, int rarity, string description);
         ~MaxHPPot();
-        string getItemName();
         int getHealthIncrease();
-        string getDescription();
         void useItem(Player* player); 
 };
 
-class HealingPot : public HealthItem {
+class HealingPot : public Item {
     private: 
-        int healthIncrease;
+        int healingAmount;
     public:
         HealingPot(int healthIncrease, int stageType, string name, int rarity, string description);
         ~HealingPot();
-        string getItemName();
         int getHealthIncrease();
-        string getDescription();
         void useItem(Player* player); 
 };
 
