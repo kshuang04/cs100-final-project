@@ -67,6 +67,19 @@ TEST(PurchaseTest, PurchaseMultipleItems)
     delete player;
 }
 
+TEST(PurchaseTest, PurchaseMultipleItemsGoingBroke)
+{
+    Player* player = new Player();
+    player->setGold(20);
+    Shop shop(player);
+    EXPECT_NO_THROW(shop.purchaseAttackItem());
+    EXPECT_ANY_THROW(shop.purchaseDefenseItem());
+    EXPECT_ANY_THROW(shop.purchaseAttackItem());
+    EXPECT_TRUE(player->getGold() < 100);
+    EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 1);
+    delete player;
+}
+
 TEST(SellTest, SellSmallHealingItem)
 {
     Player* player = new Player();
@@ -151,6 +164,7 @@ TEST(SellTest, SellNonexistentItem)
     EXPECT_ANY_THROW(shop.sellAttackItem());
     EXPECT_ANY_THROW(shop.sellDefenseItem());
     EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 0);
+    EXPECT_TRUE(player->getGold() == 0);
     delete player;
 }
 
