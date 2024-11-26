@@ -26,6 +26,7 @@ struct enemyManager
         throw runtime_error("File not open");
     }
 
+
     int index;
 
     while (file >> hp >> def >> atk >> exp >> gold >> name >> stage >> region)
