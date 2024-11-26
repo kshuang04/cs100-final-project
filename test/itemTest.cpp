@@ -78,6 +78,10 @@ TEST(generateItem, itemsInside) {
     EXPECT_EQ(test.at(2)->getItemName(), "Strong attack");
     EXPECT_EQ(test.at(3)->getItemName(), "Lesser defense");
 
+    EXPECT_EQ(test.at(0)->getDescription(), "Makes you stronger.");
+    EXPECT_EQ(test.at(1)->getDescription(), "Makes you stronger.");
+    EXPECT_EQ(test.at(2)->getDescription(), "Makes you stronger.");
+
     for (unsigned i = 0; i < test.size(); i++) {
         delete test.at(i);
     }
