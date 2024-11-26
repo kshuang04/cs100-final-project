@@ -16,14 +16,25 @@ void Shop::purchaseSmallHealthItem()
     else
     {
         player->setGold(player->getGold() - smallHealthItemPrice); //deduct gold from player
-        HealingPot* newHealingItem = new HealingPot(5, 1, "TestSmallHealingPot", 1, "Test descrip"); //create and add new test item to player inventory
+        HealingPot* newHealingItem = new HealingPot(5, 1, "TestSmallHealingPot", 1, "TestSmallHeal descrip"); //create and add new test item to player inventory
         player->getPlayerInven()->addItem(newHealingItem, player); 
     }
 }
 
 void Shop::purchaseMaxHealthItem()
 {
-
+    //check to see if player has enough gold to buy item
+    if (player->getGold() < maxHealthItemPrice)
+    {
+        //cout << "Not enough gold to make purchase! Please select another option:" << endl;
+        throw logic_error("Not enough gold to make purchase");
+    }
+    else
+    {
+        player->setGold(player->getGold() - maxHealthItemPrice); //deduct gold from player
+        MaxHPPot* newHealingItem = new MaxHPPot(5, 1, "TestMaxHealingPot", 1, "TestMaxHeal descrip"); //create and add new test item to player inventory
+        player->getPlayerInven()->addItem(newHealingItem, player); 
+    }
 }
 
 void Shop::purchaseAttackItem()
@@ -44,25 +55,112 @@ void Shop::purchaseAttackItem()
 
 void Shop::purchaseDefenseItem()
 {
-
+    //check to see if player has enough gold to buy item
+    if (player->getGold() < attackItemPrice)
+    {
+        //cout << "Not enough gold to make purchase! Please select another option:" << endl;
+        throw logic_error("Not enough gold to make purchase");
+    }
+    else
+    {
+        player->setGold(player->getGold() - defenseItemPrice); //deduct gold from player
+        DefenseItem* newDefenseItem = new DefenseItem(4, 1, "TestDefenseItem", 2, "TestDefenseItem descrip"); //create and add new test item to player inventory
+        player->getPlayerInven()->addItem(newDefenseItem, player);
+    }
 }
 
 void Shop::sellSmallHealthItem()
 {
+    //check to see if player has this item to sell
+    int currIndex;
+    for (currIndex = 0; currIndex < player->getPlayerInven()->getItemInven().size(); currIndex++) //loop through player's inventory vector
+    {
+        if (typeid(HealingPot) == typeid(*(player->getPlayerInven()->getItemInven().at(currIndex))))
+        {
+            player->setGold(player->getGold() + smallHealthItemPrice); //increase players gold by item's price
+            //remove item from player's inventory
+            vector<Item*>& invenVectorPtr = player->getPlayerInven()->getItemInven();
+            delete invenVectorPtr.at(currIndex); //deletes object at index
+            invenVectorPtr.erase(invenVectorPtr.begin() + currIndex); //deletes element in vector at index
+            player->getPlayerInven()->setItemCount(player->getPlayerInven()->getItemCount() - 1); //decrement count of item vector
+            break;
+        }
+    }
 
+    if (currIndex > player->getPlayerInven()->getItemInven().size())
+    {
+        throw logic_error("Trying to sell an item player doesn't have");
+    }
 }
 
 void Shop::sellMaxHealthItem()
 {
+    //check to see if player has this item to sell
+    int currIndex;
+    for (currIndex = 0; currIndex < player->getPlayerInven()->getItemInven().size(); currIndex++) //loop through player's inventory vector
+    {
+        if (typeid(MaxHPPot) == typeid(*(player->getPlayerInven()->getItemInven().at(currIndex))))
+        {
+            player->setGold(player->getGold() + maxHealthItemPrice); //increase players gold by item's price
+            //remove item from player's inventory
+            vector<Item*>& invenVectorPtr = player->getPlayerInven()->getItemInven();
+            delete invenVectorPtr.at(currIndex); //deletes object at index
+            invenVectorPtr.erase(invenVectorPtr.begin() + currIndex); //deletes element in vector at index
+            player->getPlayerInven()->setItemCount(player->getPlayerInven()->getItemCount() - 1); //decrement count of item vector
+            break;
+        }
+    }
 
+    if (currIndex > player->getPlayerInven()->getItemInven().size())
+    {
+        throw logic_error("Trying to sell an item player doesn't have");
+    }
 }
 
 void Shop::sellAttackItem()
 {
+    //check to see if player has this item to sell
+    int currIndex;
+    for (currIndex = 0; currIndex < player->getPlayerInven()->getItemInven().size(); currIndex++) //loop through player's inventory vector
+    {
+        if (typeid(AttackItem) == typeid(*(player->getPlayerInven()->getItemInven().at(currIndex))))
+        {
+            player->setGold(player->getGold() + attackItemPrice); //increase players gold by item's price
+            //remove item from player's inventory
+            vector<Item*>& invenVectorPtr = player->getPlayerInven()->getItemInven();
+            delete invenVectorPtr.at(currIndex); //deletes object at index
+            invenVectorPtr.erase(invenVectorPtr.begin() + currIndex); //deletes element in vector at index
+            player->getPlayerInven()->setItemCount(player->getPlayerInven()->getItemCount() - 1); //decrement count of item vector
+            break;
+        }
+    }
 
+    if (currIndex > player->getPlayerInven()->getItemInven().size())
+    {
+        throw logic_error("Trying to sell an item player doesn't have");
+    }
 }
 
 void Shop::sellDefenseItem()
 {
+    //check to see if player has this item to sell
+    int currIndex;
+    for (currIndex = 0; currIndex < player->getPlayerInven()->getItemInven().size(); currIndex++) //loop through player's inventory vector
+    {
+        if (typeid(DefenseItem) == typeid(*(player->getPlayerInven()->getItemInven().at(currIndex))))
+        {
+            player->setGold(player->getGold() + defenseItemPrice); //increase players gold by item's price
+            //remove item from player's inventory
+            vector<Item*>& invenVectorPtr = player->getPlayerInven()->getItemInven();
+            delete invenVectorPtr.at(currIndex); //deletes object at index
+            invenVectorPtr.erase(invenVectorPtr.begin() + currIndex); //deletes element in vector at index
+            player->getPlayerInven()->setItemCount(player->getPlayerInven()->getItemCount() - 1); //decrement count of item vector
+            break;
+        }
+    }
 
+    if (currIndex > player->getPlayerInven()->getItemInven().size())
+    {
+        throw logic_error("Trying to sell an item player doesn't have");
+    }
 }

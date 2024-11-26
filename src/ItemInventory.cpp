@@ -33,7 +33,9 @@ void ItemInventory::consumeItem(Item* currentItem, Player* player) {
     if (currentItem == nullptr) {throw logic_error("Using an item that does not exist.");}
     //Consumes the item and then remove it
     currentItem->useItem(player);
-    delete currentItem;
+    delete currentItem; //delete object 
+    this->setItemCount(this->getItemCount() - 1); //decrement count
+    //***********************************************NEED TO DELETE ELEMENT SPACE IN VECTOR TOO (USE VECTOR.ERASE()?)
 }
 
 void ItemInventory::consumeItem(int itemIndex, Player* player) {
