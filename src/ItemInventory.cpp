@@ -19,12 +19,19 @@ void ItemInventory::addItem(Item* newItem, Player* player) {
 
 void ItemInventory::consumeItem(Item* currentItem, Player* player) {
     //Checks to see if the item is real and availabe
+    if (typeid(*currentItem) != typeid(HealingPot)) {throw logic_error("Did not consume a Healing Pot item.");}
     if (currentItem == nullptr) {throw logic_error("Using an item that does not exist.");}
     //Consumes the item and then remove it
     currentItem->useItem(player);
-    delete currentItem; //delete object 
-    this->setItemCount(this->getItemCount() - 1); //decrement count
-    //***********************************************NEED TO DELETE ELEMENT SPACE IN VECTOR TOO (USE VECTOR.ERASE()?)
+    delete currentItem; //delete object
+}
+
+void ItemInventory::consumeItem(int itemIndex, Player* player) {
+    //Checks to see if the item index is within range.
+    if (itemIndex <= 0 || itemIndex > this->getItemCount()) {throw out_of_range("Accessing an item outside of the array.");}
+    this->consumeItem(this->getItemInven().at(itemIndex - 1), player);
+    this->setItemCount(this->getItemCount() - 1);
+    this->getItemInven().erase(this->getItemInven().begin() + itemIndex - 1);
 }
 
 void ItemInventory::stackItemStats(Player* player) {
@@ -34,10 +41,12 @@ void ItemInventory::stackItemStats(Player* player) {
     player->setMaxHPStat(0);
     //Takes each item in the player's inventory and updates their respective stat.
     for (int i = 0; i < this->getItemInven().size(); i++) {
-        this->getItemInven().at(i)->useItem(player);        
+        if (typeid(*this->getItemInven().at(i)) != typeid(HealingPot)) {
+            this->getItemInven().at(i)->useItem(player);
+        }
     }
-    player->setAttackStat(max(1, player->getAttackStat()));
-    player->setDefenseStat(max(1, player->getDefenseStat()));
+    player->setAttackStat(max(1, player->getAttackStat() + 1));
+    player->setDefenseStat(max(1, player->getDefenseStat() + 1));
 }
 
 void ItemInventory::removeItem(int itemIndex) {
