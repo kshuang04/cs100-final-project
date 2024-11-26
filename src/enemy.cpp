@@ -1,5 +1,4 @@
 #include "../header/enemy.hpp"
-#include "../src/itemGenerator.cpp"
 
 Enemy::Enemy(int maxHealth, int defense, int attackPower, int exp, int gold, string enemyName, int stageNum, int regionNum) : maxHealth(maxHealth), defense(defense), attackPower(attackPower), expAmount(exp),
                                                                                                                               goldAmount(gold), name(enemyName), stage(stageNum), region(regionNum), alive(true)

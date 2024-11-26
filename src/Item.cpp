@@ -120,7 +120,7 @@ vector<Item*> generateItem() {
 
     ifstream file;
 
-    file.open("../data/Item.txt");
+    file.open("data/Item.txt");
 
     int nameIndex;
     int descIndex;
