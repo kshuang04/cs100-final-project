@@ -104,7 +104,6 @@ int HealingPot::getHealthIncrease() {
 }
 
 
-
 void HealingPot::useItem(Player* player) {
     player->setHP(min(player->getMaxHP(), (player->getHP() + this->getHealthIncrease())));
 }
