@@ -80,11 +80,15 @@ void ShopScreen::printScreen()
     displayTextSlowly(message);
     message = "Choose an option (Wallet: " + to_string(player->getGold()) + "g):";
     displayTextSlowly(message);
-    cout << "(1) Health potion - 10g" << endl
-		<< "(2) Attack potion - 15g" << endl
-		<< "(3) Defense potion - 20g" << endl
-		<< "(4) Sell items" << endl
-		<< "(4) Leave" << endl
+
+    Shop shop(player); //Have shop object to get and display prices of items
+
+    cout << "(1) Small Health potion - " << to_string(shop.getSmallHealthItemPrice()) << "g" << endl
+        << "(2) Max Health potion - " << to_string(shop.getMaxHealthItemPrice()) << "g" << endl
+		<< "(3) Attack potion - " << to_string(shop.getAttackItemPrice()) << "g" << endl
+		<< "(4) Defense potion - " << to_string(shop.getDefenseItemPrice()) << "g" << endl
+		<< "(5) Sell items" << endl
+		<< "(6) Leave" << endl
 		<< "------------------------------------------------------------------------------" << endl;
 }
 

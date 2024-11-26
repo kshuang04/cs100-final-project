@@ -21,13 +21,10 @@ using namespace std;
 class ItemInventory {
     private:
         vector<Item*> itemIven;
-        vector<HealingPot*> healingPotIven;
         int itemCount;
-        int healingPotCount;
     public:
         ItemInventory();
         ~ItemInventory();
-        void addItem(HealingPot* newHealingPotItem, Player* player);
         void addItem(Item* newItem, Player* player);
         void consumeItem(Item* currentItem, Player* player);
         void consumeItem(int itemIndex, Player* player);
@@ -35,12 +32,9 @@ class ItemInventory {
         void removeItem(int itemIndex);
         //Accessors
         int getItemCount() {return this->itemCount;}
-        int getHealingPotCount() {return this->healingPotCount;}
         vector<Item*>& getItemInven() {return this->itemIven;}
-        vector<HealingPot*>& getHealingPotInven() {return this->healingPotIven;}
         //Mutators
         void setItemCount(int newCount) {this->itemCount = newCount;}
-        void setHealingPotCount(int newHealingPotCount) {this->healingPotCount = newHealingPotCount;}
 };
 
 #endif

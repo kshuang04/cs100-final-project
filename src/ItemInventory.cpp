@@ -1,6 +1,6 @@
 #include "../header/ItemInventory.hpp"
 
-ItemInventory::ItemInventory() : itemCount(0), healingPotCount(0) {}
+ItemInventory::ItemInventory() : itemCount(0) {}
 
 ItemInventory::~ItemInventory() {
     //Deletes every item in the item Inventory
@@ -8,17 +8,6 @@ ItemInventory::~ItemInventory() {
         delete this->getItemInven().at(i);
         this->getItemInven().at(i) = nullptr;
     }
-    for (int i = 0; i < this->getHealingPotInven().size(); i++) {
-        delete this->getHealingPotInven().at(i);
-        this->getHealingPotInven().at(i) = nullptr;
-    }
-}
-
-void ItemInventory::addItem(HealingPot* newHealingPotItem, Player* player) {
-    //Adds the new Healing Pot Item to a separate inventory
-    this->getHealingPotInven().push_back(newHealingPotItem);
-    this->setHealingPotCount(this->getHealingPotCount() + 1);
-    this->stackItemStats(player);
 }
 
 void ItemInventory::addItem(Item* newItem, Player* player) {
@@ -33,15 +22,9 @@ void ItemInventory::consumeItem(Item* currentItem, Player* player) {
     if (currentItem == nullptr) {throw logic_error("Using an item that does not exist.");}
     //Consumes the item and then remove it
     currentItem->useItem(player);
-    delete currentItem;
-}
-
-void ItemInventory::consumeItem(int itemIndex, Player* player) {
-    //Check to see if the item index is within the range and throws an error if not.
-    if (((itemIndex - 1) < 0) || ((itemIndex - 1) >= this->getHealingPotCount()) || (this->getHealingPotCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
-    //Uses the item and then removes it from the item inventory.
-    this->getHealingPotInven().at((itemIndex - 1))->useItem(player);
-    this->removeItem(itemIndex);
+    delete currentItem; //delete object 
+    this->setItemCount(this->getItemCount() - 1); //decrement count
+    //***********************************************NEED TO DELETE ELEMENT SPACE IN VECTOR TOO (USE VECTOR.ERASE()?)
 }
 
 void ItemInventory::stackItemStats(Player* player) {
@@ -58,10 +41,7 @@ void ItemInventory::stackItemStats(Player* player) {
 }
 
 void ItemInventory::removeItem(int itemIndex) {
-    //Check to see if the item index is within the range and throws an error if not.
-    if (((itemIndex - 1) < 0) || ((itemIndex - 1) > this->getHealingPotCount()) || (this->getHealingPotCount() == 0)) {throw out_of_range("Access an index that is out of range of the item inventory.");}
-    //Deletes the Item pointer and then removes it from the vector for item inventory, and decreases item count by 1
-    delete this->getHealingPotInven().at((itemIndex - 1));
-    this->getHealingPotInven().erase(this->getHealingPotInven().begin() + (itemIndex - 1));
-    this->setHealingPotCount(this->getHealingPotCount() - 1);
+    delete itemIven.at(itemIndex); //delete object at index
+    itemIven.erase(itemIven.begin() + itemIndex); //delete element space at index
+    this->setItemCount(this->getItemCount() - 1); //decrement item count
 }

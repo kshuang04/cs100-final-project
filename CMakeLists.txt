@@ -24,6 +24,7 @@ add_executable(playGame
     src/enemy.cpp
     src/level.cpp
     src/ItemInventory.cpp
+    src/shop.cpp
     test/stubs/levelStub.cpp
 )
 
@@ -35,6 +36,7 @@ add_executable(runScreenTests
     src/enemy.cpp
     src/level.cpp
     src/ItemInventory.cpp
+    src/shop.cpp
 )
 
 add_executable(runChestTest
@@ -42,6 +44,14 @@ add_executable(runChestTest
     src/Player.cpp
     src/Item.cpp
     test/chestTest.cpp
+    src/ItemInventory.cpp
+)
+
+add_executable(runShopTests
+    test/shopTest.cpp
+    src/shop.cpp
+    src/Player.cpp
+    src/Item.cpp
     src/ItemInventory.cpp
 )
 
@@ -54,3 +64,6 @@ TARGET_LINK_LIBRARIES(runScreenTests gtest gtest_main)
 TARGET_COMPILE_DEFINITIONS(runScreenTests PRIVATE gtest_disable_pthreads=ON)
 
 target_link_libraries(runChestTest gtest)
+
+TARGET_LINK_LIBRARIES(runShopTests gtest gtest_main)
+TARGET_COMPILE_DEFINITIONS(runShopTests PRIVATE gtest_disable_pthreads=ON)
