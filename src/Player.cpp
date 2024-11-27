@@ -18,13 +18,13 @@ int Player::attack() {
 }
 
 void Player::takeDamage(int damage) {
-    if ((this->getHP() - damage) <= 0) { //Checks to see if the damage resilts in negative HP.
+    if ((this->getHP() - max(0, damage - (this->getDefenseStat() + (3 * (this->getLevel() - 1))))) <= 0) { //Checks to see if the damage results in negative HP.
         //If it does result in negative HP, HP is set to 0 and the player is no longer alive.
         this->setHP(0);
         this->setIsAlive(false);
     } else {
-        //If not, decrease the HP by the amount of damage taken and the player is still alive.
-        this->setHP((this->getHP() - damage));
+        //If not, decrease the HP by the amount of damage taken (reduced by the defense stat) and the player is still alive.
+        this->setHP((this->getHP() - max(0, damage - (this->getDefenseStat() + (3 * (this->getLevel() - 1))))));
         this->setIsAlive(true);
     }
 }
