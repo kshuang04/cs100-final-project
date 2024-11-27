@@ -309,7 +309,7 @@ TEST(TakeDamageTests, DamageButStillAlive) {
     Player* myPlayer = new Player();
     myPlayer->setHP(20);
     myPlayer->takeDamage(10);
-    EXPECT_EQ(myPlayer->getHP(), 10);
+    EXPECT_EQ(myPlayer->getHP(), 11);
     EXPECT_EQ(myPlayer->getIsAlive(), true);
     delete myPlayer;
 }
@@ -317,7 +317,7 @@ TEST(TakeDamageTests, DamageButStillAlive) {
 TEST(TakeDamageTests, DamageToZeroHP) {
     Player* myPlayer = new Player();
     myPlayer->setHP(20);
-    myPlayer->takeDamage(20);
+    myPlayer->takeDamage(21);
     EXPECT_EQ(myPlayer->getHP(), 0);
     EXPECT_EQ(myPlayer->getIsAlive(), false);
     delete myPlayer;
@@ -329,6 +329,39 @@ TEST(TakeDamageTests, DamageToNegativeHP) {
     myPlayer->takeDamage(30);
     EXPECT_EQ(myPlayer->getHP(), 0);
     EXPECT_EQ(myPlayer->getIsAlive(), false);
+    delete myPlayer;
+}
+
+TEST(TakeDamageTests, DamageWithDefensePot) {
+    Player* myPlayer = new Player();
+    DefenseItem* newDefenseItem1 = new DefenseItem(5, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->getPlayerInven()->addItem(newDefenseItem1, myPlayer);
+    myPlayer->setHP(20);
+    myPlayer->takeDamage(15);
+    EXPECT_EQ(myPlayer->getHP(), 11);
+    EXPECT_EQ(myPlayer->getIsAlive(), true);
+    delete myPlayer;
+}
+
+TEST(TakeDamageTests, DamageOnHigherLevel) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(5);
+    myPlayer->setHP(myPlayer->getMaxHPFromLevel());
+    myPlayer->takeDamage(35);
+    EXPECT_EQ(myPlayer->getHP(), 18);
+    EXPECT_EQ(myPlayer->getIsAlive(), true);
+    delete myPlayer;
+}
+
+TEST(TakeDamageTests, DamageOnHigherLevelAndWithDefensePot) {
+    Player* myPlayer = new Player();
+    DefenseItem* newDefenseItem1 = new DefenseItem(7, 1, "Shield", 1, "Creates a shield around you.");
+    myPlayer->getPlayerInven()->addItem(newDefenseItem1, myPlayer);
+    myPlayer->setLevel(5);
+    myPlayer->setHP(myPlayer->getMaxHPFromLevel());
+    myPlayer->takeDamage(35);
+    EXPECT_EQ(myPlayer->getHP(), 25);
+    EXPECT_EQ(myPlayer->getIsAlive(), true);
     delete myPlayer;
 }
 
