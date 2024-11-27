@@ -10,6 +10,7 @@
 #include "../header/Player.hpp"
 #include "../header/enemy.hpp"
 #include "../header/level.hpp"
+#include "../header/shop.hpp"
 
 class Screen
 {

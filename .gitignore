@@ -9,3 +9,4 @@ h.autoSetupRemote
 playGame
 runScreenTests
 runChestTest
+runShopTests
