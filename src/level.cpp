@@ -7,6 +7,7 @@
 level::level(int currLevel, int region)
 {
     numLevel = currLevel;
+    numRegion = region;
     // Seed the random number generator (to ensure randomness on each program run)
     srand(static_cast<unsigned int>(time(0)));
 
@@ -29,7 +30,7 @@ void level::insertEnemies(int level, int region, int stage)
     vector<Enemy> filteredEnemies;
 
     for (int i = 0; i < manager.enemies.size(); i++)
-    {
+    {        
         if (manager.enemies.at(i).getRegion() == region && manager.enemies.at(i).getStage() == stage)
         {
             filteredEnemies.push_back(manager.enemies.at(i));
@@ -59,24 +60,14 @@ int level::getTotalGold()
     return totalGold; // Return the total gold
 }
 
-vector<Enemy>* level::returnEnemyVector()
+vector<Enemy>* level::returnEnemyVectorP()
 {
     return &listOfEnemies;
 }
 
-vector<Enemy *> *level::getListOfEnemies()
+vector<Enemy> level::returnEnemyVector()
 {
-    // Create a new vector to store pointers to the enemies in listOfEnemies
-    vector<Enemy *> *enemyPointerList = new vector<Enemy *>;
-
-    // Populate the vector with addresses of the enemies in listOfEnemies
-    for (Enemy &enemy : listOfEnemies)
-    {
-        enemyPointerList->push_back(&enemy);
-    }
-
-    // Return the dynamically allocated vector of enemy pointers
-    return enemyPointerList;
+    return listOfEnemies;
 }
 
 int level::getLevelNum()
