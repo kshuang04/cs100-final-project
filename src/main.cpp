@@ -24,8 +24,8 @@ int main()
     int region = rand() % 5 + 1;
 
 
-    // MainMenuScreen menu;
-    // menu.printScreen();
+    MainMenuScreen menu;
+    menu.printScreen();
 
     while (options != 1 && options != 2)
     {
