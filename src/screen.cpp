@@ -67,14 +67,12 @@ ShopScreen::ShopScreen(Player* player)
 
 void ShopScreen::printScreen()
 {
-    string message;
-
     // seed random number to ensure randomness
     srand(time(0));
 
     //choose random element in dialogueOptions vector and display
     int optionChoice = rand() % dialogueOptions.size();
-    message = dialogueOptions.at(optionChoice);
+    string message = dialogueOptions.at(optionChoice);
 
     cout << "------------------------------------------------------------------------------" << endl;
     displayTextSlowly(message);
@@ -148,7 +146,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = l->returnEnemyVector();
+    this->listOfEnemies = l->returnEnemyVectorP();
 }
 
 void BattleScreen::printScreen()
@@ -172,4 +170,72 @@ void BattleScreen::printScreen()
     cout << "(1) Attack" << endl
         << "(2) Use Items" << endl
         << "-------------------------" << endl;
+}
+
+PlayerMoveScreen::PlayerMoveScreen(Player* player, level* l)
+{
+    this->player = player;
+    this->listOfEnemies = l->returnEnemyVectorP();
+}
+
+void PlayerMoveScreen::printScreen()
+{
+    cout << "---------------------------" << endl;
+    string message = "Player attacked " + listOfEnemies->at(0).getName() + ".";
+    displayTextSlowly(message);
+    message = listOfEnemies->at(0).getName() + " lost " + to_string(player->getAttackStat()) + " health!";
+    displayTextSlowly(message); 
+    cout << "---------------------------" << endl;
+}
+
+EnemyMoveScreen::EnemyMoveScreen(Player* player, level* l)
+{
+    this->player = player;
+    this->listOfEnemies = l->returnEnemyVectorP();
+}
+
+void EnemyMoveScreen::printScreen()
+{
+    cout << "---------------------------" << endl;
+    int totalHPLost = 0;
+    string message;
+    for (int i = 0; i < listOfEnemies->size(); i++)
+    {
+        message = listOfEnemies->at(i).getName() + " attacked Player for " + to_string(listOfEnemies->at(i).getAttackPower()) + " points.";
+        displayTextSlowly(message);
+        totalHPLost += listOfEnemies->at(i).getAttackPower();
+    }
+    cout << endl;
+    message = "Player lost a total of " + to_string(totalHPLost) + " HP!";
+    displayTextSlowly(message);
+    cout << "---------------------------" << endl;
+}
+
+CompleteStageScreen::CompleteStageScreen()
+{
+    congratsOptions.push_back("Nice job!");
+    congratsOptions.push_back("Well done!");
+    congratsOptions.push_back("Impressive!");
+}
+
+void CompleteStageScreen::printScreen()
+{
+    // seed random number to ensure randomness
+    srand(time(0));
+
+    cout << "-------------------------------------" << endl;
+    
+    // choose random element in congratsOptions vector and display
+    int optionChoice = rand() % congratsOptions.size();
+    string message = congratsOptions.at(optionChoice) + " You completed this stage!";
+    displayTextSlowly(message);
+    
+    message = "Please choose an option:";
+    displayTextSlowly(message);
+    cout << "(1) Check player stats" << endl
+        << "(2) Check inventory" << endl
+        << "(3) Visit shop" << endl
+        << "(4) Next stage" << endl;
+
+    cout << "-------------------------------------" << endl;
 }
