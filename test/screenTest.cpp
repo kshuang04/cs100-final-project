@@ -242,7 +242,7 @@ TEST(BattleScreenTest, DamageOneEnemy)
     Player* p = new Player();
     level* l = new level(1, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy>* list = l->returnEnemyVector();
+    vector<Enemy>* list = l->returnEnemyVectorP();
     //Damage first enemy in vector
     list->at(0).gotAttack(100);
     EXPECT_NO_THROW(b.printScreen());
@@ -255,7 +255,7 @@ TEST(BattleScreenTest, DamageAllEnemies)
     Player* p = new Player();
     level* l = new level(7, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy>* list = l->returnEnemyVector();
+    vector<Enemy>* list = l->returnEnemyVectorP();
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
@@ -283,7 +283,7 @@ TEST(BattleScreenTest, DamageEveryone)
     Player* p = new Player();
     level* l = new level(17, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy>* list = l->returnEnemyVector();
+    vector<Enemy>* list = l->returnEnemyVectorP();
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
     {
@@ -301,7 +301,7 @@ TEST(BattleScreenTest, DamageEveryoneAfterPrinting)
     Player* p = new Player();
     level* l = new level(17, 1);
     BattleScreen b = BattleScreen(p, l);
-    vector<Enemy>* list = l->returnEnemyVector();
+    vector<Enemy>* list = l->returnEnemyVectorP();
     EXPECT_NO_THROW(b.printScreen());
     //Damage all enemies in vector
     for (int i = 0; i < list->size(); i++)
@@ -313,4 +313,36 @@ TEST(BattleScreenTest, DamageEveryoneAfterPrinting)
     EXPECT_NO_THROW(b.printScreen());
     delete l;
     delete p;
+}
+
+TEST(PlayerMoveScreenTest, PlayerMoveAction)
+{
+    Player* p = new Player();
+    level* l = new level(4, 1);
+    BattleScreen b = BattleScreen(p, l);
+    EXPECT_NO_THROW(b.printScreen());
+    PlayerMoveScreen playerMove = PlayerMoveScreen(p, l);
+    EXPECT_NO_THROW(playerMove.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(EnemyMoveScreenTest, EnemyMoveAction)
+{
+    Player* p = new Player();
+    level* l = new level(4, 1);
+    BattleScreen b = BattleScreen(p, l);
+    EXPECT_NO_THROW(b.printScreen());
+    EnemyMoveScreen enemyMove = EnemyMoveScreen(p, l);
+    EXPECT_NO_THROW(enemyMove.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(CompleteStageScreenTest, Print)
+{
+    Player* p = new Player();
+    CompleteStageScreen s;
+    EXPECT_NO_THROW(s.printScreen());
+    delete p;  
 }
