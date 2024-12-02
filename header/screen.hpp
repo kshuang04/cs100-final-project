@@ -104,8 +104,9 @@ class EnemyMoveScreen : public Screen
 class CompleteStageScreen : public Screen
 {
     private:
-        Player* player;
+        std::vector<std::string> congratsOptions; // vector to store all possible congratulatory variants
     public:
+        CompleteStageScreen();
         void printScreen() override;
 };
 

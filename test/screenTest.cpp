@@ -315,7 +315,7 @@ TEST(BattleScreenTest, DamageEveryoneAfterPrinting)
     delete p;
 }
 
-TEST(PlayerMoveScreen, PlayerMoveAction)
+TEST(PlayerMoveScreenTest, PlayerMoveAction)
 {
     Player* p = new Player();
     level* l = new level(4, 1);
@@ -327,7 +327,22 @@ TEST(PlayerMoveScreen, PlayerMoveAction)
     delete p;
 }
 
-TEST(EnemyMoveScreen, PlayerMoveAction)
+TEST(EnemyMoveScreenTest, EnemyMoveAction)
 {
-    
+    Player* p = new Player();
+    level* l = new level(4, 1);
+    BattleScreen b = BattleScreen(p, l);
+    EXPECT_NO_THROW(b.printScreen());
+    EnemyMoveScreen enemyMove = EnemyMoveScreen(p, l);
+    EXPECT_NO_THROW(enemyMove.printScreen());
+    delete l;
+    delete p;
+}
+
+TEST(CompleteStageScreenTest, Print)
+{
+    Player* p = new Player();
+    CompleteStageScreen s;
+    EXPECT_NO_THROW(s.printScreen());
+    delete p;  
 }
