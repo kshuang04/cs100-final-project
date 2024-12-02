@@ -148,7 +148,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = l->returnEnemyVector();
+    this->listOfEnemies = l->returnEnemyVectorP();
 }
 
 void BattleScreen::printScreen()

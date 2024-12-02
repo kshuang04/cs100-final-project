@@ -40,7 +40,7 @@ struct enemyManager
             name.replace(index, 1, " ");
         }
 
-        Enemy newEnemy(hp, def, atk, exp, gold, name, stage, 1);
+        Enemy newEnemy(hp, def, atk, exp, gold, name, stage, region);
         enemies.push_back(newEnemy);
     }
 
