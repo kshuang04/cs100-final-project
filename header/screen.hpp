@@ -79,4 +79,34 @@ class BattleScreen : public Screen
         void printScreen() override;
 };
 
+class PlayerMoveScreen : public Screen
+{
+    private:
+        Player* player; // store pointer to player object so can access player's health
+        level* l; // store pointer to level so can get what enemies are on the current level
+        vector<Enemy>* listOfEnemies; //store pointer to vector that contains the list of Enemies on the current level so can access enemies health
+    public:
+        PlayerMoveScreen(Player* player, level* l);
+        void printScreen() override;
+};
+
+class EnemyMoveScreen : public Screen
+{
+    private:
+        Player* player; // store pointer to player object so can access player's health
+        level* l; // store pointer to level so can get what enemies are on the current level
+        vector<Enemy>* listOfEnemies; //store pointer to vector that contains the list of Enemies on the current level so can access enemies health
+    public:
+        EnemyMoveScreen(Player* player, level* l);
+        void printScreen() override;
+};
+
+class CompleteStageScreen : public Screen
+{
+    private:
+        Player* player;
+    public:
+        void printScreen() override;
+};
+
 #endif

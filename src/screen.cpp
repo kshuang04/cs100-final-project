@@ -148,7 +148,7 @@ void PlayerStatsScreen::printScreen()
 BattleScreen::BattleScreen(Player* player, level* l)
 {
     this->player = player;
-    this->listOfEnemies = l->returnEnemyVector();
+    this->listOfEnemies = l->returnEnemyVectorP();
 }
 
 void BattleScreen::printScreen()
@@ -172,4 +172,36 @@ void BattleScreen::printScreen()
     cout << "(1) Attack" << endl
         << "(2) Use Items" << endl
         << "-------------------------" << endl;
+}
+
+PlayerMoveScreen::PlayerMoveScreen(Player* player, level* l)
+{
+    this->player = player;
+    this->listOfEnemies = l->returnEnemyVectorP();
+}
+
+void PlayerMoveScreen::printScreen()
+{
+    cout << "------------------------------" << endl;
+    string message = "Player attacked " + listOfEnemies->at(0).getName();
+    displayTextSlowly(message);
+    message = listOfEnemies->at(0).getName() + " lost " + to_string(player->getAttackStat()) + " health!";
+    displayTextSlowly(message); 
+    cout << "------------------------------" << endl;
+}
+
+EnemyMoveScreen::EnemyMoveScreen(Player* player, level* l)
+{
+    this->player = player;
+    this->listOfEnemies = l->returnEnemyVectorP();
+}
+
+void EnemyMoveScreen::printScreen()
+{
+
+}
+
+void CompleteStageScreen::printScreen()
+{
+
 }
