@@ -79,7 +79,71 @@ int main()
         }
         else if (currLevel.returnEnemyVector().empty())
         {
-            cout << "You win!" << endl;
+            CompleteStageScreen complete;
+            complete.printScreen();
+        }
+
+        cin >> options;
+
+        while (options != 4)
+        {
+            while (options < 1 || options > 4)
+            {
+                cin >> options;
+            }
+
+            if (options == 1)
+            {
+                PlayerStatsScreen stats(&player);
+                stats.printScreen();
+            }
+            else if (options == 2)
+            {
+                PlayerInventoryScreen inventory(&player);
+                inventory.printScreen();
+                if (player.getPlayerInven()->getItemCount() == 0)
+                {
+                    cout << "You have no items." << endl;
+                }
+            }
+            else if (options == 3)
+            {
+                ShopScreen shop(&player);
+                shop.printScreen();
+                options = 0;
+
+                while (options != 6)
+                {
+                    while (options < 1 || options > 6)
+                    {
+                        cin >> options;
+                    }
+                    if (options == 1)
+                    {
+
+                    }
+                    else if (options == 2)
+                    {
+
+                    }
+                    else if (options == 3)
+                    {
+
+                    }
+                    else if (options == 4)
+                    {
+
+                    }
+                    else if (options == 5)
+                    {
+                        if (player.getPlayerInven()->getItemCount() == 0)
+                        {
+                            cout << "You have no items." << endl;
+                        }
+                    }
+                }
+            }
+            options = 0;
         }
 
         levelNum++;
