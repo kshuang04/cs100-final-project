@@ -65,7 +65,11 @@ int main()
             }
             else if (options == 2)
             {
-                cout << "no items yet" << endl;
+                if (player.getPlayerInven()->healingPotExists()) {
+                    player.getPlayerInven()->consumeNextHealingPot(&player);
+                } else {
+                    cout << "no items to consume yet" << endl;
+                }
             }
 
             (*currLevel.returnEnemyVectorP()).back().attack(&player);
