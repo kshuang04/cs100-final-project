@@ -66,9 +66,14 @@ int main()
             else if (options == 2)
             {
                 if (player.getPlayerInven()->healingPotExists()) {
+                    if ((player.getHP() + player.getPlayerInven()->getNextHealingPot()->getHealthIncrease()) >= player.getMaxHP()) {
+                        cout << "You consumed " << player.getPlayerInven()->getNextHealingPot()->getItemName() << ". HP maxed out." << endl;
+                    } else {
+                        cout << "You consumed " << player.getPlayerInven()->getNextHealingPot()->getItemName() << ". Gained " << player.getPlayerInven()->getNextHealingPot()->getHealthIncrease() << " HP." << endl;
+                    }
                     player.getPlayerInven()->consumeNextHealingPot(&player);
                 } else {
-                    cout << "no items to consume yet" << endl;
+                    cout << "No items to consume yet." << endl;
                 }
             }
 

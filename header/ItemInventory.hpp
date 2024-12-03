@@ -30,6 +30,7 @@ class ItemInventory {
         void stackItemStats(Player* player);
         void removeItem(int itemIndex);
         bool healingPotExists();
+        HealingPot* getNextHealingPot();
         void consumeNextHealingPot(Player* player);
         //Accessors
         int getItemCount() {return this->itemCount;}

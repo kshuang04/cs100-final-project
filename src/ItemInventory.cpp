@@ -49,13 +49,17 @@ void ItemInventory::removeItem(int itemIndex) {
 }
 
 bool ItemInventory::healingPotExists() {
-    if (this->getItemInven().size() == 0) {return false;}
+    return (this->getNextHealingPot() != nullptr);
+}
+
+HealingPot* ItemInventory::getNextHealingPot() {
+    if (this->getItemInven().size() == 0) {return nullptr;}
     for (int i = 0; i < this->getItemInven().size(); i++) { //Loops through the entire inventory.
         if (typeid(*this->getItemInven().at(i)) == typeid(HealingPot)) { //Checks to see if the item is a healing pot.
-            return true;
+            return (dynamic_cast<HealingPot*>(this->getItemInven().at(i)));
         }
     }
-    return false;
+    return nullptr;
 }
 
 void ItemInventory::consumeNextHealingPot(Player* player) {

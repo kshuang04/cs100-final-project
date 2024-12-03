@@ -51,7 +51,7 @@ void Player::changeEXP(int expChange) {
         //Subtract the EXP that is required for the next level and increase the Player's level by 1.
         this->exp -= this->expToNextLevel();
         this->level++;
-        if (this->level >= this->maxLevel) { //Checks to see it payer reaches MAX level
+        if (this->level >= this->maxLevel) { //Checks to see if the player reached MAX level
             //If true, then keep level at max level and EXP will remain 0.
             this->setLevel(maxLevel);
             this->setEXP(0);
