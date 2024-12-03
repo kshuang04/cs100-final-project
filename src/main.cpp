@@ -18,9 +18,6 @@ int main()
 
     Player player;
 
-
-    player.setGold(100);
-    
     srand(time(NULL));
 
     int options = 0;
