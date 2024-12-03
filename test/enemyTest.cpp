@@ -42,18 +42,18 @@ TEST(EnemyClass, getRegion)
 
 TEST(EnemyManager, size) {
     enemyManager test;
-    EXPECT_EQ(test.enemies.size(), 28);
+    EXPECT_EQ(test.enemies.size(), 60);
 }
 
 TEST(EnemyManager, name) {
     enemyManager test;
     EXPECT_EQ(test.enemies.at(0).getName(), "Slime");
-    EXPECT_EQ(test.enemies.at(1).getName(), "Goblin");
-    EXPECT_EQ(test.enemies.at(2).getName(), "Bat");
-    EXPECT_EQ(test.enemies.at(3).getName(), "Wolf Pup");
-    EXPECT_EQ(test.enemies.at(4).getName(), "Skeleton");
-    EXPECT_EQ(test.enemies.at(5).getName(), "Zombie");
-    EXPECT_EQ(test.enemies.at(6).getName(), "Bandit");
+    EXPECT_EQ(test.enemies.at(1).getName(), "Corrupted Mushroom");
+    EXPECT_EQ(test.enemies.at(2).getName(), "Rat");
+    EXPECT_EQ(test.enemies.at(3).getName(), "Coyote");
+    EXPECT_EQ(test.enemies.at(4).getName(), "Harpy");
+    EXPECT_EQ(test.enemies.at(5).getName(), "Hobgoblin");
+    EXPECT_EQ(test.enemies.at(6).getName(), "Orc");
 }
 
 TEST(EnemyClass, attack) {
