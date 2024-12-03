@@ -145,12 +145,15 @@ TEST(SellTest, SellOneItemInListOfItems)
     player->getPlayerInven()->addItem(testAttackItem, player);
     MaxHPPot* newHealingPotItem = new MaxHPPot(4, 1, "Health Potion", 1, "Gives more health");
     player->getPlayerInven()->addItem(newHealingPotItem, player);
-    EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 3);
+    AttackItem* testAttackItem2 = new AttackItem(2, 1, "TestAttackItem", 1, "TestAttackItem descrip");
+    player->getPlayerInven()->addItem(testAttackItem2, player);
+    EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 4);
 
     Shop shop(player);
     EXPECT_NO_THROW(shop.sellAttackItem());
     EXPECT_TRUE(player->getGold() > 0);
-    EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 2);
+    EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 3);
+    EXPECT_TRUE(player->getPlayerInven()->getItemInven().size() == 3);
     delete player;
 }
 
@@ -159,7 +162,7 @@ TEST(SellTest, SellNonexistentItem)
     Player* player = new Player();
     Shop shop(player);
     EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 0);
-    EXPECT_ANY_THROW(shop.sellSmallHealthItem());  //all expect throws are not throwing expections???
+    EXPECT_ANY_THROW(shop.sellSmallHealthItem());
     EXPECT_ANY_THROW(shop.sellMaxHealthItem());
     EXPECT_ANY_THROW(shop.sellAttackItem());
     EXPECT_ANY_THROW(shop.sellDefenseItem());
@@ -179,7 +182,7 @@ TEST(SellTest, SellNonexistentItemInListFullOfItems)
     player->getPlayerInven()->addItem(anotherHealingPotItem, player);
     EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 3);
     Shop shop(player);
-    EXPECT_ANY_THROW(shop.sellAttackItem()); //not throwing here too
+    EXPECT_ANY_THROW(shop.sellAttackItem());
     EXPECT_TRUE(player->getPlayerInven()->getItemCount() == 3);
     delete player;
 }

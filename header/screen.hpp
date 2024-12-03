@@ -48,6 +48,9 @@ class ShopScreen : public Screen
     public:
         ShopScreen(Player* player);
         void printScreen() override;
+        void printInsufficientFunds();
+        void printNonexistentItem();
+        void printSellScreen();
 };
 
 class PlayerInventoryScreen : public Screen

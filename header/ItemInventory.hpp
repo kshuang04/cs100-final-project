@@ -27,7 +27,7 @@ class ItemInventory {
         ~ItemInventory();
         void addItem(Item* newItem, Player* player);
         void consumeItem(Item* currentItem, Player* player);
-        void consumeItem(int itemIndex, Player* player);
+        //void consumeItem(int itemIndex, Player* player);
         void stackItemStats(Player* player);
         void removeItem(int itemIndex);
         //Accessors
