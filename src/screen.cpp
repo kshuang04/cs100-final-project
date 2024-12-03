@@ -90,6 +90,38 @@ void ShopScreen::printScreen()
 		<< "------------------------------------------------------------------------------" << endl;
 }
 
+void ShopScreen::printInsufficientFunds()
+{
+    cout << "-----------------------------------------------------------------" << endl;
+    string message = "Not enough gold to make purchase. Please choose another option.";
+    displayTextSlowly(message);
+    cout << "-----------------------------------------------------------------" << endl;
+}
+
+void ShopScreen::printNonexistentItem()
+{
+    cout << "------------------------------------------------------------------" << endl;
+    string message = "You do not have an item to sell. Please choose another option.";
+    displayTextSlowly(message);
+    cout << "------------------------------------------------------------------" << endl;
+}
+
+void ShopScreen::printSellScreen()
+{
+    cout << "------------------------------------------------------------------------------" << endl;
+    string message = "Choose an item to sell:";
+    displayTextSlowly(message);
+
+    Shop shop(player); //Have shop object to get and display prices of items
+
+    cout << "(1) Small Health potion - Value " << to_string(shop.getSmallHealthItemPrice()) << "g" << endl
+        << "(2) Max Health potion - Value " << to_string(shop.getMaxHealthItemPrice()) << "g" << endl
+		<< "(3) Attack potion - Value " << to_string(shop.getAttackItemPrice()) << "g" << endl
+		<< "(4) Defense potion - Value " << to_string(shop.getDefenseItemPrice()) << "g" << endl
+        << "(5) Back" << endl
+		<< "------------------------------------------------------------------------------" << endl;
+}
+
 PlayerInventoryScreen::PlayerInventoryScreen(Player* player)
 {
     this->player = player;

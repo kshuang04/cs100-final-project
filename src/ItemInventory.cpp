@@ -24,15 +24,16 @@ void ItemInventory::consumeItem(Item* currentItem, Player* player) {
     //Consumes the item and then remove it
     currentItem->useItem(player);
     delete currentItem; //delete object
+    this->setItemCount(this->getItemCount() - 1); //decrement counter
 }
 
-void ItemInventory::consumeItem(int itemIndex, Player* player) {
-    //Checks to see if the item index is within range.
-    if (itemIndex <= 0 || itemIndex > this->getItemCount()) {throw out_of_range("Accessing an item outside of the array.");}
-    this->consumeItem(this->getItemInven().at(itemIndex - 1), player);
-    this->setItemCount(this->getItemCount() - 1);
-    this->getItemInven().erase(this->getItemInven().begin() + itemIndex - 1);
-}
+// void ItemInventory::consumeItem(int itemIndex, Player* player) {
+//     //Checks to see if the item index is within range.
+//     if (itemIndex <= 0 || itemIndex > this->getItemCount()) {throw out_of_range("Accessing an item outside of the array.");}
+//     this->consumeItem(this->getItemInven().at(itemIndex - 1), player);
+//     this->setItemCount(this->getItemCount() - 1);
+//     this->getItemInven().erase(this->getItemInven().begin() + itemIndex - 1);
+// }
 
 void ItemInventory::stackItemStats(Player* player) {
     //Resets the attack, defense, and max HP stats to be able to recalculate those stats correctly.
