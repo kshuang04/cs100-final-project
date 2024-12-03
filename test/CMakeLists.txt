@@ -24,3 +24,6 @@ TARGET_LINK_LIBRARIES(runPlayerTests gtest)
 TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
 
 target_link_libraries(runChestTest gtest)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS --coverage)

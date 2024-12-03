@@ -88,5 +88,7 @@ int Enemy::getGold() const
     return goldAmount;
 }
 
-
-
+int Enemy::getAttackPower()
+{
+    return attackPower;
+}

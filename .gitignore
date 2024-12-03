@@ -10,3 +10,5 @@ playGame
 runScreenTests
 runChestTest
 runShopTests
+game
+extern/

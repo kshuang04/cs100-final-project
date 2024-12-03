@@ -42,6 +42,7 @@ public:
     int getGold() const;
     int getStage();
     int getRegion();
+    int getAttackPower();
 };
 
 
