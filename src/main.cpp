@@ -92,11 +92,13 @@ int main()
                 cin >> options;
             }
 
+            //check stats
             if (options == 1)
             {
                 PlayerStatsScreen stats(&player);
                 stats.printScreen();
             }
+            //check inven
             else if (options == 2)
             {
                 PlayerInventoryScreen inventory(&player);
@@ -106,6 +108,7 @@ int main()
                     cout << "You have no items." << endl;
                 }
             }
+            //visit shop
             else if (options == 3)
             {
                 ShopScreen shop(&player);
@@ -118,22 +121,27 @@ int main()
                     {
                         cin >> options;
                     }
+                    //small heal
                     if (options == 1)
                     {
 
                     }
+                    //max heal
                     else if (options == 2)
                     {
 
                     }
+                    //attack pot
                     else if (options == 3)
                     {
 
                     }
+                    //defense pot
                     else if (options == 4)
                     {
 
                     }
+                    //sell item
                     else if (options == 5)
                     {
                         if (player.getPlayerInven()->getItemCount() == 0)
