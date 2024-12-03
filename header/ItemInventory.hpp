@@ -27,9 +27,10 @@ class ItemInventory {
         ~ItemInventory();
         void addItem(Item* newItem, Player* player);
         void consumeItem(Item* currentItem, Player* player);
-        //void consumeItem(int itemIndex, Player* player);
         void stackItemStats(Player* player);
         void removeItem(int itemIndex);
+        bool healingPotExists();
+        void consumeNextHealingPot(Player* player);
         //Accessors
         int getItemCount() {return this->itemCount;}
         vector<Item*>& getItemInven() {return this->itemIven;}
