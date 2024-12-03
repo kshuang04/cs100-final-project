@@ -10,12 +10,12 @@ void Shop::purchaseSmallHealthItem()
     //check to see if player has enough gold to buy item
     if (player->getGold() < smallHealthItemPrice)
     {
-        throw logic_error("Not enough gold to make purchase");
+        throw InsufficientFundsException("Not enough gold to make purchase");
     }
     else
     {
         player->setGold(player->getGold() - smallHealthItemPrice); //deduct gold from player
-        HealingPot* newHealingItem = new HealingPot(5, 1, "TestSmallHealingPot", 1, "TestSmallHeal descrip"); //create and add new test item to player inventory
+        HealingPot* newHealingItem = new HealingPot(5, 1, "Lesser Healing", 1, "Heals 5 HP"); //create and add new test item to player inventory
         player->getPlayerInven()->addItem(newHealingItem, player); 
     }
 }
@@ -25,12 +25,12 @@ void Shop::purchaseMaxHealthItem()
     //check to see if player has enough gold to buy item
     if (player->getGold() < maxHealthItemPrice)
     {
-        throw logic_error("Not enough gold to make purchase");
+        throw InsufficientFundsException("Not enough gold to make purchase");
     }
     else
     {
         player->setGold(player->getGold() - maxHealthItemPrice); //deduct gold from player
-        MaxHPPot* newHealingItem = new MaxHPPot(5, 1, "TestMaxHealingPot", 1, "TestMaxHeal descrip"); //create and add new test item to player inventory
+        MaxHPPot* newHealingItem = new MaxHPPot(5, 1, "Lesser Max HP", 1, "Boosts your max health"); //create and add new test item to player inventory
         player->getPlayerInven()->addItem(newHealingItem, player); 
     }
 }
@@ -40,12 +40,12 @@ void Shop::purchaseAttackItem()
     //check to see if player has enough gold to buy item
     if (player->getGold() < attackItemPrice)
     {
-        throw logic_error("Not enough gold to make purchase");
+        throw InsufficientFundsException("Not enough gold to make purchase");
     }
     else
     {
         player->setGold(player->getGold() - attackItemPrice); //deduct gold from player
-        AttackItem* newAttackItem = new AttackItem(2, 1, "TestAttackItem", 1, "TestAttackItem descrip"); //create and add new test item to player inventory
+        AttackItem* newAttackItem = new AttackItem(2, 1, "Lesser Attack", 1, "Makes you stronger"); //create and add new test item to player inventory
         player->getPlayerInven()->addItem(newAttackItem, player);
     }
 }
@@ -55,12 +55,12 @@ void Shop::purchaseDefenseItem()
     //check to see if player has enough gold to buy item
     if (player->getGold() < attackItemPrice)
     {
-        throw logic_error("Not enough gold to make purchase");
+        throw InsufficientFundsException("Not enough gold to make purchase");
     }
     else
     {
         player->setGold(player->getGold() - defenseItemPrice); //deduct gold from player
-        DefenseItem* newDefenseItem = new DefenseItem(4, 1, "TestDefenseItem", 2, "TestDefenseItem descrip"); //create and add new test item to player inventory
+        DefenseItem* newDefenseItem = new DefenseItem(4, 1, "Lesser Defense", 2, "Creates a shield around you"); //create and add new test item to player inventory
         player->getPlayerInven()->addItem(newDefenseItem, player);
     }
 }
@@ -79,7 +79,7 @@ void Shop::sellSmallHealthItem()
         }
     }
     //will throw error if no item of same type is found
-    throw logic_error("Trying to sell an item player doesn't have");
+    throw NonexistentItemException("Trying to sell an item player doesn't have");
 }
 
 void Shop::sellMaxHealthItem()
@@ -96,7 +96,7 @@ void Shop::sellMaxHealthItem()
         }
     }
     //will throw error if no item of same type is found
-    throw logic_error("Trying to sell an item player doesn't have");
+    throw NonexistentItemException("Trying to sell an item player doesn't have");
 
 }
 
@@ -114,8 +114,7 @@ void Shop::sellAttackItem()
         }
     }
     //will throw error if no item of same type is found
-    throw logic_error("Trying to sell an item player doesn't have");
-
+    throw NonexistentItemException("Trying to sell an item player doesn't have");
 }
 
 void Shop::sellDefenseItem()
@@ -132,5 +131,5 @@ void Shop::sellDefenseItem()
         }
     }
     //will throw error if no item of same type is found
-    throw logic_error("Trying to sell an item player doesn't have");
+    throw NonexistentItemException("Trying to sell an item player doesn't have");
 }

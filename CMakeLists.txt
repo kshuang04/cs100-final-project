@@ -15,19 +15,14 @@ add_executable(game
 )
 
 
-# add_executable(runPlayerTests
-#     test/playerTest.cpp
-#     src/Player.cpp
-#     src/Item.cpp
-#     src/ItemInventory.cpp
-#     test/stubs/AttackItemStub.cpp
-#     test/stubs/DefenseItemStub.cpp
-#     test/stubs/HealthItemStub.cpp
-#     test/stubs/HealingPotStub.cpp
-#     test/stubs/MaxHPPotStub.cpp
-#     src/enemy.cpp
-#     test/enemyTest.cpp
-# )
+add_executable(runPlayerTests
+    test/playerTest.cpp
+    src/Player.cpp
+    src/Item.cpp
+    src/ItemInventory.cpp
+    src/enemy.cpp
+    test/enemyTest.cpp
+)
 
 # add_executable(playGame
 #     src/main.cpp
@@ -68,8 +63,8 @@ add_executable(runShopTests
     src/ItemInventory.cpp
 )
 
-# TARGET_LINK_LIBRARIES(runPlayerTests gtest)
-# TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
+TARGET_LINK_LIBRARIES(runPlayerTests gtest)
+TARGET_COMPILE_DEFINITIONS(runPlayerTests PRIVATE gtest_disable_pthreads=ON)
 
 # TARGET_LINK_LIBRARIES(playGame gtest)
 

@@ -24,14 +24,7 @@ void ItemInventory::consumeItem(Item* currentItem, Player* player) {
     //Consumes the item and then remove it
     currentItem->useItem(player);
     delete currentItem; //delete object
-}
-
-void ItemInventory::consumeItem(int itemIndex, Player* player) {
-    //Checks to see if the item index is within range.
-    if (itemIndex <= 0 || itemIndex > this->getItemCount()) {throw out_of_range("Accessing an item outside of the array.");}
-    this->consumeItem(this->getItemInven().at(itemIndex - 1), player);
-    this->setItemCount(this->getItemCount() - 1);
-    this->getItemInven().erase(this->getItemInven().begin() + itemIndex - 1);
+    this->setItemCount(this->getItemCount() - 1); //decrement counter
 }
 
 void ItemInventory::stackItemStats(Player* player) {
@@ -50,7 +43,29 @@ void ItemInventory::stackItemStats(Player* player) {
 }
 
 void ItemInventory::removeItem(int itemIndex) {
-    delete itemIven.at(itemIndex); //delete object at index
-    itemIven.erase(itemIven.begin() + itemIndex); //delete element space at index
+    delete this->getItemInven().at(itemIndex); //delete object at index
+    this->getItemInven().erase(this->getItemInven().begin() + itemIndex); //delete element space at index
     this->setItemCount(this->getItemCount() - 1); //decrement item count
+}
+
+bool ItemInventory::healingPotExists() {
+    if (this->getItemInven().size() == 0) {return false;}
+    for (int i = 0; i < this->getItemInven().size(); i++) { //Loops through the entire inventory.
+        if (typeid(*this->getItemInven().at(i)) == typeid(HealingPot)) { //Checks to see if the item is a healing pot.
+            return true;
+        }
+    }
+    return false;
+}
+
+void ItemInventory::consumeNextHealingPot(Player* player) {
+    if (this->healingPotExists()) { //Checks to see if there is a healing pot in the inventory.
+        for (int i = 0; i < this->getItemInven().size(); i++) { //Loops through the entire inventory.
+            if (typeid(*this->getItemInven().at(i)) == typeid(HealingPot)) { //Checks to see if the item is a healing pot.
+                this->consumeItem(this->getItemInven().at(i), player); //Consumes the next available healing pot.
+                this->getItemInven().erase(this->getItemInven().begin() + i); //Remove item from inventory and then break out of loop.
+                return;
+            }
+        }
+    }
 }

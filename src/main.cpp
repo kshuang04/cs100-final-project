@@ -17,6 +17,7 @@ int main()
 {
 
     Player player;
+
     srand(time(NULL));
 
     int options = 0;
@@ -64,7 +65,11 @@ int main()
             }
             else if (options == 2)
             {
-                cout << "no items yet" << endl;
+                if (player.getPlayerInven()->healingPotExists()) {
+                    player.getPlayerInven()->consumeNextHealingPot(&player);
+                } else {
+                    cout << "no items to consume yet" << endl;
+                }
             }
 
             (*currLevel.returnEnemyVectorP()).back().attack(&player);
@@ -111,44 +116,96 @@ int main()
             //visit shop
             else if (options == 3)
             {
-                ShopScreen shop(&player);
-                shop.printScreen();
+                ShopScreen shopScreen(&player);
+                shopScreen.printScreen();
                 options = 0;
 
                 while (options != 6)
                 {
+                    Shop shop(&player);
+                    options = 0;
                     while (options < 1 || options > 6)
                     {
                         cin >> options;
                     }
-                    //small heal
-                    if (options == 1)
+                    if (options == 6)
                     {
-
+                        break;
                     }
-                    //max heal
-                    else if (options == 2)
+                    try
                     {
-
-                    }
-                    //attack pot
-                    else if (options == 3)
-                    {
-
-                    }
-                    //defense pot
-                    else if (options == 4)
-                    {
-
-                    }
-                    //sell item
-                    else if (options == 5)
-                    {
-                        if (player.getPlayerInven()->getItemCount() == 0)
+                        //buy small heal
+                        if (options == 1)
                         {
-                            cout << "You have no items." << endl;
+                            shop.purchaseSmallHealthItem();
+                        }
+                        //buy max heal
+                        else if (options == 2)
+                        {
+                            shop.purchaseMaxHealthItem();
+                            
+                        }
+                        //buy attack pot
+                        else if (options == 3)
+                        {
+                            shop.purchaseAttackItem();
+                        }
+                        //buy defense pot
+                        else if (options == 4)
+                        {
+                            shop.purchaseDefenseItem();
+                        }
+                        //sell item
+                        else if (options == 5)
+                        {
+                            shopScreen.printSellScreen(); //print screen to show player what options they have to sell
+
+                            options = 0;
+
+                            while (options != 5)
+                            {
+                                options = 0;
+
+                                while (options < 1 || options > 5)
+                                {
+                                    cin >> options;
+                                }
+                                //sell small heal
+                                if (options == 1)
+                                {
+                                    shop.sellSmallHealthItem();
+                                    break;
+                                }
+                                //sell max heal
+                                else if (options == 2)
+                                {
+                                    shop.sellMaxHealthItem();
+                                    break;
+                                }
+                                //sell attack pot
+                                else if (options == 3)
+                                {
+                                    shop.sellAttackItem();
+                                    break;
+                                }
+                                //sell defense pot
+                                else if (options == 4)
+                                {
+                                    shop.sellDefenseItem();
+                                    break;
+                                }
+                            }
                         }
                     }
+                    catch(const InsufficientFundsException& e)
+                    {
+                        shopScreen.printInsufficientFunds();
+                    }
+                    catch(const NonexistentItemException& e)
+                    {
+                        shopScreen.printNonexistentItem();
+                    }
+                    shopScreen.printScreen();
                 }
             }
             options = 0;
