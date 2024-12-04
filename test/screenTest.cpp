@@ -19,12 +19,36 @@ TEST(WinScreenTest, Win)
     EXPECT_NO_THROW(s.printScreen());
 }
 
-TEST(ShopScreenTest, Shop)
+TEST(ShopScreenTest, PrintShop)
 {
     Player* p = new Player();
     (*p).setGold(100);
     ShopScreen s = ShopScreen(p);
     EXPECT_NO_THROW(s.printScreen());
+    delete p;
+}
+
+TEST(ShopScreenTest, PrintInsufficientFunds)
+{
+    Player* p = new Player();
+    ShopScreen s = ShopScreen(p);
+    EXPECT_NO_THROW(s.printInsufficientFunds());
+    delete p;
+}
+
+TEST(ShopScreenTest, PrintNonexistentItem)
+{
+    Player* p = new Player();
+    ShopScreen s = ShopScreen(p);
+    EXPECT_NO_THROW(s.printNonexistentItem());
+    delete p;
+}
+
+TEST(ShopScreenTest, PrintSellScreen)
+{
+    Player* p = new Player();
+    ShopScreen s = ShopScreen(p);
+    EXPECT_NO_THROW(s.printSellScreen());
     delete p;
 }
 
