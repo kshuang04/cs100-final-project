@@ -70,7 +70,7 @@ TEST(PurchaseTest, PurchaseMultipleItems)
 TEST(PurchaseTest, PurchaseMultipleItemsGoingBroke)
 {
     Player* player = new Player();
-    player->setGold(20);
+    player->setGold(5);
     Shop shop(player);
     EXPECT_NO_THROW(shop.purchaseAttackItem());
     EXPECT_ANY_THROW(shop.purchaseDefenseItem());

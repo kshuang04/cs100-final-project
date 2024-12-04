@@ -38,6 +38,7 @@ class Player {
         void changeGold(int goldChange);
         void changeEXP(int expChange);
         int expToNextLevel();
+        void resetStats();
         //Accessors
         int getHP() {return this->currHP;}
         int getMaxHPFromLevel() {return (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));}

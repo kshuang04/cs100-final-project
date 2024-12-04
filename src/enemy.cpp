@@ -92,3 +92,8 @@ int Enemy::getAttackPower()
 {
     return attackPower;
 }
+
+int Enemy::getEXP() const
+{
+    return expAmount;
+}

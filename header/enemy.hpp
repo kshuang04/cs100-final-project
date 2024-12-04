@@ -43,6 +43,7 @@ public:
     int getStage();
     int getRegion();
     int getAttackPower();
+    int getEXP() const;
 };
 
 

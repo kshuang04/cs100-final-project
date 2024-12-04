@@ -10,34 +10,34 @@
 
 TEST(ChangeEXPTests, IncreaseEXPForButNoLevelIncrease) {
     Player* myPlayer = new Player();
-    myPlayer->changeEXP(50);
+    myPlayer->changeEXP(5);
     EXPECT_EQ(myPlayer->getLevel(), 1);
-    EXPECT_EQ(myPlayer->getEXP(), 50);
+    EXPECT_EQ(myPlayer->getEXP(), 5);
     delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPForOneLevel) {
     Player* myPlayer = new Player();
-    myPlayer->changeEXP(150);
+    myPlayer->changeEXP(15);
     EXPECT_EQ(myPlayer->getLevel(), 2);
-    EXPECT_EQ(myPlayer->getEXP(), 50);
+    EXPECT_EQ(myPlayer->getEXP(), 5);
     delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPForTwoLevels) {
     Player* myPlayer = new Player();
-    myPlayer->changeEXP(250);
+    myPlayer->changeEXP(30);
     EXPECT_EQ(myPlayer->getLevel(), 3);
-    EXPECT_EQ(myPlayer->getEXP(), 25);
+    EXPECT_EQ(myPlayer->getEXP(), 7);
     delete myPlayer;
 }
 
 TEST(ChangeEXPTests, IncreaseEXPStartingDifferentLevel) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(5);
-    myPlayer->changeEXP(2500);
+    myPlayer->changeEXP(165);
     EXPECT_EQ(myPlayer->getLevel(), 10);
-    EXPECT_EQ(myPlayer->getEXP(), 550);
+    EXPECT_EQ(myPlayer->getEXP(), 18);
     delete myPlayer;
 }
 
@@ -218,8 +218,8 @@ TEST(AttackValueTests, LevelOneAttack) {
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 2);
-    EXPECT_LE(damage, 12);
+    EXPECT_GE(damage, 5);
+    EXPECT_LE(damage, 10);
     delete myPlayer;
 }
 
@@ -228,8 +228,8 @@ TEST(AttackValueTests, LevelTenAttack) {
     myPlayer->setLevel(10);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 200);
-    EXPECT_LE(damage, 300);
+    EXPECT_GE(damage, 50);
+    EXPECT_LE(damage, 100);
     delete myPlayer;
 }
 
@@ -238,8 +238,8 @@ TEST(AttackValueTests, LevelTwentyAttack) {
     myPlayer->setLevel(20);
     myPlayer->setAttackStat(0);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 800);
-    EXPECT_LE(damage, 1000);
+    EXPECT_GE(damage, 100);
+    EXPECT_LE(damage, 200);
     delete myPlayer;
 }
 
@@ -248,28 +248,28 @@ TEST(AttackValueTests, LevelOneAttackWithAttackStat) {
     myPlayer->setLevel(1);
     myPlayer->setAttackStat(5);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 7);
-    EXPECT_LE(damage, 17);
+    EXPECT_GE(damage, 10);
+    EXPECT_LE(damage, 15);
     delete myPlayer;
 }
 
 TEST(AttackValueTests, LevelTenAttackWithAttackStat) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(10);
-    myPlayer->setAttackStat(100);
+    myPlayer->setAttackStat(75);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 300);
-    EXPECT_LE(damage, 400);
+    EXPECT_GE(damage, 125);
+    EXPECT_LE(damage, 175);
     delete myPlayer;
 }
 
 TEST(AttackValueTests, LevelTwentyAttackWithAttackStat) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(20);
-    myPlayer->setAttackStat(250);
+    myPlayer->setAttackStat(150);
     int damage = myPlayer->attack();
-    EXPECT_GE(damage, 1050);
-    EXPECT_LE(damage, 1250);
+    EXPECT_GE(damage, 250);
+    EXPECT_LE(damage, 350);
     delete myPlayer;
 }
 
@@ -568,6 +568,28 @@ TEST(consumeNextHealingPotInBattleTests, MultiItemVarietyInInven) {
     EXPECT_EQ(myPlayer->getMaxHP(), 116);
     EXPECT_EQ(myPlayer->getHP(), 24);
     EXPECT_EQ(myPlayer->getPlayerInven()->getItemInven().size(), 11);
+    delete myPlayer;
+}
+
+TEST(ResetPlayerStatTests, ResetStats) {
+    Player* myPlayer = new Player();
+    myPlayer->setLevel(20);
+    myPlayer->setAttackStat(12);
+    myPlayer->setDefenseStat(15);
+    myPlayer->setEXP(25);
+    myPlayer->setGold(75);
+    myPlayer->setIsAlive(false);
+    myPlayer->setMaxHPStat(35);
+    myPlayer->setMaxLevel(30);
+    myPlayer->resetStats();
+    EXPECT_EQ(myPlayer->getLevel(), 1);
+    EXPECT_EQ(myPlayer->getAttackStat(), 1);
+    EXPECT_EQ(myPlayer->getDefenseStat(), 1);
+    EXPECT_EQ(myPlayer->getEXP(), 0);
+    EXPECT_EQ(myPlayer->getGold(), 0);
+    EXPECT_EQ(myPlayer->getIsAlive(), true);
+    EXPECT_EQ(myPlayer->getMaxHPStat(), 20);
+    EXPECT_EQ(myPlayer->getMaxLevel(), 20);
     delete myPlayer;
 }
 

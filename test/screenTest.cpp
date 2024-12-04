@@ -32,7 +32,7 @@ TEST(StatsScreenTest, Normal) {
     Player* myPlayer = new Player();
     myPlayer->setLevel(2);
     myPlayer->setMaxLevel(20);
-    myPlayer->setEXP(50);
+    myPlayer->setEXP(5);
     myPlayer->setHP(15);
     myPlayer->setMaxHPStat(20);
     myPlayer->setAttackStat(25);
