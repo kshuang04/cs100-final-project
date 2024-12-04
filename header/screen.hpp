@@ -113,4 +113,11 @@ class CompleteStageScreen : public Screen
         void printScreen() override;
 };
 
+class PlayerMenuScreen : public Screen
+{
+    public:
+        PlayerMenuScreen();
+        void printScreen() override;
+};
+
 #endif

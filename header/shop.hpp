@@ -11,10 +11,10 @@ class Shop
 {
     private:
         Player* player;
-        int smallHealthItemPrice = 10;
-        int maxHealthItemPrice = 30;
-        int attackItemPrice = 15;
-        int defenseItemPrice = 20;
+        int smallHealthItemPrice = 2;
+        int maxHealthItemPrice = 6;
+        int attackItemPrice = 3;
+        int defenseItemPrice = 4;
     public:
         Shop(Player* player);
         void purchaseSmallHealthItem();

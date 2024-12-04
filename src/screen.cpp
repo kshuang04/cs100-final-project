@@ -195,7 +195,7 @@ void BattleScreen::printScreen()
     }
 
     //display player's current health
-    cout << endl << "Player (Health: " << player->getHP() << "/" << player->getMaxHP() << ")" << endl << endl;
+    cout << endl << "Player (Health: " << player->getHP() << "/" << player->getMaxHPFromLevel() << ")" << endl << endl;
 
     message = "Select an action:";
     displayTextSlowly(message);
@@ -263,6 +263,20 @@ void CompleteStageScreen::printScreen()
     displayTextSlowly(message);
     
     message = "Please choose an option:";
+    displayTextSlowly(message);
+    cout << "(1) Check player stats" << endl
+        << "(2) Check inventory" << endl
+        << "(3) Visit shop" << endl
+        << "(4) Next stage" << endl;
+
+    cout << "-------------------------------------" << endl;
+}
+
+PlayerMenuScreen::PlayerMenuScreen() {}
+
+void PlayerMenuScreen::printScreen()
+{
+    string message = "Please choose an option:";
     displayTextSlowly(message);
     cout << "(1) Check player stats" << endl
         << "(2) Check inventory" << endl

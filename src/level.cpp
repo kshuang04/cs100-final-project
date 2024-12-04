@@ -60,6 +60,16 @@ int level::getTotalGold()
     return totalGold; // Return the total gold
 }
 
+int level::getTotalEXP()
+{
+    int totalEXP = 0;                       // Initialize the variable to store the total gold
+    for (const Enemy &enemy : listOfEnemies) // Loop through all the enemies in the list
+    {
+        totalEXP += enemy.getEXP(); // Add the gold of the current enemy to the total
+    }
+    return totalEXP; // Return the total gold
+}
+
 vector<Enemy>* level::returnEnemyVectorP()
 {
     return &listOfEnemies;
