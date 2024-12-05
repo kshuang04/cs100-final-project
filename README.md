@@ -47,7 +47,7 @@ Our battle layout will look like this:\
 Here, the user is shown information about the enemies' current health as well as their player's current health. The user is also prompted to choose between two actions: attack or use an item they possess. The attack option will decrease the enemies health and start the enemies turn. If the user chooses to use an item, they will be shown the inventory screen which is described in the next section. 
 
 If the user were to want to use an item in battle, they will be greeted with the following screen:\
-![Inventory Screen](images/inventoryScreen.png)\ 
+![Inventory Screen](images/inventoryScreen.png) 
 This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does.
 
 The enemies' turn screen will look like this:\
