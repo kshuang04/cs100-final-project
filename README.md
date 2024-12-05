@@ -7,23 +7,23 @@
 
  We will be using C++ and VScode for the entirety of our project. We will make everything text based.
 
- Our project will take in inputs throughout the entirety of the game. Starting the game will immediately put the user in a battle. During the game, it will ask whether the user wants to go a certain path. During battles, the user will be asked what action they want to perform: attack or use an item. All inputs will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, actions, and paths will be shown through text throughout the game. We will output things such as:\
- "Welcome to the game"\
- "Player Health: 100/100"\
- "Enemies in this stage:"\
- "  Zombie (Health: 18/18)"\
- "  Goblin (Health: 12/12)"\
- "Select an action:"\
- "(1) Attack"\
- "(2) Items"\
- There will also be special dialouge for events like shopkeepers. They may say:\
- "Hello. Welcome to my shop."\
- "(1) Small Health potion"\
- "(2) Max Health potion"\
- "(3) Attack potion"\
- "(4) Defense potion"\
- "(5) Sell items"\
- "(6) Leave"\
+ Our project will take in inputs throughout the entirety of the game. Starting the game will immediately put the user in a battle. During the game, it will ask whether the user wants to go a certain path. During battles, the user will be asked what action they want to perform: attack or use an item. All inputs will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, actions, and paths will be shown through text throughout the game. We will output things such as:<br />
+ "Welcome to the game"<br />
+ "Player Health: 100/100"<br />
+ "Enemies in this stage:<br />
+  Zombie (Health: 18/18)<br />
+  Goblin (Health: 12/12)"<br />
+ "Select an action:<br />
+ (1) Attack <br />
+ (2) Items"<br />
+ There will also be special dialouge for events like shopkeepers. They may say:<br />
+ "Hello. Welcome to my shop.<br />
+  (1) Small Health potion <br />
+  (2) Max Health potion<br />
+  (3) Attack potion<br />
+  (4) Defense potion<br />
+  (5) Sell items<br />
+  (6) Leave"<br />
  As a response, the user will choose a number to purchase anything.
 
  
@@ -38,24 +38,24 @@
 
 ### Screen Layouts
 The general layout for our screens will consist of details about the current state of the game followed by a user prompt and the choices available for the user to make. The user will then input their choice as numerical input through the terminal.
-For example, these are the screens that the user will see at the start and end of the game:\
-![Start Screen](images/startScreen.png) ![Lose Screen](images/loseScreen.png) ![Win Screen](images/winScreen.png)\
+For example, these are the screens that the user will see at the start and end of the game:<br />
+![Start Screen](images/startScreen.png) ![Lose Screen](images/loseScreen.png) ![Win Screen](images/winScreen.png)<br />
 Here, the user is given two choices: start the game (or restart the game) or to exit the game. The user will enter a numerical input to make their choice.
 
-Our battle layout will look like this:\
-![Battle Screen](images/battleScreen.png)\
+Our battle layout will look like this:<br />
+![Battle Screen](images/battleScreen.png)<br />
 Here, the user is shown information about the enemies' current health as well as their player's current health. The user is also prompted to choose between two actions: attack or use an item they possess. The attack option will decrease the enemies health and start the enemies turn. If the user chooses to use an item, they will be shown the inventory screen which is described in the next section. 
 
-If the user were to want to use an item in battle, they will be greeted with the following screen:\
-![Inventory Screen](images/inventoryScreen.png) 
+If the user were to want to use an item in battle, they will be greeted with the following screen:<br />
+![Inventory Screen](images/inventoryScreen.png)<br />
 This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does.
 
-The enemies' turn screen will look like this:\
-![Enemy Turn Screen](images/enemyTurnScreen.png)\
+The enemies' turn screen will look like this:<br />
+![Enemy Turn Screen](images/enemyTurnScreen.png)<br />
 This screen gives information to the user about the enemies' action. There is no user input for this screen. In this case, Enemy 1 attacked Player and Player lost 20 health. After the enemies' turn, if the player survives the attack, the battle screen will be shown again with the new updated health and the choices the user is able to make. 
 
-Finally, another one of our main screens will be the shopkeeper's screen:\
-![Shopkeeper Screen](images/shopkeeperScreen.png)\
+Finally, another one of our main screens will be the shopkeeper's screen:<br />
+![Shopkeeper Screen](images/shopkeeperScreen.png)<br />
 This screen follows our general layout. If the user chooses to visit the shopkeeper after completing a level, they will be greeted with this screen that shows how much currency they currently have and the items avaiable to purchase from the shopkeeper. Again, the user is prompted to choose an option and input their choice as a numerical input. If they choose to buy an item, that item will be added to their inventory and the cost of that item will be deducted from their total currency. The user is also given the choice to sell items that they currently have in exchange for currency. Finally, the user is given the choice to leave the shopkeeper and continue their journey through Path of Pain.
 
 
@@ -80,25 +80,26 @@ This screen follows our general layout. If the user chooses to visit the shopkee
  
 ## Final deliverable
  ## Screenshots
-  Starting Game:
+
+  Starting Game:<br />
   ![Start Game Interaction](images/startGameInteraction.png)
 
-  Battle Interaction:
+  Battle Interaction:<br />
   ![Battle Interaction](images/battleInteraction.png)
 
-  Checking Player Stats:
+  Checking Player Stats:<br />
   ![Player Stats Interaction](images/playerStatsInteraction.png)
 
-  Checking Player Inventory:
+  Checking Player Inventory:<br />
   ![Player Inven Interaction](images/playerInvenInteraction.png)
 
-  Visiting and purchasing from shop:
+  Visiting and purchasing from shop:<br />
   ![Purchase Item Interaction](images/purchaseItemInteraction.png)
   
-  Shop Selling interaction:
+  Shop Selling interaction:<br />
   ![Shop Selling Interaction](images/shopSellingInteraction.png)
 
  ## Installation/Usage
   In order to run the game, after cloning the repo, run `cmake . && make && ./game`
  ## Testing
-  We tested our project primarily through unit tests for each main class to ensure each class works as intended and works as intended with other classes. When developing and testing classes that needed other classes that were not made yet, we created stubs for those classes.
+  We tested our project primarily through unit tests for each class to ensure each class works as intended and works as intended with other classes. When developing and testing classes that needed other classes that were not made yet, we created stubs for those classes.
