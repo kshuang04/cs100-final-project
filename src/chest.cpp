@@ -1,11 +1,21 @@
 #include "../header/chest.hpp"
+//#include "../header/Item.hpp"
 #include "../header/Player.hpp"
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib> 
 
 //default constructor
-Chest::Chest(int maxNum, std::vector<Item*> items, int goldNum) : maxItemCount(maxNum), itemInven(items), goldAmount(goldNum) {
+Chest::Chest(int maxNum, std::vector<Item*> items, int goldNum)
+    : maxItemCount(maxNum), itemInven(items), goldAmount(goldNum) {}
 
+Chest::Chest()
+    : maxItemCount(10), goldAmount(0) {}
+
+// constructor with auto filledd item
+Chest::Chest(int maxNum)
+    : maxItemCount(maxNum), goldAmount(0) {
+    fillChest();
 }
 
 // Destructor: Cleans up dynamically allocated items
@@ -46,4 +56,26 @@ void Chest::collectItems(Player* player) {
 // Checks if the chest is empty
 bool Chest::isEmpty() const {
     return itemInven.empty() && goldAmount == 0;
+}
+
+// Check if the chest is full
+bool Chest::isFull() const {
+    return itemInven.size() >= maxItemCount;
+}
+
+void Chest::fillChest(){
+    GenerateItems generator;
+    std::vector<Item*> newItems = generator.generateItem();
+    // Add items to the chest until it reaches max capacity
+    for (Item* item : newItems) {
+        if (isFull()) {
+            delete item;  // Prevent memory leaks for unused items
+            item = nullptr;
+            continue;
+        }
+        itemInven.push_back(item);
+    }
+    newItems.clear();
+    std::cerr << "Number of items " << getItemCount() << std::endl;
+    goldAmount = std::rand() % 51;
 }
