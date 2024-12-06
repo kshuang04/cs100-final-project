@@ -17,28 +17,28 @@ int main()
 {
     bool gameIsOn = true;
 
+    double options = 0.0;
+
+    MainMenuScreen menu;
+    menu.printScreen();
+
+    cin >> options;
+
+    while ((options != 1.0 && options != 2.0) || cin.fail())
+    {
+        cout << "That is an invalid choice. Please try again.\n";
+        cin.clear();
+        cin.ignore(2147483647, '\n');
+        cin >> options;
+    }
+
     while (true) {
         Player player;
 
         srand(time(NULL));
 
-        double options = 0.0;
-        int levelNum = 1;
+        int levelNum = 30;
         int region = rand() % 5 + 1;
-
-
-        MainMenuScreen menu;
-        menu.printScreen();
-
-        cin >> options;
-
-        while ((options != 1.0 && options != 2.0) || cin.fail())
-        {
-            cout << "That is an invalid choice. Please try again.\n";
-            cin.clear();
-            cin.ignore(2147483647, '\n');
-            cin >> options;
-        }
 
         if (options == 2.0)
         {
@@ -125,6 +125,7 @@ int main()
             }
             else if (currLevel.returnEnemyVector().empty())
             {
+                if (currLevel.getLevelNum() == 30) {break;}
                 CompleteStageScreen complete;
                 complete.printScreen();
                 player.changeGold(goldGain);
@@ -276,6 +277,27 @@ int main()
         }
 
         if (!gameIsOn) {
+            break;
+        }
+
+        options = 0.0;
+
+        WinScreen win;
+        win.printScreen();
+
+        cin >> options;
+
+        while ((options != 1.0 && options != 2.0) || cin.fail())
+        {
+            cout << "That is an invalid choice. Please try again.\n";
+            cin.clear();
+            cin.ignore(2147483647, '\n');
+            cin >> options;
+        }
+
+        player.resetStats();
+
+        if (options == 2.0) {
             break;
         }
 
