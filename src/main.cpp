@@ -301,6 +301,8 @@ int main()
             break;
         }
 
+        options = 0.0;
+
     }
 
     return 0;
