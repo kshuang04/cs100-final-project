@@ -7,27 +7,28 @@
 
  We will be using C++ and VScode for the entirety of our project. We will make everything text based.
 
- Our project will take in inputs throughout the entirety of the game. At the beginning, it will ask for a name and class. During the game, it will ask whether the user wants to go a certain path. During battles, the user will be asked what action they want to perform, if its using an item, casting a spell, or wielding a weapon. All inputs, besides name, will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, actions, and paths will be shown through text throughout the game. We will output things such as:\
- "Welcome to the game"\
- "Player Health: 100/100"\
- "0 Training Grounds"\
- "Monsters in this stage:"\
- "1. dummy (Health: 30, Attack: 5)"\
- "2. dummy (Health: 30, Attack: 5)"\
- "Choose an action:"\
- "1. Attack"\
- "2. Items"\
- There will also be special dialouge for events like shopkeepers. They may say:\
- "What do you want to buy?"\
- "1. helmet"\
- "2. health potion"\
- "3. antidote"\
- "4. No shopping for now"\
+ Our project will take in inputs throughout the entirety of the game. Starting the game will immediately put the user in a battle. During the game, the user will be prompted with a set of actions to choose from. During battles, the user will be asked what action they want to perform: attack or use an item. After battles, the user will be asked what they want to do next: view stats, view inventory, visit the shop, or proceed to the next stage. All inputs will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, and actions will be shown through text throughout the game. We will output things such as:<br />
+ "Welcome to the game"<br />
+ "Player Health: 100/100"<br />
+ "Enemies in this stage:<br />
+  Zombie (Health: 18/18)<br />
+  Goblin (Health: 12/12)"<br />
+ "Select an action:<br />
+ (1) Attack <br />
+ (2) Items"<br />
+ There will also be special dialouge for events like shopkeepers. They may say:<br />
+ "Hello. Welcome to my shop.<br />
+  (1) Small Health potion <br />
+  (2) Max Health potion<br />
+  (3) Attack potion<br />
+  (4) Defense potion<br />
+  (5) Sell items<br />
+  (6) Leave"<br />
  As a response, the user will choose a number to purchase anything.
 
  
 
- Our project will include the basic features of an RPG. There will be a gold system will be used in shops. There will be a variety of monsters across a few regions that will scale with stage level. There will be a class system that have different base stats. There will be a battle system that allows the use of items and attacking. As for special features, we will have random encounters that will trigger special events and a path system that allows the user to pick what they want to do at every stage. After beating every stage, the player can pick up a random amount of loot.
+ Our project will include the basic features of an RPG. There will be a gold system will be used in shops. There will be a variety of monsters across a few regions that will scale with stage level. There will be a battle system that allows the use of items and attacking. As for special features, we will have random encounters that will trigger special events. After beating every stage, the player will be rewarded a random amount of loot.
  
   ## Phase II
   
@@ -37,29 +38,29 @@
 
 ### Screen Layouts
 The general layout for our screens will consist of details about the current state of the game followed by a user prompt and the choices available for the user to make. The user will then input their choice as numerical input through the terminal.
-For example, these are the screens that the user will see at the start and end of the game:\
-![Start Screen](images/startScreen.png) ![Lose Screen](images/loseScreen.png) ![Win Screen](images/winScreen.png)\
+For example, these are the screens that the user will see at the start and end of the game:<br />
+![Start Screen](images/startScreen.png) ![Lose Screen](images/loseScreen.png) ![Win Screen](images/winScreen.png)<br />
 Here, the user is given two choices: start the game (or restart the game) or to exit the game. The user will enter a numerical input to make their choice.
 
-Our battle layout will look like this:\
-![Battle Screen](images/battleScreen.png)\
+Our battle layout will look like this:<br />
+![Battle Screen](images/battleScreen.png)<br />
 Here, the user is shown information about the enemies' current health as well as their player's current health. The user is also prompted to choose between two actions: attack or use an item they possess. The attack option will decrease the enemies health and start the enemies turn. If the user chooses to use an item, they will be shown the inventory screen which is described in the next section. 
 
-If the user were to want to use an item in battle, they will be greeted with the following screen:\
-![Inventory Screen](images/inventoryScreen.png) \
+If the user were to want to use an item in battle, they will be greeted with the following screen:<br />
+![Inventory Screen](images/inventoryScreen.png)<br />
 This screen shows the list of items that the player currently has available to use in their inventory. The player is provided with descriptions about each of the items they have. For example, the player has an attack potion in the first slot of their inventory. Additionally, this item has an attack power of 2 which will increase the player's attack power by 2. This screen also gives a brief description about what each item does.
 
-The enemies' turn screen will look like this:\
-![Enemy Turn Screen](images/enemyTurnScreen.png)\
+The enemies' turn screen will look like this:<br />
+![Enemy Turn Screen](images/enemyTurnScreen.png)<br />
 This screen gives information to the user about the enemies' action. There is no user input for this screen. In this case, Enemy 1 attacked Player and Player lost 20 health. After the enemies' turn, if the player survives the attack, the battle screen will be shown again with the new updated health and the choices the user is able to make. 
 
-Finally, another one of our main screens will be the shopkeeper's screen:\
-![Shopkeeper Screen](images/shopkeeperScreen.png)\
+Finally, another one of our main screens will be the shopkeeper's screen:<br />
+![Shopkeeper Screen](images/shopkeeperScreen.png)<br />
 This screen follows our general layout. If the user chooses to visit the shopkeeper after completing a level, they will be greeted with this screen that shows how much currency they currently have and the items avaiable to purchase from the shopkeeper. Again, the user is prompted to choose an option and input their choice as a numerical input. If they choose to buy an item, that item will be added to their inventory and the cost of that item will be deducted from their total currency. The user is also given the choice to sell items that they currently have in exchange for currency. Finally, the user is given the choice to leave the shopkeeper and continue their journey through Path of Pain.
 
 
 ### Class Diagram
-  ![UML Diagram 1](images/UMLDiagram1.png) ![UML Diagram 2](images/UMLDiagram2.png)
+  ![UML Diagram 1](images/UMLDiagram.png)
 
   * The Player class encapsulates the player's attributes and capabilities, such as health, attack power, and available moves. This class interacts with a specialized CharacterClass class, which defines the player’s starting stats, abilities, and moveset.
   * The moveset is further defined by an Attack class, which organizes individual attack moves available to the player.
@@ -77,18 +78,28 @@ This screen follows our general layout. If the user chooses to visit the shopkee
  * OCP is present in our implementation of the ItemInventory class. ItemInventory follows OCP because it is open for extension, but closed for modification because it stores objects of the base class Item (which all items like health and attack potions will derive from). For example, if we decide to add a new item to our game in the future, let's say a regeneration potion, we do not have to modify the code in ItemInventory because it stores Item object and the regeneration potion item would be a subclass of the Item class. Applying OCP helps us write better code because it allows us to add new features to a program without breaking or modifying existing code. This will also save us time because we would not have to modify/add code in order to have our new features work as intended.
  * We applied DIP in the screen class. The screen class has several subclasses for the different screens our game will have. Our screen class demonstrates DIP because the screen class itself is the high-level module and its subclasses are low-level modules. When we make calls to print a screen, we will make those calls using the screen class so our program will not be looking for a specific type of screen to print. Applying DIP allows us to write better code because, similar to OCP, it allows us to add new features (in our case, new screens) without altering existing code.
  
-  ## Final deliverable
-  All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
-  Before the demo, you should do the following:
-  * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
-  * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
-  * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history.
-  * Each team member should also submit the Individual Contributions Form on Canvas for this final phase. In this form, you need to fill in the names of all team members, the percentage of work contributed by each member for the final phase, and a description of their contributions. Remember that each team member should submit the form individually.
- 
+## Final deliverable
  ## Screenshots
-  Screenshots of the input/output after running your application
+
+  Starting Game:<br />
+  ![Start Game Interaction](images/startGameInteraction.png)
+
+  Battle Interaction:<br />
+  ![Battle Interaction](images/battleInteraction.png)
+
+  Checking Player Stats:<br />
+  ![Player Stats Interaction](images/playerStatsInteraction.png)
+
+  Checking Player Inventory:<br />
+  ![Player Inven Interaction](images/playerInvenInteraction.png)
+
+  Visiting and purchasing from shop:<br />
+  ![Purchase Item Interaction](images/purchaseItemInteraction.png)
+  
+  Shop Selling interaction:<br />
+  ![Shop Selling Interaction](images/shopSellingInteraction.png)
+
  ## Installation/Usage
-  Instructions on installing and running your application
+  In order to run the game, after cloning the repo, run `cmake . && make && ./game`
  ## Testing
-  How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
- 
+  We tested our project primarily through unit tests for each class to ensure each class works as intended and works as intended with other classes. When developing and testing classes that needed other classes that were not made yet, we created stubs for those classes.
