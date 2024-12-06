@@ -37,7 +37,7 @@ int main()
 
         srand(time(NULL));
 
-        int levelNum = 30;
+        int levelNum = 1;
         int region = rand() % 5 + 1;
 
         if (options == 2.0)
