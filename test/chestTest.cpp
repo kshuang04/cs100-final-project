@@ -1,43 +1,56 @@
 #include "../header/chest.hpp"
 #include "../header/Player.hpp"
 #include "../header/Item.hpp"
+#include "../header/ItemInventory.hpp"
 #include "gtest/gtest.h"
 
 
-TEST(ChestTestOne, FewerItemsThanCapacity) {
-    Player player; // Assume player's maxItem = 3
-    std::vector<Item*> items = {
-        new AttackItem(10, 1, "Sword"),
-        new DefenseItem(5, 1, "Shield")
-    };
-    Chest chest(2, items, 100);
-    chest.collectItems(&player);
 
-    EXPECT_TRUE(chest.isEmpty());
+TEST(ChestTest, FewerItemsThanCapacity) {
+    Player* player = new Player(); // Assume player's maxItem = 3
+    std::vector<Item*> items = {
+        new AttackItem(10, 1, "Sword", 1, "Has a sharpe blade."),
+        new DefenseItem(5, 1, "Shield", 1, "Has protective material.")
+    };
+    Chest* chest = new Chest(2, items, 100);
+    chest->collectItems(player);
+
+    EXPECT_TRUE(chest->isEmpty());
     // Clean up
-    for (auto item : player.getItemIven()) {
+    for (auto item : player->getPlayerInven()->getItemInven()) {
         delete item;
     }
-    player.getItemIven().clear();
+    player->getPlayerInven()->getItemInven().clear();
+    delete player;
+    delete chest;
 }
+
 
 
 TEST(ChestTestTwo, EmptyChest) {
     Player player; // Assume player's maxItem = 3
     std::vector<Item*> items; // No items
-    Chest chest(0, items, 0);
-    chest.collectItems(&player);
+    Chest* chest = new Chest(0, items, 0);
+    chest->collectItems(player);
 
-    EXPECT_TRUE(chest.isEmpty());
+    EXPECT_TRUE(chest->isEmpty());
+
+    delete player;
+    delete chest;
 }
+
 
 TEST(ChestTestThree, GoldOnly) {
     Player player; // Assume player's maxItem = 3
-    std::vector<Item*> items; // No items
-    Chest chest(0, items, 200);
-    chest.collectItems(&player);
 
-    EXPECT_TRUE(chest.isEmpty());
+    std::vector<Item*> items; // No items
+    Chest* chest = new Chest(0, items, 200);
+    chest->collectItems(player);
+
+    EXPECT_TRUE(chest->isEmpty());
+
+    delete player;
+    delete chest;
 }
 
 TEST(ChestTestFour, fillChest) {
@@ -53,6 +66,7 @@ TEST(ChestTestFour, fillChest) {
     // Since the GenerateItems logic adds exactly 9 items in its implementation,
     // GenerateItems adds exactly 9 items based on its implementation
     EXPECT_EQ(chesta.getItemCount(), 10);
+    delete chesta;
 }
 
 // Test that `fillChest` can be called multiple times
@@ -71,6 +85,7 @@ TEST(ChestTestFive, FillChestCanBeCalledMultipleTimes) {
     // Verify that gold and items have been reset
     EXPECT_NE(chest.getGoldAmount(), initialGold);
     EXPECT_NE(chest.getItemCount(), initialItemCount);
+    delete chest;
 }
 
 TEST(ChestTestSix, fillEmpChest) {
@@ -86,6 +101,7 @@ TEST(ChestTestSix, fillEmpChest) {
     // Since the GenerateItems logic adds exactly 9 items in its implementation,
     // GenerateItems adds exactly 9 items based on its implementation
     EXPECT_EQ(chestb.getItemCount(), 9);
+    delete chestb;
 }
 
 

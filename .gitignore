@@ -7,3 +7,8 @@ CMakeCache.txt
 runPlayerTests
 h.autoSetupRemote
 playGame
+runScreenTests
+runChestTest
+runShopTests
+game
+extern/

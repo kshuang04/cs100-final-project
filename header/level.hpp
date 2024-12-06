@@ -2,32 +2,33 @@
 #define LEVEL_HPP
 
 #include "../header/enemy.hpp"
+#include <iostream>
+#include <vector>
 
-class level {
-    private:
-        /*
-        Check Enemy.txt
-        There is currently 23
-        can just hardcode the array size lol
-        
-        - Red
-        */
-        void insertEnemies();
-        Enemy listOfEnemies[23];
+using namespace std;
 
-        /*
-        When doing the actual enemy generation
-        use modulo and base it off the current level
+class level
+{
+private:
+    vector<Enemy> listOfEnemies; // Vector to store enemies for this level
 
-        Ex. if its level 5, can spawn an elite enemy
-        Ex. 1-10 level should only have "early enemy"
-            While 11-20 have "mid" enemy
+    // Private helper function to insert enemies based on the level and stage
+    void insertEnemies(int level, int region, int stage);
+    int numLevel;
+    int numStage;
+    int numRegion;
 
-        -Red
-        */
-    public:
-        level();
+public:
+    level(int level, int region); // Default constructor
+    int getTotalGold();
+    int getTotalEXP();
+    vector<Enemy>* returnEnemyVectorP();
 
+    vector<Enemy> returnEnemyVector();
+
+    int getLevelNum();
+    int getStage();
+    int getRegion();
 };
 
 #endif

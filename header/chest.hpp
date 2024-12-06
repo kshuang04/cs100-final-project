@@ -25,7 +25,6 @@
             bool isFull() const;
             void fillChest();       // fill the chest with gold and item
 
-
     };
 
     #endif
