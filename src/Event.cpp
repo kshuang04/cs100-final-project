@@ -17,11 +17,10 @@ std::string MiniGame::getName() const {
 // generate the reward : item + gold
 // basically what it does is creating a chest pointed by rewardChest
 void MiniGame::generateReward() {
-    GenerateItems ItemGenerated;
-    // generate random amount of gold
-    int goldAmount = rand() % 100 + 1;
-    // generate a vector of items directed copy from item
-    std::vector<Item*> items = ItemGenerated.generateItem();
 
-    rewardChest = new Chest(10, items, goldAmount);
+    rewardChest = new Chest(10);
+    // fill the chest with random item and gold  <-- newly updated function in Chest.cpp
+    // no need to fill if called Chest(10) then it is auto load. 
+    // if called Chest bala, it need to fill chest
+    
 }

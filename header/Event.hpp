@@ -20,12 +20,12 @@ public:
 
     // logic of the game
     virtual void play(Player* player) = 0;
-
     // game name
     string getName() const;
-
     // generate reward
     void generateReward();
+    // newly added accessor of the chest
+    Chest* getRewardChest() const { return rewardChest; }  // Accessor for the chest
 };
 
 #endif
