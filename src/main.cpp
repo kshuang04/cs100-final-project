@@ -94,7 +94,11 @@ int main()
                     }
                 }
 
-                (*currLevel.returnEnemyVectorP()).back().attack(&player);
+                if ((*currLevel.returnEnemyVectorP()).size() > 0)
+                {
+                    (*currLevel.returnEnemyVectorP()).back().attack(&player);
+                
+                }
                 options = 0;
             }
 
