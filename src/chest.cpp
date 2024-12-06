@@ -64,8 +64,7 @@ bool Chest::isFull() const {
 }
 
 void Chest::fillChest(){
-    GenerateItems generator;
-    std::vector<Item*> newItems = generator.generateItem();
+    std::vector<Item*> newItems = generateItem();
     // Add items to the chest until it reaches max capacity
     for (Item* item : newItems) {
         if (isFull()) {

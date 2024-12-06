@@ -22,7 +22,7 @@ int main()
 
         srand(time(NULL));
 
-        int options = 0;
+        double options = 0.0;
         int levelNum = 1;
         int region = rand() % 5 + 1;
 
@@ -32,7 +32,7 @@ int main()
 
         cin >> options;
 
-        while (options < 1 || options > 2 || cin.fail())
+        while ((options != 1.0 && options != 2.0) || cin.fail())
         {
             cout << "That is an invalid choice. Please try again.\n";
             cin.clear();
@@ -40,7 +40,7 @@ int main()
             cin >> options;
         }
 
-        if (options == 2)
+        if (options == 2.0)
         {
             return 0;
         }
@@ -64,7 +64,7 @@ int main()
 
                 cin >> options;
 
-                while (options < 1 || options > 2 || cin.fail())
+                while ((options != 1.0 && options != 2.0) || cin.fail())
                 {
                     cout << "That is an invalid choice. Please try again.\n";
                     cin.clear();
@@ -72,7 +72,7 @@ int main()
                     cin >> options;
                 }
 
-                if (options == 1)
+                if (options == 1.0)
                 {
                     (*currLevel.returnEnemyVectorP()).back().gotAttack(player.attack());
                     if (currLevel.returnEnemyVector().back().getHealth() <= 0)
@@ -80,7 +80,7 @@ int main()
                         currLevel.returnEnemyVectorP()->pop_back();
                     }
                 }
-                else if (options == 2)
+                else if (options == 2.0)
                 {
                     if (player.getPlayerInven()->healingPotExists()) {
                         if ((player.getHP() + player.getPlayerInven()->getNextHealingPot()->getHealthIncrease()) >= player.getMaxHP()) {
@@ -107,14 +107,14 @@ int main()
                 LoseScreen lose;
                 lose.printScreen();
                 cin >> options;
-                while (options < 1 || options > 2 || cin.fail())
+                while ((options != 1.0 && options != 2.0) || cin.fail())
                 {
                     cout << "That is an invalid choice. Please try again.\n";
                     cin.clear();
                     cin.ignore(2147483647, '\n');
                     cin >> options;
                 }
-                if (options == 2) 
+                if (options == 2.0)
                 {
                     gameIsOn = false;
                     return 0;
@@ -140,7 +140,7 @@ int main()
                 
                 cin >> options;
 
-                while (options < 1 || options > 4 || cin.fail())
+                while ((options != 1.0 && options != 2.0 && options != 3.0 && options != 4.0) || cin.fail())
                 {
                     cout << "That is an invalid choice. Please try again.\n";
                     cin.clear();
@@ -149,13 +149,13 @@ int main()
                 }
 
                 //check stats
-                if (options == 1)
+                if (options == 1.0)
                 {
                     PlayerStatsScreen stats(&player);
                     stats.printScreen();
                 }
                 //check inven
-                else if (options == 2)
+                else if (options == 2.0)
                 {
                     PlayerInventoryScreen inventory(&player);
                     inventory.printScreen();
@@ -165,88 +165,88 @@ int main()
                     }
                 }
                 //visit shop
-                else if (options == 3)
+                else if (options == 3.0)
                 {
                     ShopScreen shopScreen(&player);
                     shopScreen.printScreen();
-                    options = 0;
+                    options = 0.0;
 
-                    while (options != 6)
+                    while (options != 6.0)
                     {
                         Shop shop(&player);
                         options = 0;
                         cin >> options;
-                        while (options < 1 || options > 6 || cin.fail())
+                        while ((options != 1.0 && options != 2.0 && options != 3.0 && options != 4.0 && options != 5.0 && options != 6.0) || cin.fail())
                         {
                             cout << "That is an invalid choice. Please try again.\n";
                             cin.clear();
                             cin.ignore(2147483647, '\n');
                             cin >> options;
                         }
-                        if (options == 6)
+                        if (options == 6.0)
                         {
                             break;
                         }
                         try
                         {
                             //buy small heal
-                            if (options == 1)
+                            if (options == 1.0)
                             {
                                 shop.purchaseSmallHealthItem();
                             }
                             //buy max heal
-                            else if (options == 2)
+                            else if (options == 2.0)
                             {
                                 shop.purchaseMaxHealthItem();
                                 
                             }
                             //buy attack pot
-                            else if (options == 3)
+                            else if (options == 3.0)
                             {
                                 shop.purchaseAttackItem();
                             }
                             //buy defense pot
-                            else if (options == 4)
+                            else if (options == 4.0)
                             {
                                 shop.purchaseDefenseItem();
                             }
                             //sell item
-                            else if (options == 5)
+                            else if (options == 5.0)
                             {
                                 shopScreen.printSellScreen(); //print screen to show player what options they have to sell
 
                                 options = 0;
 
-                                while (options != 5)
+                                while (options != 5.0)
                                 {
                                     options = 0;
 
-                                    while (options < 1 || options > 5)
+                                    while (options != 1.0 && options != 2.0 && options != 3.0 && options != 4.0 && options != 5.0)
                                     {
-                                        // cin.clear();
-                                        // cin.ignore(2147483647, '\n');
+                                        cin.clear();
+                                        cin.ignore(2147483647, '\n');
                                         cin >> options;
                                     }
                                     //sell small heal
-                                    if (options == 1)
+                                    if (options == 1.0)
                                     {
                                         shop.sellSmallHealthItem();
                                         break;
                                     }
                                     //sell max heal
-                                    else if (options == 2)
+                                    else if (options == 2.0)
                                     {
                                         shop.sellMaxHealthItem();
                                         break;
                                     }
                                     //sell attack pot
-                                    else if (options == 3)
+                                    else if (options == 3.0)
                                     {
                                         shop.sellAttackItem();
                                         break;
                                     }
                                     //sell defense pot
-                                    else if (options == 4)
+                                    else if (options == 4.0)
                                     {
                                         shop.sellDefenseItem();
                                         break;

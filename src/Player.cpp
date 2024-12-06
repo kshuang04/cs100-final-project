@@ -63,8 +63,6 @@ void Player::changeEXP(int expChange) {
 
 int Player::expToNextLevel() {
     //Computes the remaining exp to the next level
-    //return ((int)(100 * pow(1.25, this->level - 1)) - (int)(100 * pow(1.25, this->level - 1)) % 25);
-    //return (10 + (this->level - 1) * 5);
     return (int)round((15 + 5 * (this->level - 1) + 2 * pow(1.25, this->level - 1) + 0.1 * pow(this->level - 1, 2)));
 }
 
