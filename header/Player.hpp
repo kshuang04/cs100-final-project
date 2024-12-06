@@ -41,7 +41,7 @@ class Player {
         void resetStats();
         //Accessors
         int getHP() {return this->currHP;}
-        int getMaxHPFromLevel() {return (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));}
+        int getMaxHPFromLevel() {return (this->getMaxHPStat() + 20 + 2 * (this->getLevel() - 1));}
         int getMaxHP() {return this->maxHP;}
         int getLevel() {return this->level;}
         int getMaxLevel() {return this->maxLevel;}
@@ -61,7 +61,7 @@ class Player {
         void setDefenseStat(int newDefenseStat) {this->defenseStat = newDefenseStat;}
         void setMaxHPStat(int newMaxHPStat) {
             this->maxHPStat = newMaxHPStat;
-            this->maxHP = (this->getMaxHPStat() + 20 + 5 * (this->getLevel() - 1));
+            this->maxHP = (this->getMaxHPStat() + 20 + 2 * (this->getLevel() - 1));
         }
         void setGold(unsigned int newGoldAmount) {this->gold = newGoldAmount;}
         void setIsAlive(bool newAliveStatus) {this->isAlive = newAliveStatus;}
