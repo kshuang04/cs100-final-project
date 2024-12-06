@@ -280,25 +280,28 @@ int main()
             break;
         }
 
-        options = 0.0;
+        if (levelNum > 30) {
 
-        WinScreen win;
-        win.printScreen();
+            options = 0.0;
 
-        cin >> options;
+            WinScreen win;
+            win.printScreen();
 
-        while ((options != 1.0 && options != 2.0) || cin.fail())
-        {
-            cout << "That is an invalid choice. Please try again.\n";
-            cin.clear();
-            cin.ignore(2147483647, '\n');
             cin >> options;
-        }
 
-        player.resetStats();
+            while ((options != 1.0 && options != 2.0) || cin.fail())
+            {
+                cout << "That is an invalid choice. Please try again.\n";
+                cin.clear();
+                cin.ignore(2147483647, '\n');
+                cin >> options;
+            }
 
-        if (options == 2.0) {
-            break;
+            player.resetStats();
+
+            if (options == 2.0) {
+                break;
+            }
         }
 
         options = 0.0;
