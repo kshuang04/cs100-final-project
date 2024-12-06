@@ -7,7 +7,7 @@
 
  We will be using C++ and VScode for the entirety of our project. We will make everything text based.
 
- Our project will take in inputs throughout the entirety of the game. Starting the game will immediately put the user in a battle. During the game, it will ask whether the user wants to go a certain path. During battles, the user will be asked what action they want to perform: attack or use an item. All inputs will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, actions, and paths will be shown through text throughout the game. We will output things such as:<br />
+ Our project will take in inputs throughout the entirety of the game. Starting the game will immediately put the user in a battle. During the game, the user will be prompted with a set of actions to choose from. During battles, the user will be asked what action they want to perform: attack or use an item. After battles, the user will be asked what they want to do next: view stats, view inventory, visit the shop, or proceed to the next stage. All inputs will be selected using a number after being presented a list with numbers. As for outputs, because it is text based, all of the monsters, health, gold, and actions will be shown through text throughout the game. We will output things such as:<br />
  "Welcome to the game"<br />
  "Player Health: 100/100"<br />
  "Enemies in this stage:<br />
@@ -28,7 +28,7 @@
 
  
 
- Our project will include the basic features of an RPG. There will be a gold system will be used in shops. There will be a variety of monsters across a few regions that will scale with stage level. There will be a class system that have different base stats. There will be a battle system that allows the use of items and attacking. As for special features, we will have random encounters that will trigger special events and a path system that allows the user to pick what they want to do at every stage. After beating every stage, the player can pick up a random amount of loot.
+ Our project will include the basic features of an RPG. There will be a gold system will be used in shops. There will be a variety of monsters across a few regions that will scale with stage level. There will be a battle system that allows the use of items and attacking. As for special features, we will have random encounters that will trigger special events. After beating every stage, the player will be rewarded a random amount of loot.
  
   ## Phase II
   
