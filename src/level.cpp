@@ -14,7 +14,7 @@ level::level(int currLevel, int region)
     // Determine the number of enemies based on level range
     int enemyCount = (currLevel % 10 == 0 || currLevel % 10 <= 3) ? 1 : (currLevel % 10 <= 6) ? 2
                                                                                   : 3;
-    int stage = (currLevel - 1) / 10 + 1;
+    int stage = currLevel / 10 + 1;
 
     for (int i = 0; i < enemyCount; i++)
     {

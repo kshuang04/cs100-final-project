@@ -14,7 +14,7 @@ int Player::attack() {
     //Sets a random seed everytime the function is called.
     srand(time(0));
     //Returns attack damage value from a specific formula.
-    return ((int)((this->getLevel() * ((rand() % 6) + 5)) + this->getAttackStat()));
+    return (int)((this->getLevel() * 0.5 * ((rand() % 6) + 4)) + this->getAttackStat());
 }
 
 void Player::takeDamage(int damage) {
@@ -65,7 +65,7 @@ int Player::expToNextLevel() {
     //Computes the remaining exp to the next level
     //return ((int)(100 * pow(1.25, this->level - 1)) - (int)(100 * pow(1.25, this->level - 1)) % 25);
     //return (10 + (this->level - 1) * 5);
-    return (int)round((9 + 3 * (this->level - 1) + pow(1.15, this->level - 1)));
+    return (int)round((15 + 5 * (this->level - 1) + 2 * pow(1.25, this->level - 1) + 0.1 * pow(this->level - 1, 2)));
 }
 
 void Player::resetStats() {
